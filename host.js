@@ -133,9 +133,8 @@ app.use(flat(async (ctx, next, path, rest) => {
     return next();
   }
 
-  var data;
-  var bodyClass;
-  var template = path;
+  let data;
+  let bodyClass;
 
   // derive the mount path from Koa, so this doesn't need to have it as a const
   const basepath = mountUrl(ctx);
