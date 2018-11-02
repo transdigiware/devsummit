@@ -71,6 +71,13 @@ app.use(async (ctx, next) => {
   return next();
 });
 
+app.use(hbs.middleware({
+  viewPath: `${__dirname}/sections`,
+  layoutsPath: `${__dirname}/templates`,
+  partialsPath: `${__dirname}/partials`,
+  extname: '.html',
+}));
+
 // Serve schedule.json from top-level.
 app.use(async (ctx, next) => {
   if (ctx.path === '/schedule.json') {
@@ -79,16 +86,24 @@ app.use(async (ctx, next) => {
   if (ctx.path === '/googlec6dfdf23945d0d0c.html') {
     return send(ctx, `googlec6dfdf23945d0d0c.html`);
   }
+  if (ctx.path === '/sitemap.xml') {
+    const basepath = mountUrl(ctx);
+    const hostname = ctx.req.headers.host;
+    const sitePrefix = (isProd ? 'https://' : 'http://') + hostname + basepath;
+
+    ctx.type = 'text/xml';
+
+    return await ctx.render('sitemap', {
+      layout: 'generic',
+      path: 'sitemap',
+      data: schedule,
+      prod: isProd,
+      base: basepath,
+      sitePrefix: sitePrefix,
+    });
+  }
   return next();
 });
-
-app.use(hbs.middleware({
-  viewPath: `${__dirname}/sections`,
-  layoutsPath: `${__dirname}/templates`,
-  partialsPath: `${__dirname}/partials`,
-  extname: '.html',
-}));
-
 
 const sections = fs.readdirSync(`${__dirname}/sections`)
     .map((section) => {
@@ -118,6 +133,9 @@ app.use(flat(async (ctx, next, path, rest) => {
     return next();
   }
 
+  let data;
+  let bodyClass;
+
   // derive the mount path from Koa, so this doesn't need to have it as a const
   const basepath = mountUrl(ctx);
   const hostname = ctx.req.headers.host;
@@ -135,12 +153,19 @@ app.use(flat(async (ctx, next, path, rest) => {
   };
 
   if (rest) {
-    if (path !== 'schedule') {
-      return next();
-    }
+    // lookup schedule
+    data = schedule.sessions[rest];
+    path = '_amp-session';
+    bodyClass = 'schedule-popup';
 
-    // lookup schedule and check ID doesn't start with _
-    const data = schedule.sessions[rest];
+    // session not found, checking for potential speaker
+    if (!data) {
+      data = schedule.speakers[rest];
+      path = '_amp-speaker';
+      bodyClass = 'speaker-popup';
+    }
+    
+    // no session, no pseaker or ID starts with _
     if (!data || rest.startsWith('_')) {
       return next();
     }
@@ -160,13 +185,13 @@ app.use(flat(async (ctx, next, path, rest) => {
 
     // render AMP for first session load
     scope.layout = 'amp';
+    scope.bodyClass = bodyClass;
     scope.sitePrefix = sitePrefix;
     scope.title = data.name || '';
     scope.time_label = data.time_label || '';
     scope.description = data.description || '',
     scope.payload = data;
     scope.styles = css;
-    path = '_amp-session';
   }
 
   ctx.set('Feature-Policy', policyHeader);
