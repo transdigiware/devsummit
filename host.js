@@ -93,16 +93,15 @@ app.use(async (ctx, next) => {
 
     ctx.type = 'text/xml';
 
-    return await ctx.render('sitemap', {
-      layout: 'generic',
-      path: 'sitemap',
+    await ctx.render('sitemap', {
       data: schedule,
       prod: isProd,
       base: basepath,
       sitePrefix: sitePrefix,
     });
+  } else {
+    return next();
   }
-  return next();
 });
 
 const sections = fs.readdirSync(`${__dirname}/sections`)
@@ -148,11 +147,13 @@ app.use(flat(async (ctx, next, path, rest) => {
     layout: 'devsummit',
     ua: 'UA-41980257-1',
     conversion: 935743779,
+    canonicalUrl: `${sitePrefix}/${path}`,
     sourcePrefix,
     days,
   };
 
   if (rest) {
+    scope.canonicalUrl += `/${rest}`;
     // lookup schedule
     data = schedule.sessions[rest];
     path = '_amp-session';
@@ -185,6 +186,7 @@ app.use(flat(async (ctx, next, path, rest) => {
 
     // render AMP for first session load
     scope.layout = 'amp';
+    scope.id = rest;
     scope.bodyClass = bodyClass;
     scope.sitePrefix = sitePrefix;
     scope.title = data.name || '';
