@@ -25,18 +25,18 @@
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
-    {{#each data.sessions}}
-        <url>
-            <loc>{{../sitePrefix}}/schedule/{{@key}}</loc>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-    {{/each}}
-    {{#each data.speakers}}
-        <url>
-            <loc>{{../sitePrefix}}/schedule/{{@key}}</loc>
-            <changefreq>daily</changefreq>
-            <priority>0.4</priority>
-        </url>
-    {{/each}}
+{{#each data.sessions}}
+    <url>
+        <loc>{{../sitePrefix}}/schedule/{{@key}}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+{{/each}}
+{{#each data.speakers}}
+    <url>
+        <loc>{{../sitePrefix}}/schedule/{{@key}}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.4</priority>
+    </url>
+{{/each}}
 </urlset>

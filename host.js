@@ -93,17 +93,14 @@ app.use(async (ctx, next) => {
 
     ctx.type = 'text/xml';
 
-    await ctx.render('sitemap', {
-      layout: 'generic',
-      //path: 'sitemap',
+    // ctx.render returns undefined, but bail early anyway
+    return await ctx.render('_sitemap', {
       data: schedule,
-      prod: isProd,
-      base: basepath,
-      sitePrefix: sitePrefix,
+      sitePrefix,
     });
-  } else {
-    return next();
   }
+
+  return next();
 });
 
 const sections = fs.readdirSync(`${__dirname}/sections`)
