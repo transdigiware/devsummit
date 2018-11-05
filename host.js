@@ -94,6 +94,8 @@ app.use(async (ctx, next) => {
     ctx.type = 'text/xml';
 
     await ctx.render('sitemap', {
+      layout: 'generic',
+      //path: 'sitemap',
       data: schedule,
       prod: isProd,
       base: basepath,
