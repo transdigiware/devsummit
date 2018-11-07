@@ -9,6 +9,16 @@
   <p>{{description}}</p>
 </article>
 
+{{#if payload.youtube_id }}
+<amp-youtube
+    id="youtube-video"
+    data-videoid="{{ payload.youtube_id }}"
+    width="358"
+    height="204"
+    layout="responsive">
+</amp-youtube>
+{{/if}}
+
 <ul class="speakers">
 {{#each payload.speakers}}
   <li>

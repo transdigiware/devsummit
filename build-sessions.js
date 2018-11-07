@@ -97,6 +97,7 @@ for(const i in sessions) {
         "time_label": session.time_label,
         "when": session.when,
         "description": session.description,
+        "youtube_id": session.youtube_id || false,
         "speakers": []
     }
 
