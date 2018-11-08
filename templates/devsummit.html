@@ -58,6 +58,10 @@ the License.
 
 </head>
 <body data-stage="{{stage}}"{{#if path}} data-path="{{path}}"{{/if}}>
+<script type="module" async>
+// nb. intentionally inline/async
+document.body.classList.add('live');
+</script>
 
 <div id="outline">
 

@@ -287,11 +287,12 @@ section {
 
   // If we:
   // * have minimum width/height
+  // * the code is live (dynamic, not static)
   // * in event stage
   // * on the index page
   // ... then create space for the YouTube iframe embed.
   @media (min-height: @width-small) and (min-width: @width-small) {
-    body[data-stage="event"]:not([data-page]) & {
+    body.live[data-stage="event"]:not([data-page]) & {
       padding-top: 140px;
       @media (min-width: @width-normal) {
         padding-top: 290px;
