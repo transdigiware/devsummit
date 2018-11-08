@@ -96,7 +96,7 @@
       min-height: 473px !important;
     }
 
-    z-index: 500;
+    z-index: @layer-video;
     will-change: opacity;
     transition: opacity @time-pagenav ease-in-out;
     margin-top: 12px;
@@ -109,6 +109,10 @@
         width: 840px;
       }
 
+      .fade.fade-index & {
+        opacity: 0;
+      }
+  
       // display fixed in the top-right on non-index pages if we have enough vertical space
       // minimum (16px, notch) from right
       body[data-path] & {
@@ -123,9 +127,6 @@
     }
 
     &:not(.load) {
-      opacity: 0;
-    }
-    .fade.fade-index & {
       opacity: 0;
     }
 
@@ -681,7 +682,7 @@ section {
 
 #lightbox {
   background: rgba(0, 0, 0, 0.5);
-  z-index: 102;
+  z-index: @layer-lightbox;
   position: fixed;
   left: 0;
   right: 0;
