@@ -85,10 +85,15 @@ async function tryLoad(url, fallback=null) {
   const localRequest = new Object();
   tryloadRequest = localRequest;
   const localSplit = splitUrl(url);
+
+  // does the fade involve index?
+  const fadeIndex = (activeRoute === '' || localSplit.route === '');
+
   activeRoute = localSplit.route;
   // nb. ^ above setup happens before any await calls
 
   document.body.classList.add('fade');
+  document.body.classList.toggle('fade-index', fadeIndex);
   const fadePromise = timeout(250);  // nb. make equal to cds.less
 
   let raw;
@@ -133,7 +138,7 @@ async function tryLoad(url, fallback=null) {
     return;  // bail out
   }
 
-  document.body.classList.remove('fade');
+  document.body.classList.remove('fade', 'fade-index');
   document.scrollingElement.scrollTop = 0;  // TODO: animate
 
   const state = {html: raw};
