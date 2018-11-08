@@ -18,6 +18,10 @@
         <a href="https://bit.ly/CDS18-Sessions" target="_blank" rel="noopener">Watch Session Recordings</a>
         <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">Subscribe On YouTube</a>
       </div>
+      <p>
+        Catch the livestream on this website and follow us on <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">YouTube</a> and <a href="https://twitter.com/ChromiumDev" target="_blank" rel="noopener">Twitter</a>.<br />
+        #ChromeDevSummit
+      </p>
       {{/ifCond}}
     </div>
   </div>
@@ -43,12 +47,14 @@ We'll be diving deep into what it means to build a fast, high quality web experi
         <p>Find out who you will learn from</p>
       </a>
     </div>
+    {{#ifCond stage "signup"}}
     <div class="link" id="link-videos">
       <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">
         <h4>Livestream</h4>
         <p>If you're not able to join us in person, you can still join us on the livestream</p>
       </a>
     </div>
+    {{/ifCond}}
     <div class="link" id="link-codelabs">
       <a href="https://codelabs.developers.google.com/?cat=Web" target="_blank" rel="noopener">
         <h4>Codelabs</h4>
