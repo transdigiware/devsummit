@@ -38,7 +38,9 @@ const isProd = (process.env.NODE_ENV === 'production');
 const schedule = require('./schedule.json');
 const days = calendar.days(schedule);
 
-const stage = 'event';  // TODO TODO TODO
+// NOTE: This is the current stage of the event, which is hard-coded. Stages supported are
+// 'signup' and 'event', there's no post-event yet.
+const stage = 'event';
 
 // save policy string
 const policyHeader = policy(isProd);
