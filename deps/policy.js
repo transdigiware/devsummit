@@ -23,26 +23,33 @@
 // snapshot from Chrome 71.0.3554.0
 const policies = [
   'geolocation',
-  'accelerometer',
+// for YT
+  // 'accelerometer',
   'midi',
   'payment',
+// otherwise we.. can't scroll the page
   // 'vertical-scroll',
   'camera',
   'usb',
   'magnetometer',
-  'fullscreen',
+// for YT
+  // 'fullscreen',
   'legacy-image-formats',
-  'picture-in-picture',
+// for YT
+  // 'picture-in-picture',
   'animations',
   'vr',
-  'encrypted-media',
-  'autoplay',
+// for YT
+  // 'encrypted-media',
+// for YT
+  // 'autoplay',
   'speaker',
   // 'unsized-media',
   'ambient-light-sensor',
 // we downsize images 3-4 times in some places, but use them again elsewhere
   // 'max-downscaling-image',
-  'gyroscope',
+// for YT
+  // 'gyroscope',
   'document-write',
   'lazyload',
 // needed even for <script defer> with inline JS
