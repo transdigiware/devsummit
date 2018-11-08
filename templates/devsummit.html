@@ -57,7 +57,7 @@ the License.
   <script src="./{{sourcePrefix}}/loader.js" defer></script>
 
 </head>
-<body>
+<body data-stage="{{stage}}"{{#if path}} data-path="{{path}}"{{/if}}>
 
 <div id="outline">
 
@@ -90,6 +90,15 @@ the License.
 </header>
 
 <div class="masthead" id="masthead">
+  {{#ifCond stage "event"}}
+  <div class="youtube-wrap">
+    <div class="aspect">
+      <div class="container">
+        <iframe id="youtube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  {{/ifCond}}
   <div class="masthead__image"></div>
 </div>
 

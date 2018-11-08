@@ -114,11 +114,13 @@ async function tryLoad(url, fallback=null) {
     return;  // bail out
   }
 
-  // TODO(samthor): steal hue-rotate from new page
-  mastheadSection.style.filter = `hue-rotate(0deg)`;
-
   replacementMain.innerHTML = recievedMain.innerHTML;
   previousMain.parentNode.replaceChild(replacementMain, previousMain);
+  if (localSplit.route) {
+    document.body.setAttribute('data-path', localSplit.route);
+  } else {
+    document.body.removeAttribute('data-path');
+  }
   const upgradeResult = routes.upgrade(replacementMain, localSplit.route).then(() => {
     return routes.subroute(replacementMain, localSplit.route, localSplit.rest);
   });

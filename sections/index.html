@@ -5,12 +5,20 @@
       <h3>Chrome Dev Summit <span>2018</span></h3>
       <time>November <span>12—13</span></time>
       <p>Yerba Buena Center for the Arts &middot; San Francisco</p>
-      <div>
-        <a class="register-button" href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/">Request an Invitation</a>
+      {{#ifCond stage "signup"}}
+      <div class="buttons">
+        <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
       </div>
       <p>
         Can't make it? Sign up for the <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">Livestream Interest Form</a>.
       </p>
+      {{/ifCond}}
+      {{#ifCond stage "event"}}
+      <div class="buttons">
+        <a href="https://bit.ly/CDS18-Sessions" target="_blank" rel="noopener">Watch Session Recordings</a>
+        <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">Subscribe On YouTube</a>
+      </div>
+      {{/ifCond}}
     </div>
   </div>
 </section>

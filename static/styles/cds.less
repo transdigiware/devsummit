@@ -28,6 +28,9 @@
 @import '_cta.less';
 
 .masthead {
+  position: relative;
+  // nb. don't create stacking context here, youtube below doesn't like it
+
   .masthead__image {
     height: 217px;
     width: 100%;
@@ -53,6 +56,86 @@
     .sized-mixin(1400);
     .sized-mixin(900);
     .sized-mixin(700);
+  }
+
+  .youtube-wrap {
+    // * `youtube-wrap` places the YouTube embed and gives it a fixed width.
+    // * `aspect` provides the aspect ratio and shadow/border.
+    // * `container` creates working space for the YouTube `iframe`, as it cannot be positioned
+    //   absolutely (something with frames), and `.aspect` technically doesn't provide vertical
+    //   height (as it is width + padding only).
+    .aspect {
+      width: 100%;
+      padding-top: calc(720 / 1280 * 100%);
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+      overflow: hidden;
+      border-radius: 4px;
+
+      .container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  
+    z-index: 500;
+    will-change: opacity;
+    transition: opacity 0.3s;
+    opacity: 0;
+    height: 0;
+    margin-top: 12px;
+    position: fixed;
+
+    @media (min-height: @width-small) and (min-width: @width-small) {
+      body:not([data-path]) &.load {
+        // if we've got a minimum height, and are on the index page, display "inline"
+        position: absolute;
+        left: 50%;
+        width: 560px;
+        @media (min-width: @width-normal) {
+          width: 840px;
+        }
+        .aspect {
+          transform: translate(-50%);
+        }
+      }
+    }
+
+    &.load {
+      width: 344px;
+      max-width: calc(100vw - 32px);
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+
+      @media (min-width: @width-small) {
+        // ... otherwise, display in the top-right corner
+        right: 16px;
+        position: fixed;
+        left: auto;
+        transform: none;
+      }
+
+      opacity: 1;
+    }
+
+    iframe {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    &:not(.load) iframe {
+      // starting with a fixed "larger" size forces YT to provide the largest thumbnail
+      min-width: 840px !important;
+      min-height: 473px !important;
+    }
   }
 }
 
@@ -202,6 +285,20 @@ section {
 .section__tldr {
   text-align: center;
 
+  // If we:
+  // * have minimum width/height
+  // * in event stage
+  // * on the index page
+  // ... then create space for the YouTube iframe embed.
+  @media (min-height: @width-small) and (min-width: @width-small) {
+    body[data-stage="event"]:not([data-page]) & {
+      padding-top: 140px;
+      @media (min-width: @width-normal) {
+        padding-top: 290px;
+      }
+    }
+  }
+
   h2 {
     font-family: 'Product Sans', 'Open Sans', 'Roboto', 'Arial', 'Helvetica', sans-serif;
     text-transform: lowercase;
@@ -217,6 +314,12 @@ section {
     em {
       font-style: normal;
       color: @color-blue;
+    }
+  }
+
+  &.during {
+    .hide-during {
+      visibility: hidden !important;
     }
   }
 }
@@ -437,17 +540,24 @@ section {
   }
 }
 
-.register-button {
-  display: inline-block;
-  border: 1px solid #616161;
-  padding: 0.5em 1em;
-  color: inherit;
-  text-decoration: none;
-  margin: 1em;
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em -0.5em;
 
-  &:hover {
-    color: @color-header-hover;
-    border-color: @color-header-hover;
+  a {
+    display: inline-block;
+    border: 1px solid #616161;
+    padding: 0.5em 1em;
+    color: inherit;
+    text-decoration: none;
+    margin: 0.5em;
+  
+    &:hover {
+      color: @color-header-hover;
+      border-color: @color-header-hover;
+    }
   }
 }
 

@@ -43,7 +43,7 @@ module.exports = (mw) => {
       ctx.status = 304;
       ctx.body = null;
     } else {
-      const path = m[1] || 'index';
+      const path = m[1] || '';
       const rest = m[2] ? m[2].slice(1) : 0;
       await mw.call(this, ctx, next, path, rest);
     }

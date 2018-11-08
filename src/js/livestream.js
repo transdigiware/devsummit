@@ -14,6 +14,19 @@
  * the License.
  */
 
-import '../node_modules/pwacompat/pwacompat.min.js';  // side-effects
-import './js/spa.js';
-import './js/livestream.js';
+const ytIframe = document.getElementById('youtube');
+ytIframe && setup(ytIframe);
+
+function setup(iframe) {
+  const wrap = ytIframe.closest('.youtube-wrap');
+  iframe.src = 'https://www.youtube.com/embed/o7dkP_7wNs0';
+  iframe.addEventListener('load', (ev) => {
+    // Use a delay to try to trick YouTube into giving us the large preview image. It seems to
+    // be decided even after load. We should probably use YT.Player here, but don't want to
+    // include more code at this point.
+    window.setTimeout(() => {
+      wrap.classList.add('load');
+    }, 333);
+  });
+
+}

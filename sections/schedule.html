@@ -37,11 +37,12 @@ We'll be diving deep into what it means to build a fast, high quality web experi
   </div>
 </section>
 
+{{#ifCond stage "signup"}}
 <section class="section__content">
   <div class="content">
 <div class="section-register">
-  <div>
-    <a class="register-button" href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/">Request an Invitation</a>
+  <div class="buttons">
+    <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
   </div>
   <p>
     Can't make it? Sign up for the <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">Livestream Interest Form</a>.
@@ -49,3 +50,4 @@ We'll be diving deep into what it means to build a fast, high quality web experi
 </div>
   </div>
 </section>
+{{/ifCond}}
