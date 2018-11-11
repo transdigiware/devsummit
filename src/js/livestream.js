@@ -28,9 +28,12 @@ function setup(iframe) {
     }, 333);
   });
 
-  // 4am on Day 2
-  // 2018, Nov (11-1 = 10), 13th, 12:00 UTC
-  const day2EmbedFrom = Date.UTC(2018, 10, 13, 12, 0, 0, 0);
+  // Day 2
+  //    SFO: 2018-11-13 00:00 (conference time)
+  //    UTC: 2018-11-13 08:00
+  //    SYD: 2018-11-13 19:00
+  // reminder: JS month is -1, hence 2018, 10, 13 below
+  const day2EmbedFrom = Date.UTC(2018, 10, 13, 8, 0, 0, 0);
   function embedForTime(now) {
     if (now < day2EmbedFrom) {
       return 'o7dkP_7wNs0';  // day 1 embed
@@ -47,7 +50,7 @@ function setup(iframe) {
     }
   }
 
-  // check every hour
-  window.setInterval(updateSrc, 1000);
+  // check every minute
+  window.setInterval(updateSrc, 1000 * 60);
   updateSrc();
 }
