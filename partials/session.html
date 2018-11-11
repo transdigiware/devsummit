@@ -1,6 +1,10 @@
 <div id="session_{{id}}" class="session {{data.classes}}">
   <div class="session__time">
     <time datetime="{{data.when}}">{{formatTime data.when}}</time>
+    {{#if data.classes}}
+    {{else}}
+    <local-time datetime="{{data.when}}"></local-time>
+    {{/if}}
   </div>
 
   <div class="session__speakers speakers__{{data.speakers.length}}">

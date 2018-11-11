@@ -586,7 +586,26 @@ section {
       font-weight: 400;
       width: 5ch;
       min-width: 5ch;
-      text-align: left;
+      text-align: center;
+
+      time {
+        display: block;
+      }
+
+      local-time {
+        display: inline-block;
+        border-bottom: 1px dotted currentColor;
+        padding: 0 4px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        font-size: smaller;
+        background: rgba(0, 0, 0, 0.08);
+        cursor: help;
+
+        &:empty {
+          display: none;
+        }
+      }
     }
 
     @speaker-size: 40px;
