@@ -29,10 +29,18 @@ export async function upgrade(node, route) {
   if (conferenceTz !== localTz) {
     const localTimes = Array.from(document.querySelectorAll('local-time'));
     localTimes.forEach((localTime) => {
+      const raw = new Date(localTime.getAttribute('datetime'));
+
+      // create tz-adjusted time
       const t = new Date(localTime.getAttribute('datetime'));
       t.setMinutes(t.getMinutes() + (conferenceTz - localTz));
       localTime.textContent = format.time(t);
-      localTime.title = `${format.time(t)} ${format.day(t)}`;
+
+      // include date offset
+      const dateOffset = (raw.getDate() - t.getDate());
+      if (dateOffset) {
+        localTime.textContent += `, ${format.day(t)}`;
+      }
     });
   }
 

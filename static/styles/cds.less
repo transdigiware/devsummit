@@ -584,8 +584,8 @@ section {
       font-family: 'Product Sans', 'Open Sans', 'Roboto', 'Arial', 'Helvetica', sans-serif;
       padding-right: 10px;
       font-weight: 400;
-      width: 5ch;
-      min-width: 5ch;
+      width: 7.5ch;
+      min-width: 7.5ch;
       text-align: center;
 
       time {
@@ -595,15 +595,37 @@ section {
       local-time {
         display: inline-block;
         border-bottom: 1px dotted currentColor;
-        padding: 0 4px;
+        padding: 0 3px;
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         font-size: smaller;
         background: rgba(0, 0, 0, 0.08);
         cursor: help;
+        position: relative;
 
         &:empty {
           display: none;
+        }
+
+        &:hover::after {
+          visibility: visible;
+        }
+        &::after {
+          visibility: hidden;
+          pointer-events: none;
+          content: 'Local time';
+          position: absolute;
+          bottom: calc(100% + 4px);
+          padding: 0 3px;
+          border-radius: 2px;
+          color: white;
+          left: 50%;
+          transform: translate(-50%);
+          z-index: 4;
+          white-space: nowrap;
+          overflow: hidden;
+          background: @color-time;
+          border-left: 100px;
         }
       }
     }
