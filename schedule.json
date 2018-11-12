@@ -682,7 +682,7 @@
             "day_index": "1",
             "name": "Chrome OS: Ready for Web Development",
             "theme": "",
-            "time_label": "17:30 - 18:55",
+            "time_label": "17:30 - 17:55",
             "when": "2018-11-13T17:30",
             "description": "Chrome OS not only powers devices from sticks to tablets to desktops, but it can also run web, Android, and now Linux applications, making Chromebooks premier machines for web development.  This talk provides a high-level overview of Chrome OS and discusses core and new features available to Web Developers. Topics include best practices for web development, including Progressive Web Apps, and optimizing input and touch for tablets, while having desktop users in mind.",
             "speakers": [
@@ -694,6 +694,15 @@
                     "photo_available": "1",
                     "link": "https://twitter.com/dandv",
                     "bio": "Dan Dascalescu is a Partner Developer Advocate at Google, specializing in web technologies and helping partners build excellent web experiences. Prior to Google, Dan has co-founded two web startups (in EdTech and FinTech), the Quantified Self Forum (the largest online community for self-trackers), and Blueseed (the visa-free startup ship for entrepreneurs). Dan studied Computer Science in Romania and scored 2nd place nationwide at the Olympiad in Informatics. He is a supporter of open source software, transhumanism, and seasteading."
+                },
+                {
+                    "ldap": "9344e9f26a86607a92729fe885f08c32",
+                    "name": "Stephen Barbers",
+                    "role": "Chrome Engineer",
+                    "company": "Google",
+                    "photo_available": "",
+                    "link": "",
+                    "bio": ""
                 }
             ]
         },
@@ -1103,6 +1112,15 @@
             "photo_available": "1",
             "link": "",
             "bio": "Rustam is Director of Product at Cloudflare, focused on building Cloudflare's network into products that make the Internet fast, secure, and reliable. He has previously spent time at early stage health startups and Microsoft. Rustam has a BA in Economics from the University of Wisconsin–Madison."
+        },
+        "9344e9f26a86607a92729fe885f08c32": {
+            "ldap": "9344e9f26a86607a92729fe885f08c32",
+            "name": "Stephen Barbers",
+            "role": "Chrome Engineer",
+            "company": "Google",
+            "photo_available": "",
+            "link": "",
+            "bio": ""
         }
     }
 }
