@@ -178,6 +178,18 @@ document.body.addEventListener(SPA_GOTO_EVENT, (ev) => {
 });
 
 
+document.body.addEventListener('keydown', (ev) => {
+  if (ev.key === 'Escape') {
+    const split = splitUrl(window.location);
+    if (split.rest) {
+      document.body.dispatchEvent(new CustomEvent(SPA_GOTO_EVENT, {
+        detail: split.route,
+      }));
+    }
+  }
+});
+
+
 (async function preparePage() {
   const main = document.body.querySelector('main');  // main to swap out
 
