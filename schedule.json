@@ -732,7 +732,7 @@
                     "name": "Stephen Barbers",
                     "role": "Chrome Engineer",
                     "company": "Google",
-                    "photo_available": "",
+                    "photo_available": "1",
                     "link": "",
                     "bio": ""
                 }
@@ -1151,7 +1151,7 @@
             "name": "Stephen Barbers",
             "role": "Chrome Engineer",
             "company": "Google",
-            "photo_available": "",
+            "photo_available": "1",
             "link": "",
             "bio": ""
         }
