@@ -85,10 +85,15 @@ async function tryLoad(url, fallback=null) {
   const localRequest = new Object();
   tryloadRequest = localRequest;
   const localSplit = splitUrl(url);
+
+  // does the fade involve index?
+  const fadeIndex = (activeRoute === '' || localSplit.route === '');
+
   activeRoute = localSplit.route;
   // nb. ^ above setup happens before any await calls
 
   document.body.classList.add('fade');
+  document.body.classList.toggle('fade-index', fadeIndex);
   const fadePromise = timeout(250);  // nb. make equal to cds.less
 
   let raw;
@@ -114,11 +119,13 @@ async function tryLoad(url, fallback=null) {
     return;  // bail out
   }
 
-  // TODO(samthor): steal hue-rotate from new page
-  mastheadSection.style.filter = `hue-rotate(0deg)`;
-
   replacementMain.innerHTML = recievedMain.innerHTML;
   previousMain.parentNode.replaceChild(replacementMain, previousMain);
+  if (localSplit.route) {
+    document.body.setAttribute('data-path', localSplit.route);
+  } else {
+    document.body.removeAttribute('data-path');
+  }
   const upgradeResult = routes.upgrade(replacementMain, localSplit.route).then(() => {
     return routes.subroute(replacementMain, localSplit.route, localSplit.rest);
   });
@@ -131,7 +138,7 @@ async function tryLoad(url, fallback=null) {
     return;  // bail out
   }
 
-  document.body.classList.remove('fade');
+  document.body.classList.remove('fade', 'fade-index');
   document.scrollingElement.scrollTop = 0;  // TODO: animate
 
   const state = {html: raw};
@@ -168,6 +175,18 @@ function clickHandler(ev) {
 document.body.addEventListener(SPA_GOTO_EVENT, (ev) => {
   const url = new URL(ev.detail, base);
   safeLoad(url, null);
+});
+
+
+document.body.addEventListener('keydown', (ev) => {
+  if (ev.key === 'Escape') {
+    const split = splitUrl(window.location);
+    if (split.rest) {
+      document.body.dispatchEvent(new CustomEvent(SPA_GOTO_EVENT, {
+        detail: split.route,
+      }));
+    }
+  }
 });
 
 

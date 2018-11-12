@@ -16,3 +16,4 @@
 
 import '../node_modules/pwacompat/pwacompat.min.js';  // side-effects
 import './js/spa.js';
+import './js/livestream.js';

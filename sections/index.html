@@ -5,12 +5,24 @@
       <h3>Chrome Dev Summit <span>2018</span></h3>
       <time>November <span>12—13</span></time>
       <p>Yerba Buena Center for the Arts &middot; San Francisco</p>
-      <div>
-        <a class="register-button" href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/">Request an Invitation</a>
+      {{#ifCond stage "signup"}}
+      <div class="buttons">
+        <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
       </div>
       <p>
         Can't make it? Sign up for the <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">Livestream Interest Form</a>.
       </p>
+      {{/ifCond}}
+      {{#ifCond stage "event"}}
+      <div class="buttons">
+        <a href="https://bit.ly/CDS18-Sessions" target="_blank" rel="noopener">Watch Session Recordings</a>
+        <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">Subscribe On YouTube</a>
+      </div>
+      <p>
+        Catch the livestream on this website and follow us on <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">YouTube</a> and <a href="https://twitter.com/ChromiumDev" target="_blank" rel="noopener">Twitter</a>.<br />
+        #ChromeDevSummit
+      </p>
+      {{/ifCond}}
     </div>
   </div>
 </section>
@@ -35,18 +47,14 @@ We'll be diving deep into what it means to build a fast, high quality web experi
         <p>Find out who you will learn from</p>
       </a>
     </div>
+    {{#ifCond stage "signup"}}
     <div class="link" id="link-videos">
       <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">
         <h4>Livestream</h4>
         <p>If you're not able to join us in person, you can still join us on the livestream</p>
       </a>
     </div>
-    <div class="link" id="link-codelabs">
-      <a href="https://codelabs.developers.google.com/?cat=Web" target="_blank" rel="noopener">
-        <h4>Codelabs</h4>
-        <p>Check out last year's codelabs as a preview of what's to come</p>
-      </a>
-    </div>
+    {{/ifCond}}
     <div class="link" id="link-location">
       <a href="./location">
         <h4>Location</h4>

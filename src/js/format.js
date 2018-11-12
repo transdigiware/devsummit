@@ -14,13 +14,34 @@
  * the License.
  */
 
+function pad(x) {
+  return x < 10 ? `0${x}` : '' + x;
+}
+
+function upgrade(raw) {
+  if (raw instanceof Date) {
+    return raw;
+  }
+  return new Date(raw);
+}
 
 export function date(raw) {
   // TODO(samthor): Use Intl.DateTime methods, if available.
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const d = upgrade(raw);
+  return `${days[d.getDay()]}, ${months[d.getMonth()]} ${day(d)}`;
+}
+
+export function time(raw) {
+  const d = upgrade(raw);
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+export function day(raw) {
   const dateEnding = ['st', 'nd', 'rd', 'th'];
 
-  const date = new Date(raw);
-  return days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + dateEnding[Math.min(date.getDate(), 3)];
+  const d = upgrade(raw);
+  return `${d.getDate()}${dateEnding[Math.min(d.getDate(), 3)]}`;
 }

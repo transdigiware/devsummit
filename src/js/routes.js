@@ -17,14 +17,37 @@
 import * as format from './format.js';
 import {SPA_GOTO_EVENT} from './spa.js';
 
+const conferenceTz = 8 * 60;
+const localTz = (new Date()).getTimezoneOffset();
+
 export async function upgrade(node, route) {
   if (route !== 'schedule') {
     return;  // nothing to do
   }
 
+  // Update .local-time instances with local time, if it differs from conference time.
+  if (conferenceTz !== localTz) {
+    const localTimes = Array.from(document.querySelectorAll('local-time'));
+    localTimes.forEach((localTime) => {
+      const raw = new Date(localTime.getAttribute('datetime'));
+
+      // create tz-adjusted time
+      const t = new Date(localTime.getAttribute('datetime'));
+      t.setMinutes(t.getMinutes() + (conferenceTz - localTz));
+      localTime.textContent = format.time(t);
+
+      // include date offset
+      const dateOffset = (raw.getDate() - t.getDate());
+      if (dateOffset) {
+        localTime.textContent += `, ${format.day(t)}`;
+      }
+    });
+  }
+
+  // Hide <img> tags if they don't load, if the user is offline.
   const hideElement = (ev) => ev.target.hidden = true;
-  const allImages = document.querySelectorAll('.speakers-image img');
-  Array.from(allImages).forEach((img) => {
+  const allImages = Array.from(document.querySelectorAll('.speakers-image img'));
+  allImages.forEach((img) => {
     if (!img.complete) {
       // not yet loaded, wait for error
       img.addEventListener('error', hideElement);

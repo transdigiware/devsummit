@@ -38,6 +38,10 @@ const isProd = (process.env.NODE_ENV === 'production');
 const schedule = require('./schedule.json');
 const days = calendar.days(schedule);
 
+// NOTE: This is the current stage of the event, which is hard-coded. Stages supported are
+// 'signup' and 'event', there's no post-event yet.
+const stage = 'event';
+
 // save policy string
 const policyHeader = policy(isProd);
 
@@ -105,10 +109,12 @@ app.use(async (ctx, next) => {
 
 const sections = fs.readdirSync(`${__dirname}/sections`)
     .map((section) => {
-      if (section.endsWith('.html') && section[0] !== '_') {
-        return section.substr(0, section.length - 5);
+      const ch = section[0];
+      if (section.endsWith('.html') && ch !== '_' && ch !== '.') {
+        const out = section.substr(0, section.length - 5);
+        return out === 'index' ? '' : out;
       }
-    }).filter(Boolean);
+    }).filter((x) => x !== undefined);
 
 /**
  * Gets the URL prefix where this site is mounted with Koa, without the trailing /.
@@ -147,8 +153,10 @@ app.use(flat(async (ctx, next, path, rest) => {
     ua: 'UA-41980257-1',
     conversion: 935743779,
     canonicalUrl: `${sitePrefix}/${path}`,
+    path,
     sourcePrefix,
     days,
+    stage,
   };
 
   if (rest) {
@@ -197,7 +205,7 @@ app.use(flat(async (ctx, next, path, rest) => {
   }
 
   ctx.set('Feature-Policy', policyHeader);
-  await ctx.render(path, scope);
+  await ctx.render(path || 'index', scope);
 }));
 
 module.exports = app;

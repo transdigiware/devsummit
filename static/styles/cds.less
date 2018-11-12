@@ -28,31 +28,117 @@
 @import '_cta.less';
 
 .masthead {
+  @min-masthead: 218px;
+  @size-masthead-image: 160px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: @min-masthead;
+  // nb. don't create stacking context here, youtube below doesn't like it
+
   .masthead__image {
-    height: 217px;
-    width: 100%;
+    @ratio: (@size-masthead-image / @min-masthead);
+
+    position: absolute;
+    top: (@min-masthead - @size-masthead-image) / 2;
+    left: 0;
+    right: 0;
+    height: @size-masthead-image;
 
     transition: filter @time-pagenav ease-in-out;
     .fade & {
       filter: grayscale(1);
     }
 
-    @size-masthead: 160px;
-    @ratio: (@size-masthead / 217px);
-
     background: url(../images/header/masthead.svg) no-repeat center;
-    background-size: (8000px * @ratio) @size-masthead;
+    background-size: (8000px * @ratio) @size-masthead-image;
 
     .sized-mixin(@size) {
       @v: @size * @ratio * 1px;
       @media (max-width: @v) {
         background-image: url("../images/header/masthead-@{size}.svg");
-        background-size: @v @size-masthead;
+        background-size: @v @size-masthead-image;
       }
     }
     .sized-mixin(1400);
     .sized-mixin(900);
     .sized-mixin(700);
+  }
+
+  .youtube-wrap {
+    // * `youtube-wrap` places the YouTube embed and gives it a fixed width.
+    // * `aspect` provides the aspect ratio and shadow/border.
+    // * `container` creates working space for the YouTube `iframe`, as it cannot be positioned
+    //   absolutely (something with frames), and `.aspect` technically doesn't provide vertical
+    //   height (as it is width + padding only).
+    .aspect {
+      width: 100%;
+      padding-top: calc(720 / 1280 * 100%);
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+      overflow: hidden;
+      border-radius: 4px;
+
+      .container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  
+    &:not(.load) iframe {
+      // starting with a fixed "larger" size forces YT to provide the largest thumbnail
+      min-width: 840px !important;
+      min-height: 473px !important;
+    }
+
+    z-index: @layer-video;
+    will-change: opacity;
+    transition: opacity @time-pagenav ease-in-out;
+    margin-top: 12px;
+
+    max-width: calc(100vw - 32px);
+    width: 344px;
+    @media (min-height: @height-small) and (min-width: @width-small) {
+      width: 560px;
+      @media (min-width: @width-normal) {
+        width: 840px;
+      }
+
+      .fade.fade-index & {
+        opacity: 0;
+      }
+  
+      // display fixed in the top-right on non-index pages if we have enough vertical space
+      // minimum (16px, notch) from right
+      body[data-path] & {
+        width: 344px !important;
+        margin-top: 0;
+        right: 16px;
+        padding-right: calc(env(safe-area-inset-right) - 16px);
+        position: fixed;
+        left: auto;
+        transform: none;
+      }
+    }
+
+    &:not(.load) {
+      opacity: 0;
+    }
+
+    iframe {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -217,6 +303,12 @@ section {
     em {
       font-style: normal;
       color: @color-blue;
+    }
+  }
+
+  &.during {
+    .hide-during {
+      visibility: hidden !important;
     }
   }
 }
@@ -437,17 +529,24 @@ section {
   }
 }
 
-.register-button {
-  display: inline-block;
-  border: 1px solid #616161;
-  padding: 0.5em 1em;
-  color: inherit;
-  text-decoration: none;
-  margin: 1em;
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em -0.5em;
 
-  &:hover {
-    color: @color-header-hover;
-    border-color: @color-header-hover;
+  a {
+    display: inline-block;
+    border: 1px solid #616161;
+    padding: 0.5em 1em;
+    color: inherit;
+    text-decoration: none;
+    margin: 0.5em;
+  
+    &:hover {
+      color: @color-header-hover;
+      border-color: @color-header-hover;
+    }
   }
 }
 
@@ -485,9 +584,50 @@ section {
       font-family: 'Product Sans', 'Open Sans', 'Roboto', 'Arial', 'Helvetica', sans-serif;
       padding-right: 10px;
       font-weight: 400;
-      width: 5ch;
-      min-width: 5ch;
-      text-align: left;
+      width: 7.5ch;
+      min-width: 7.5ch;
+      text-align: center;
+
+      time {
+        display: block;
+      }
+
+      local-time {
+        display: inline-block;
+        border-bottom: 1px dotted currentColor;
+        padding: 0 3px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        font-size: smaller;
+        background: rgba(0, 0, 0, 0.08);
+        cursor: help;
+        position: relative;
+
+        &:empty {
+          display: none;
+        }
+
+        &:hover::after {
+          visibility: visible;
+        }
+        &::after {
+          visibility: hidden;
+          pointer-events: none;
+          content: 'Local time';
+          position: absolute;
+          bottom: calc(100% + 4px);
+          padding: 0 3px;
+          border-radius: 2px;
+          color: white;
+          left: 50%;
+          transform: translate(-50%);
+          z-index: 4;
+          white-space: nowrap;
+          overflow: hidden;
+          background: @color-time;
+          border-left: 100px;
+        }
+      }
     }
 
     @speaker-size: 40px;
@@ -583,7 +723,7 @@ section {
 
 #lightbox {
   background: rgba(0, 0, 0, 0.5);
-  z-index: 102;
+  z-index: @layer-lightbox;
   position: fixed;
   left: 0;
   right: 0;
