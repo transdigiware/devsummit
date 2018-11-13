@@ -8,21 +8,21 @@
 </section>
 
 <section class="section__schedule alt">
-  <div class="content">
-    <h3>Monday, November 12th</h3>
+  <details class="content" id="schedule-day1" open>
+    <summary>Monday, November 12th</summary>
 {{#each days.d20181112}}
 {{>session .}}
 {{/each}}
-  </div>
+  </details>
 </section>
 
 <section class="section__schedule">
-  <div class="content">
-    <h3>Tuesday, November 13th</h3>
+  <details class="content" open>
+    <summary>Tuesday, November 13th</summary>
 {{#each days.d20181113}}
 {{>session .}}
 {{/each}}
-  </div>
+  </details>
 </section>
 
 <section class="cta">

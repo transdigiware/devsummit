@@ -25,6 +25,16 @@ export async function upgrade(node, route) {
     return;  // nothing to do
   }
 
+  // If it's Day 2, then hide Day 1's content.
+  const day1content = node.querySelector('#schedule-day1');
+  if (day1content) {
+    // nb. copied from livestream.js
+    const postEvent = Date.UTC(2018, 10, 14, 4, 0, 0, 0);
+    if ((+new Date) < postEvent) {
+      day1content.removeAttribute('open');
+    }
+  }
+
   // Update .local-time instances with local time, if it differs from conference time.
   if (conferenceTz !== localTz) {
     const localTimes = Array.from(document.querySelectorAll('local-time'));

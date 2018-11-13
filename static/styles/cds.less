@@ -551,7 +551,7 @@ section {
 }
 
 .section__schedule {
-  h3 {
+  h3, summary {
     color: @color-blue;
     font-size: 1.6em;
 
@@ -560,6 +560,19 @@ section {
     margin: 0.4em 0 0.8em;
     font-weight: 400;
   }
+  summary {
+    &:focus {
+      background: #f0f0f0;
+    }
+    display: block;
+    cursor: pointer;
+  }
+  details:not([open]) {
+    summary {
+      color: #999;
+    }
+  }
+
 
   .session {
     display: flex;
