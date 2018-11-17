@@ -118,9 +118,29 @@ function generateSessionPopup(popup, session) {
   popin.appendChild(description);
 
   popup.appendChild(popin);
-  
+
   const grow = $g('div', {'class': 'grow'});
   popup.appendChild(grow);
+
+  if (session.youtube_id) {
+    
+    const youtubeWrapper = $g('div', {
+      'class': 'youtube-wrapper'
+    });
+
+    const youtube = $g('iframe', {
+      id: "ytplayer",
+      type: "text/html",
+      width: "100%",
+      height: "300",
+      src: `https://www.youtube.com/embed/${session.youtube_id}`,
+      frameborder: "0"
+    })
+
+    youtubeWrapper.appendChild(youtube);
+    popup.appendChild(youtubeWrapper);
+  }
+  
 
   const speakerList = $g('ul', {'class': 'speakers'});
   popup.appendChild(speakerList);

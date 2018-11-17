@@ -199,6 +199,7 @@ app.use(flat(async (ctx, next, path, rest) => {
     scope.title = data.name || '';
     scope.time_label = data.time_label || '';
     scope.description = data.description || '',
+    scope.youtube_id = data.youtube_id || false,
     scope.payload = data;
     scope.styles = css;
   }
