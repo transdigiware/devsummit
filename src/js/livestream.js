@@ -28,28 +28,10 @@ function setup(iframe) {
     }, 333);
   });
 
-  // Day 2
-  //    SFO: 2018-11-13 00:00 (conference time)
-  //    UTC: 2018-11-13 08:00
-  //    SYD: 2018-11-13 19:00
-  // reminder: JS month is -1, hence 2018, 10, 13 below
-  const day2EmbedFrom = Date.UTC(2018, 10, 13, 8, 0, 0, 0);
-
-  // Post-Day 2
-  //    SFO: 2018-11-13 20:00 (conference time)
-  //    UTC: 2018-11-14 04:00
-  //    SYD: 2018-11-14 15:00
-  const postEvent = Date.UTC(2018, 10, 14, 4, 0, 0, 0);
-
   function embedForTime(now) {
-    if (now < day2EmbedFrom) {
-      return 'o7dkP_7wNs0';  // day 1 embed
-    } else if (now < postEvent) {
-      return 'nKtQHxfRVAM';  // day 2 embed
-    } else {
-      // playlist of all videos embed
-      return `videoseries?list=PLNYkxOF6rcIDjlCx1PcphPpmf43aKOAdF`;
-    }
+    // nb. This method can be used to control loading of different embed URLs over time.
+    // playlist of all videos embed
+    return `videoseries?list=PLNYkxOF6rcIDjlCx1PcphPpmf43aKOAdF`;
   }
 
   function updateSrc() {
