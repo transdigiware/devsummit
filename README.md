@@ -11,6 +11,10 @@ After instaling with `yarn` or `npm`, to test locally, run:
 To deploy:
 
 ```bash
-yarn gcp-build  # this should be run by gcloud, but it's not
 gcloud app deploy --project chromedevsummit-site --no-promote
 ```
+
+### Notes
+
+Internally, `gcloud` is running `install` and `gcp-build`, which triggers a deploy build.
+Note that dependencies must be in `dependencies`, and `devDependencies` are _not_ installed.
