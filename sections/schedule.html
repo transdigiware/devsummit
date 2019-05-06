@@ -2,11 +2,25 @@
   <div class="content">
     <div class="section-title">
       <h3>Schedule</h3>
-      <p>Monday, November 12th &amp; Tuesday, November 13th</p>
+      <p>Monday, November 11th &amp; Tuesday, November 12th, 2019</p>
     </div>
   </div>
 </section>
 
+{{#ifCond stage "announce"}}
+<section class="section__content alt">
+  <div class="content">
+
+<p>
+  Chrome Dev Summit features a lineup of talks given by the Chrome team and community.
+  We will update this page with {{year}} event speakers as we get closer to the event.
+</p>
+
+  </div>
+</section>
+{{else}}
+<!--
+  TODO: 2018 dates, reenable for 2019
 <section class="section__schedule alt">
   <details class="content" id="schedule-day1" open>
     <summary>Monday, November 12th</summary>
@@ -24,15 +38,17 @@
 {{/each}}
   </details>
 </section>
+-->
+{{/ifCond}}
 
 <section class="cta">
   <div class="cta__lines"></div>
   <div class="cta__content">
     <p>
-Join us at the 6th Chrome Dev Summit to engage with Chrome engineers and leading web developers for a two-day exploration of modern web experiences.
+The {{eventNo}}th Chrome Dev Summit will be on {{dateString}} at Yerba Buena Center for the Arts in San Francisco, CA, USA.
     </p>
     <p>
-We'll be diving deep into what it means to build a fast, high quality web experience using modern web technologies and best practices, as well as looking at the new and exciting capabilities coming to the web platform.
+Sign up to stay updated on registration, announcements, and more.
     </p>
   </div>
 </section>

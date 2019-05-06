@@ -39,8 +39,8 @@ const schedule = require('./schedule.json');
 const days = calendar.days(schedule);
 
 // NOTE: This is the current stage of the event, which is hard-coded. Stages supported are
-// 'signup' and 'event', there's no post-event yet.
-const stage = 'event';
+// 'announce', signup' and 'event', there's no post-event yet.
+const stage = 'announce';
 
 // save policy string
 const policyHeader = policy(isProd);
@@ -145,8 +145,11 @@ app.use(flat(async (ctx, next, path, rest) => {
   const hostname = ctx.req.headers.host;
   const sitePrefix = (isProd ? 'https://' : 'http://') + hostname + basepath;
 
+  const year = 2019;
   const scope = {
-    year: 2018,
+    year,
+    eventNo: year - 2012,  // 2019 is 7th
+    dateString: '11—12 November 2019',
     prod: isProd,
     base: basepath,
     layout: 'devsummit',

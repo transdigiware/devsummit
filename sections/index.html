@@ -2,9 +2,19 @@
   <div class="content">
     <div class="section-title">
       <h2>Powered by <span>the <em>web</em></span></h2>
-      <h3>Chrome Dev Summit <span>2018</span></h3>
-      <time>November <span>12—13</span></time>
+      <h3>Chrome Dev Summit <span>{{year}}</span></h3>
+      <time>November <span>11—12</span></time>
       <p>Yerba Buena Center for the Arts &middot; San Francisco</p>
+      {{#ifCond stage "announce"}}
+      <div class="buttons">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" target="_blank" rel="noopener">Sign Up For Updates</a>
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Chrome+Dev+Summit+2019&location=Yerba+Buena+Center+for+the+Arts%2C+San+Francisco%2C+CA%2C+USA&dates=20191111T060000Z%2F20191112T140000Z" target="_blank" rel="noopener">Add To Calendar</a>
+      </div>
+      <p>
+        Follow us on <a href="https://bit.ly/ChromeDevs1" target="_blank" rel="noopener">YouTube</a> and <a href="https://twitter.com/ChromiumDev" target="_blank" rel="noopener">Twitter</a>.
+        #ChromeDevSummit
+      </p>
+      {{/ifCond}}
       {{#ifCond stage "signup"}}
       <div class="buttons">
         <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
@@ -31,10 +41,10 @@
   <div class="cta__lines"></div>
   <div class="cta__content">
     <p>
-Join us at the 6th Chrome Dev Summit to engage with Chrome engineers and leading web developers for a two-day exploration of modern web experiences.
+The {{eventNo}}th Chrome Dev Summit will be on {{dateString}} at Yerba Buena Center for the Arts in San Francisco, CA, USA.
     </p>
     <p>
-We'll be diving deep into what it means to build a fast, high quality web experience using modern web technologies and best practices, as well as looking at the new and exciting capabilities coming to the web platform.
+Sign up to stay updated on registration, announcements, and more.
     </p>
   </div>
 </section>
