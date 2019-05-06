@@ -41,17 +41,7 @@
 -->
 {{/ifCond}}
 
-<section class="cta">
-  <div class="cta__lines"></div>
-  <div class="cta__content">
-    <p>
-The {{eventNo}}th Chrome Dev Summit will be on {{dateString}} at Yerba Buena Center for the Arts in San Francisco, CA, USA.
-    </p>
-    <p>
-Sign up to stay updated on registration, announcements, and more.
-    </p>
-  </div>
-</section>
+{{>cta .}}
 
 {{#ifCond stage "signup"}}
 <section class="section__content">
@@ -61,7 +51,7 @@ Sign up to stay updated on registration, announcements, and more.
     <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
   </div>
   <p>
-    Can't make it? Sign up for the <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">Livestream Interest Form</a>.
+    Can't make it? Sign up for the <a href="{{links.livestreamForm}}">Livestream Interest Form</a>.
   </p>
 </div>
   </div>

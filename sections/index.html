@@ -7,7 +7,7 @@
       <p>Yerba Buena Center for the Arts &middot; San Francisco</p>
       {{#ifCond stage "announce"}}
       <div class="buttons">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" target="_blank" rel="noopener">Sign Up For Updates</a>
+        <a href="{{links.interestForm}}" target="_blank" rel="noopener">Sign Up For Updates</a>
         <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Chrome+Dev+Summit+2019&location=Yerba+Buena+Center+for+the+Arts%2C+San+Francisco%2C+CA%2C+USA&dates=20191111T060000Z%2F20191112T140000Z" target="_blank" rel="noopener">Add To Calendar</a>
       </div>
       <p>
@@ -20,7 +20,7 @@
         <a href="https://events.withgoogle.com/chrome-dev-summit-2018/registrations/new/" target="_blank" rel="noopener">Request an Invitation</a>
       </div>
       <p>
-        Can't make it? Sign up for the <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">Livestream Interest Form</a>.
+        Can't make it? Sign up for the <a href="{{links.livestreamForm}}">Livestream Interest Form</a>.
       </p>
       {{/ifCond}}
       {{#ifCond stage "event"}}
@@ -37,17 +37,7 @@
   </div>
 </section>
 
-<section class="cta">
-  <div class="cta__lines"></div>
-  <div class="cta__content">
-    <p>
-The {{eventNo}}th Chrome Dev Summit will be on {{dateString}} at Yerba Buena Center for the Arts in San Francisco, CA, USA.
-    </p>
-    <p>
-Sign up to stay updated on registration, announcements, and more.
-    </p>
-  </div>
-</section>
+{{>cta .}}
 
 <section class="section__links">
   <div class="content">
@@ -59,7 +49,7 @@ Sign up to stay updated on registration, announcements, and more.
     </div>
     {{#ifCond stage "signup"}}
     <div class="link" id="link-videos">
-      <a href="https://goo.gl/forms/738tmXWSbEdIWHf63">
+      <a href="{{links.livestream}}">
         <h4>Livestream</h4>
         <p>If you're not able to join us in person, you can still join us on the livestream</p>
       </a>

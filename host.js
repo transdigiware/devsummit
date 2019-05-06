@@ -160,6 +160,10 @@ app.use(flat(async (ctx, next, path, rest) => {
     sourcePrefix,
     days,
     stage,
+    links: {
+      interestForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform',
+      livestreamForm: 'https://goo.gl/forms/738tmXWSbEdIWHf63',
+    },
   };
 
   if (rest) {
