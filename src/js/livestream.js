@@ -31,7 +31,11 @@ function setup(iframe) {
   function embedForTime(now) {
     // nb. This method can be used to control loading of different embed URLs over time.
     // playlist of all videos embed
-    return `videoseries?list=PLNYkxOF6rcIDjlCx1PcphPpmf43aKOAdF`;
+
+    return 'nImH_dq1NpM';  // 2019 promo
+
+    // 2018 videos here
+    //return `videoseries?list=PLNYkxOF6rcIDjlCx1PcphPpmf43aKOAdF`;
   }
 
   function updateSrc() {
