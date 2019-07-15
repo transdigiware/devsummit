@@ -1,0 +1,16 @@
+{%- set css = "/_includes/main/style.css" -%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="confboxAsset({{css}})">
+    {% block extraCSS %}{% endblock %}
+    <script defer src="confboxScript(/_includes/main/script.js)"></script>
+    <title>{{title}}</title>
+  </head>
+  <body class="{% className css, 'body' %}">
+    <h1>This is the main template</h1>
+    {% block content %}{% endblock %}
+  </body>
+</html>

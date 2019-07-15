@@ -1,0 +1,13 @@
+{% set talkCSS = "/_includes/talk/style.css" %}
+{% extends 'main/index.njk' %}
+
+{% block extraCSS %}
+  <link rel="stylesheet" href="confboxAsset({{talkCSS}})">
+{% endblock %}
+
+{% block content %}
+  <h2 class="{% className talkCSS, 'talk-header' %}">This is a talk</h2>
+  {{ content | safe }}
+
+  <div class="{% className talkCSS, 'surma-div' %}">TESTING TESTING TESTING</div>
+{% endblock %}
