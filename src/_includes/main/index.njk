@@ -11,6 +11,6 @@
   </head>
   <body class="{% className css, 'body' %}">
     <h1>This is the main template</h1>
-    {% block content %}{% endblock %}
+    {% block content %}{{ content | safe }}{% endblock %}
   </body>
 </html>
