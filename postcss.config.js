@@ -12,11 +12,9 @@ module.exports = {
         fs.writeFileSync(outputFileName + '.json', JSON.stringify(json));
       },
     }),
-    require('postcss-url')({
-      url: 'inline',
-    }),
     require('cssnano')({
-      preset: 'default',
+      // Avoid normalizeUrl, else it breaks confboxAsset()
+      preset: ['default', { normalizeUrl: false }],
     }),
   ],
 };
