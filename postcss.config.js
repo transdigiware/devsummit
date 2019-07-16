@@ -12,11 +12,8 @@ module.exports = {
         fs.writeFileSync(outputFileName + '.json', JSON.stringify(json));
       },
     }),
-    require('postcss-url')({
-      url: 'inline',
-    }),
     require('cssnano')({
-      preset: 'default',
+      preset: ['default', { normalizeUrl: false }],
     }),
   ],
 };

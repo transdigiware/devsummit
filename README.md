@@ -29,16 +29,16 @@ In the example above, `set` is used to avoid repeating the path to the CSS.
 
 ## Assets
 
-In templates, references assets via `confboxAsset('/path/to/asset.jpg')`. This will be replaced with the hashed name of the asset.
+In templates and CSS, references assets via `confboxAsset('/path/to/asset.jpg')`. This will be replaced with the hashed name of the asset.
 
 ```njk
 <link rel="stylesheet" href="confboxAsset('/_includes/talk/style.css')">
 ```
 
-## Scripts
-
-In templates, references scripts via `confboxScript('/path/to/script.js')`. This will be replaced with the hashed name of the script, and scripts will be optimised as a bundle.
-
-```njk
-<script defer src="confboxScript(/_includes/main/script.js)"></script>
+```css
+.whatever {
+  background: url('confboxAsset(asset.jpg)');
+}
 ```
+
+Assets ending `.js` will be bundled together using Rollup.

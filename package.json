@@ -11,6 +11,7 @@
     "@11ty/eleventy": "^0.8.3",
     "cssnano": "^4.1.10",
     "del-cli": "^2.0.0",
+    "escape-string-regexp": "^2.0.0",
     "glob": "^7.1.4",
     "html-minifier": "^4.0.0",
     "husky": "^3.0.0",
@@ -19,9 +20,9 @@
     "postcss-cli": "^6.1.3",
     "postcss-modules": "^1.4.1",
     "postcss-nested": "^4.1.2",
-    "postcss-url": "^8.0.0",
     "prettier": "1.18.2",
     "pretty-quick": "^1.11.1",
+    "require-from-string": "^2.0.2",
     "rollup": "^1.17.0",
     "rollup-plugin-terser": "^5.1.1"
   },

@@ -1,6 +1,6 @@
 import { terser } from 'rollup-plugin-terser';
 
-import htmlEntryPlugin from './lib/html-entry-plugin.js';
+import htmlCSSPlugin from './lib/html-css-plugin.js';
 import postCSSBuild from './lib/postcss-build.js';
 import eleventyBuild from './lib/11ty-build.js';
 import globInputPlugin from './lib/glob-input-plugin';
@@ -17,8 +17,13 @@ export default async function({ watch }) {
     },
     watch: { clearScreen: false },
     plugins: [
+      {
+        resolveFileUrl({ fileName }) {
+          return JSON.stringify('/' + fileName);
+        },
+      },
       globInputPlugin('.build-tmp/**/*.html'),
-      htmlEntryPlugin(),
+      htmlCSSPlugin(),
       terser({ ecma: 8, module: true }),
     ],
   };
