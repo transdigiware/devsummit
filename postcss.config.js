@@ -13,6 +13,7 @@ module.exports = {
       },
     }),
     require('cssnano')({
+      // Avoid normalizeUrl, else it breaks confboxAsset()
       preset: ['default', { normalizeUrl: false }],
     }),
   ],
