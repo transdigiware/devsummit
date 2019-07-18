@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+const date = require('date-and-time');
+
+const { utcOffset } = require('./lib/confbox-config');
+
 class ModularClassName {
   constructor(output) {
     this._output = output;
@@ -38,8 +42,15 @@ module.exports = function(eleventyConfig) {
 
   const modCSS = new ModularClassName(config.dir.output);
 
+  /** Get a class name from a CSS module */
   eleventyConfig.addShortcode('className', (css, className) => {
     return modCSS.getClassName(css, className);
+  });
+
+  /** Format a date in the timezone of the conference */
+  eleventyConfig.addShortcode('confDate', (timestamp, format) => {
+    const offsetTime = new Date(timestamp.valueOf() + utcOffset);
+    return date.format(offsetTime, format);
   });
 
   return config;

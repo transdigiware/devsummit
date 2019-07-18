@@ -3,11 +3,23 @@ npm i
 npm run build
 ```
 
-# Project structure
+The `src` folder uses [11ty](https://www.11ty.io).
 
-The `src` folder uses [11ty](https://www.11ty.io), with the following differences:
+# Configs
 
-## CSS modules
+`/confbox.config.js` allows you to configure the start, end, and timezone of the conference.
+
+# Data
+
+All templates have access to the following:
+
+- `conf.utcOffset` - The offset of the conference from the UTC timezone in milliseconds.
+- `conf.start` - Start of the conference as a timestamp.
+- `conf.end` - End of the conference as a timestamp.
+
+# Helpers
+
+## `{% className cssPath, class %}`
 
 CSS files are processed as [CSS Modules](https://github.com/css-modules/css-modules). Within a template, reference classnames like this:
 
@@ -27,7 +39,7 @@ CSS files are processed as [CSS Modules](https://github.com/css-modules/css-modu
 
 In the example above, `set` is used to avoid repeating the path to the CSS.
 
-## Assets
+## `confboxAsset(url)`
 
 In templates and CSS, references assets via `confboxAsset('/path/to/asset.jpg')`. This will be replaced with the hashed name of the asset.
 
@@ -42,3 +54,14 @@ In templates and CSS, references assets via `confboxAsset('/path/to/asset.jpg')`
 ```
 
 Assets ending `.js` will be bundled together using Rollup.
+
+## `{% confDate date, format %}`
+
+This will take a `date` and format it for the timezone of the conference (as set in `/confbox.config.js`).
+
+- `date` - The date to display. This can be a `Date` object or a timestamp.
+- `format` - A formatting string as used by [date-and-time](https://www.npmjs.com/package/date-and-time#formatdateobj-formatstring-utc).
+
+```njk
+<p>The conference starts {% confDate conf.start, 'MMMM DD' %}</p>
+```
