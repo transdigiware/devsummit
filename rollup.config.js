@@ -14,6 +14,9 @@ export default async function({ watch }) {
   }
 
   return {
+    input: {
+      sw: 'src/sw.js',
+    },
     output: {
       dir: 'build',
       format: 'esm',
