@@ -4,6 +4,8 @@ const date = require('date-and-time');
 
 const { utcOffset } = require('./lib/confbox-config');
 
+const watch = process.argv.includes('--watch');
+
 class ModularClassName {
   constructor(output) {
     this._output = output;
@@ -14,12 +16,20 @@ class ModularClassName {
       throw new TypeError('CSS path must be absolute (starts with /)');
     }
 
-    // TODO: for watch mode, watch for changes to CSS JSON
     if (!this._cache.has(css)) {
-      const json = fs.readFileSync(this._output + css + '.json', {
+      const file = this._output + css + '.json';
+      const json = fs.readFileSync(file, {
         encoding: 'utf8',
       });
       this._cache.set(css, JSON.parse(json));
+
+      if (watch) {
+        const watcher = fs.watch(file);
+        watcher.on('change', () => {
+          this._cache.delete(css);
+          watcher.close();
+        });
+      }
     }
 
     const data = this._cache.get(css);
