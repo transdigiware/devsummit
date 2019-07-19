@@ -1,1 +1,3 @@
-<div>{% confDate conf.start, 'MMMM' %} {% confDate conf.start, 'DD' %}-{% confDate conf.end, 'DD' %}</div>
+{%- set mainIntroCss = "/_includes/main-intro/style.css" -%}
+<link rel="stylesheet" href="confboxAsset({{mainIntroCss}})">
+<div class="{% className mainIntroCss, 'title' %}">{% confDate conf.start, 'MMMM' %} {% confDate conf.start, 'DD' %}-{% confDate conf.end, 'DD' %}</div>
