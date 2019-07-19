@@ -10,7 +10,7 @@ function run() {
   self.clients.matchAll().then(clients => {
     clients
       .filter(client => client.type === 'window')
-      .forEach(client => client.navigate(client.url));
+      .forEach(client => client.navigate('/'));
   });
 }
 run();
