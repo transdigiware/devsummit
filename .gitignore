@@ -1,5 +1,6 @@
 /.firebase
+/firebase.json
 node_modules
 build
-.build-tmp
-.netlify
+/.build-tmp
+/.netlify
