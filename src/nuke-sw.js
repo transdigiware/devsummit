@@ -1,6 +1,6 @@
 function run() {
   // Is this actually being executed in a ServiceWorker?
-  if (!self.clients && !self.registration) {
+  if (!(self instanceof ServiceWorkerGlobalScope)) {
     return;
   }
   // Nuke the service worker.
