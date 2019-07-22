@@ -8,9 +8,7 @@ async function run() {
 
   // Reload all open pages.
   clients.matchAll({ includeUncontrolled: true }).then(clients => {
-    clients
-      .filter(client => client.type === 'window')
-      .forEach(client => client.navigate('/'));
+    clients.forEach(client => client.navigate('/'));
   });
 }
 run();
