@@ -4,7 +4,7 @@
   --side-margin: 0.47rem;
 
   /* FIXME: Put breakpoint in a var */
-  @media (min-width: 1280px) {
+  @media (min-width: 720px) {
     --side-margin: 4.6rem;
   }
 }
