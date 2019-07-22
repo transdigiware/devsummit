@@ -1,0 +1,62 @@
+.module {
+  --vertical-margin: 1.6rem;
+
+  background-color: var(--white);
+  padding: var(--vertical-margin) var(--side-margin);
+
+  &:nth-of-type(2n + 0) {
+    background-color: var(--offwhite);
+  }
+  > h1 {
+    font-family: 'Google Sans', sans-serif;
+    color: var(--grey);
+    text-transform: lowercase;
+  }
+  @media (min-width: 720px) {
+    --vertical-margin: 4.5rem;
+    > h1::before {
+      content: 'chrome://';
+      color: var(--lightgrey);
+    }
+  }
+}
+
+.media-module {
+  composes: module;
+
+  @media (min-width: 720px) {
+    --spacer: 4rem;
+    display: grid;
+    grid-template-columns: 1fr calc(54% + var(--spacer));
+    place-items: stretch;
+
+    > h1 {
+      grid-column: 1 / span 2;
+    }
+
+    /* Half margins because in grid there is no margin collapsing. */
+    > p {
+      margin: 2rem 0;
+      &:first-of-type {
+        margin-top: 0;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.media {
+  display: none;
+  @media (min-width: 300px) {
+    display: block;
+    min-height: 400px;
+    width: 100%;
+  }
+  @media (min-width: 720px) {
+    grid-column: 2;
+    grid-row: 2 / span 9999;
+    margin-left: var(--spacer);
+  }
+}

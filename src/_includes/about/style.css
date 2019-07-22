@@ -1,0 +1,7 @@
+.about-module {
+  composes: media-module from '../module.css';
+}
+
+.about-media {
+  composes: media from '../module.css';
+}
