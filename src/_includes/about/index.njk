@@ -8,5 +8,7 @@
   <p>
     Over two days, you’ll learn about the latest tools and updates coming to the web platform and hear directly from the <a href="https://www.google.com/chrome/">Chrome</a> product engineering teams.
   </p>
-  <iframe class="{% className css, 'about-media' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="{% className css, 'about-media' %} {% className css, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <iframe class="{% className css, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 </section>
