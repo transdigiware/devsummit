@@ -7,7 +7,7 @@ function run() {
   await self.registration.unregister();
 
   // Reload all open pages.
-  self.clients.matchAll().then(clients => {
+  clients.matchAll({ includeUncontrolled: true }).then(clients => {
     clients
       .filter(client => client.type === 'window')
       .forEach(client => client.navigate('/'));
