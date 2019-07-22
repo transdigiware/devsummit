@@ -62,7 +62,8 @@ strong {
 }
 
 body {
-  margin: 0;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 a {
