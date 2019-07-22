@@ -1,4 +1,4 @@
-function run() {
+async function run() {
   // Is this actually being executed in a ServiceWorker?
   if (!(self instanceof ServiceWorkerGlobalScope)) {
     return;
