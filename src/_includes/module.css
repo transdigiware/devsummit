@@ -12,7 +12,7 @@
     color: var(--grey);
     text-transform: lowercase;
   }
-  @media (min-width: 720px) {
+  @media (min-width: 1280px) {
     --vertical-margin: 4.5rem;
     > h1::before {
       content: 'chrome://';
@@ -24,15 +24,12 @@
 .media-module {
   composes: module;
 
-  @media (min-width: 720px) {
+  @media (min-width: 1280px) {
     --spacer: 4rem;
     display: grid;
-    grid-template-columns: 1fr calc(54% + var(--spacer));
+    grid-template-columns: [other] 1fr [media] 54%;
     place-items: stretch;
-
-    > h1 {
-      grid-column: 1 / span 2;
-    }
+    grid-column-gap: var(--spacer);
 
     /* Half margins because in grid there is no margin collapsing. */
     > p {
@@ -47,16 +44,20 @@
   }
 }
 
-.media {
+.media-module > :not(.media) {
+  @media (min-width: 1280px) {
+    grid-column: other;
+  }
+}
+.media-module > .media {
   display: none;
   @media (min-width: 300px) {
     display: block;
     min-height: 400px;
     width: 100%;
   }
-  @media (min-width: 720px) {
-    grid-column: 2;
-    grid-row: 2 / span 9999;
-    margin-left: var(--spacer);
+  @media (min-width: 1280px) {
+    grid-column: media;
+    grid-row: 1 / span 9999;
   }
 }
