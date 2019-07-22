@@ -4,7 +4,7 @@ function run() {
     return;
   }
   // Nuke the service worker.
-  self.registration.unregister();
+  await self.registration.unregister();
 
   // Reload all open pages.
   self.clients.matchAll().then(clients => {
