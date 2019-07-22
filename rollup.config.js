@@ -14,6 +14,9 @@ export default async function({ watch }) {
   }
 
   return {
+    input: {
+      'nuke-sw': 'src/nuke-sw.js',
+    },
     output: {
       dir: 'build',
       format: 'esm',
