@@ -1,3 +1,33 @@
-{%- set mainIntroCss = "/_includes/main-intro/style.css" -%}
-<link rel="stylesheet" href="confboxAsset({{mainIntroCss}})">
-<div class="{% className mainIntroCss, 'title' %}">{% confDate conf.start, 'MMMM' %} {% confDate conf.start, 'DD' %}-{% confDate conf.end, 'DD' %}</div>
+{%- set css = "/_includes/main-intro/style.css" -%}
+<link rel="stylesheet" href="confboxAsset({{css}})">
+<div class="{% className css, 'root' %}">
+  <div aria-hidden="true" class="{% className css, 'dino-crossing' %}">
+    <svg viewBox="0 0 2 5" class="{% className css, 'sign' %}">
+      <path class="{% className css, 'sign-path' %}" d="M 1,5 V2 L0,1 L1,0 L2,1 L1,2"/>
+      <use class="{% className css, 'sign-dino' %}" width="0.7" height="0.7" href="#dino"/>
+      <text class="{% className css, 'sign-text' %}" x="1" y="1.45">Crossing</text>
+    </svg>
+    <div class="{% className css, 'dinos' %}">
+      <svg class="{% className css, 'parent-dino' %}" id="dino" viewBox="0 0 495 534"><path d="M216 0H25m166 64h-26V38h26zM25 0v25H0v115h127v25H51v26h101v50H89v64h25v-38h26v76h25v38h26v25h25v102h-25v26h50v-77h26v-25h25v25h26v26h25v25h-25v26h50V432h26v-26h25v-25h26v-25h25v-26h25V191h-25v50h-25v26h-26v25h-51v-25h-25v-26h-38v-25h-38v-25h-26V25h-25V0"/></svg>
+      {% for i in range(0, 6) -%}
+        <svg class="{% className css, 'baby-dino' %}" viewBox="0 0 495 534"><use href="#dino"/></svg>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="{% className css, 'conf-detail' %}">
+    <p>
+      <span class="{% className css, 'date' %}">
+        <span class="{% className css, 'month' %}">{% confDate conf.start, 'MMMM' %}</span>
+        <a href="#" class="{% className css, 'date-link' %}">
+          {% confDate conf.start, 'DD' %}-{% confDate conf.end, 'DD' %}
+        </a>
+      </span>
+      <a href="#" class="{% className css, 'location-main' %}">Yerba Buena Center for the Arts</a>
+      <span class="{% className css, 'location-sub' %}">San Francisco, CA</span>
+    </p>
+    <div class="{% className css, 'actions' %}">
+      <a href="#" class="{% className css, 'register' %}">Register</a>
+      <a href="#" class="{% className css, 'cal' %}">Add to Calendar</a>
+    </div>
+  </div>
+</div>

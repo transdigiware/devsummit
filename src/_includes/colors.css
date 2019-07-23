@@ -2,9 +2,11 @@
   --white: #ffffff;
   --offwhite: #f8f9fa;
   --lightgrey: #9aa0a6;
+  --midgrey: #80868b;
   --grey: #707070;
   --darkgrey: #5f6368;
   --black: #202124;
 
   --blue: #1a73e8;
+  --blue-a25: rgba(26, 115, 232, 0.25);
 }

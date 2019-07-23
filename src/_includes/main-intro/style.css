@@ -1,5 +1,181 @@
-.title {
-  font-size: 50px;
+.root {
+  overflow: hidden;
+  position: relative;
+  line-height: normal;
+  background: var(--offwhite);
+  padding: 4.4rem 0;
+
+  @media (min-width: 720px) {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #fff, var(--offwhite));
+    padding: 0;
+  }
+}
+
+.conf-detail {
+  text-align: center;
+  margin: 0 var(--side-margin);
+  color: var(--darkgrey);
+  position: relative;
+
+  @media (min-width: 720px) {
+    text-align: left;
+    font-size: 1.25rem;
+  }
+}
+
+.month {
+  text-transform: lowercase;
+}
+
+.date {
   font-family: 'Google Sans', roboto, sans-serif;
   font-weight: bold;
+  font-size: 2.14rem;
+  display: block;
+  margin: 0.25em 0;
+  line-height: 1;
+
+  @media (min-width: 720px) {
+    font-size: 3.24rem;
+  }
+}
+
+.location-main {
+  display: block;
+}
+
+.location-sub {
+  display: block;
+  font-weight: 300;
+  margin: 0.35em 0;
+
+  @media (min-width: 720px) {
+    margin: 0.2em 0;
+  }
+}
+
+.date-link {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.actions {
+  @media (min-width: 720px) {
+    margin: 5.9rem 0 4rem;
+    display: grid;
+    grid-auto-columns: min-content;
+    font-size: 0.75rem;
+    grid-auto-flow: column;
+    align-items: start;
+    grid-gap: 1.6em;
+  }
+}
+
+.register {
+  text-decoration: none;
+  color: #fff;
+  background: var(--link-color);
+  border-radius: 1000px;
+  padding: 0.9em 3em;
+  display: block;
+  box-shadow: 0 3px 16px var(--blue-a25);
+  display: none;
+
+  @media (min-width: 720px) {
+    display: block;
+  }
+}
+
+.cal {
+  padding: 0.9em 0;
+  display: block;
+  position: relative;
+  white-space: nowrap;
+
+  @media (min-width: 720px) {
+    --icon-size: 1.5rem;
+    padding-left: calc(var(--icon-size) + 0.6em);
+
+    &::before {
+      content: '';
+      --icon-size: 30px;
+      background: url('confboxAsset(assets/calendar.svg)') no-repeat;
+      background-size: contain;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.dino-crossing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  transform: scale(0.5);
+  display: none;
+
+  @media (min-width: 720px) {
+    display: block;
+  }
+
+  @media (min-width: 880px) {
+    transform: none;
+  }
+}
+
+.sign {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% + 36vh);
+  height: 65vh;
+  overflow: visible;
+}
+
+.sign-path {
+  stroke: var(--midgrey);
+  fill: #fff;
+  stroke-width: 4px;
+  vector-effect: non-scaling-stroke;
+}
+
+.sign-dino {
+  fill: var(--midgrey);
+  x: 0.66;
+  y: 0.53;
+}
+
+.sign-text {
+  font-size: 0.2px;
+  text-anchor: middle;
+  fill: var(--midgrey);
+}
+
+.dinos {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  left: 50%;
+  display: grid;
+  grid-auto-columns: min-content;
+  grid-auto-flow: column;
+  align-items: end;
+  grid-gap: 2vh;
+}
+
+.parent-dino {
+  height: 48vh;
+}
+
+.baby-dino {
+  height: 10vh;
 }
