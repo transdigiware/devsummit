@@ -1,63 +1,26 @@
 .module {
-  --vertical-margin: 1.6rem;
-
+  --vertical-padding: 1.6rem;
   background-color: var(--white);
-  padding: var(--vertical-margin) var(--side-margin);
+  padding: var(--vertical-padding) var(--side-margin);
 
   &:nth-of-type(2n + 0) {
     background-color: var(--offwhite);
   }
-  > h1 {
-    font-family: 'Google Sans', sans-serif;
-    color: var(--grey);
-    text-transform: lowercase;
-  }
+
   @media (min-width: 1280px) {
-    --vertical-margin: 4.5rem;
-    > h1::before {
+    --vertical-padding: 4.5rem;
+  }
+}
+
+.module-heading {
+  font-family: 'Google Sans', sans-serif;
+  color: var(--grey);
+  text-transform: lowercase;
+
+  @media (min-width: 720px) {
+    &::before {
       content: 'chrome://';
       color: var(--lightgrey);
     }
-  }
-}
-
-.media-module {
-  composes: module;
-
-  @media (min-width: 1280px) {
-    --spacer: 4rem;
-    display: grid;
-    grid-template-columns: [other] 1fr [media] 54%;
-    place-items: stretch;
-    grid-column-gap: var(--spacer);
-
-    /* Half margins because in grid there is no margin collapsing. */
-    > p {
-      margin: 2rem 0;
-      &:first-of-type {
-        margin-top: 0;
-      }
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
-.media-module > :not(.media) {
-  @media (min-width: 1280px) {
-    grid-column: other;
-  }
-}
-.media-module > .media {
-  display: none;
-  @media (min-width: 300px) {
-    display: block;
-    width: 100%;
-  }
-  @media (min-width: 1280px) {
-    align-self: center;
-    grid-column: media;
-    grid-row: 1 / span 9999;
   }
 }

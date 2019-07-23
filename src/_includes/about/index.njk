@@ -1,14 +1,17 @@
-{%- set css = "/_includes/about/style.css" -%}
-<link rel="stylesheet" href="confboxAsset({{css}})">
-<section class="{% className css, 'about-module' %}">
-  <h1>About</h1>
+{% extends "layouts/media-module/index.njk" %}
+
+{% block main %}
+  <h1 class="{% className mediaCSS, 'heading' %}">About</h1>
   <p>
     <strong>Chrome Dev Summit</strong> is back! Join us for our annual developer conference at the <a href="https://goo.gl/maps/bUAF6Bore8khBojZ8">Yerba Buena Center for the Arts</a> in San Francisco, CA on <strong>11—12 November 2019</strong>.
   </p>
   <p>
     Over two days, you’ll learn about the latest tools and updates coming to the web platform and hear directly from the <a href="https://www.google.com/chrome/">Chrome</a> product engineering teams.
   </p>
-  <div class="{% className css, 'about-media' %} {% className css, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
-    <iframe class="{% className css, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endblock %}
+
+{% block media %}
+  <div class="{% className mediaCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <iframe class="{% className mediaCSS, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-</section>
+{% endblock %}
