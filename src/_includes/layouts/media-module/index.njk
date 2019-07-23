@@ -1,0 +1,12 @@
+{%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
+
+<link rel="stylesheet" href="confboxAsset({{mediaCSS}})">
+
+<div class="{% className mediaCSS, 'root' %}">
+  <div class="{% className mediaCSS, 'main' %}">
+    {% block main %}{% endblock %}
+  </div>
+  <div class="{% className mediaCSS, 'media' %}">
+    {% block media %}{% endblock %}
+  </div>
+</div>
