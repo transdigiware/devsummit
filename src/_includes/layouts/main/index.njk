@@ -9,6 +9,8 @@
     <title>{{title}}</title>
   </head>
   <body>
+    {% include 'header/index.njk' %}
+
     {% block content %}{{ content | safe }}{% endblock %}
     <script src="confboxAsset("/_includes/layouts/main/main.js")" defer></script>
   </body>

@@ -1,0 +1,130 @@
+.aspect-ratio {
+  composes: aspect-ratio from '../utils.css';
+}
+
+.media-fill {
+  composes: media-fill from '../utils.css';
+}
+
+.root {
+  background: #fff;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1px;
+
+  @media (min-width: 720px) {
+    padding: 0.5em 1em;
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: [title] max-content 2.6em [reg] 1fr [extra-links] max-content;
+    place-items: center start;
+    font-size: 0.8rem;
+  }
+
+  @media (min-width: 820px) {
+    font-size: 1rem;
+  }
+}
+
+.title {
+  margin: 4.6em 0;
+
+  @media (min-width: 720px) {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 2.9em 1fr;
+    grid-gap: 0.7em;
+    align-items: center;
+  }
+}
+
+.logo-container {
+  width: 20%;
+  margin: 0 auto;
+
+  @media (min-width: 720px) {
+    width: 100%;
+  }
+}
+
+.title-text {
+  font-family: 'Google Sans', roboto, sans-serif;
+  line-height: 0.9;
+  text-align: center;
+
+  @media (min-width: 720px) {
+    line-height: 1.1;
+    text-align: left;
+  }
+}
+
+.title-main {
+  font-size: 9vw;
+  color: var(--midgrey);
+
+  @media (min-width: 720px) {
+    font-size: 0.98em;
+  }
+}
+
+.title-year {
+  display: block;
+  color: var(--darkgrey);
+  font-size: 23.1vw;
+
+  @media (min-width: 720px) {
+    font-size: 1.4em;
+  }
+}
+
+.register {
+  composes: register from '../utils.css';
+  grid-area: 1 / reg;
+
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 720px) {
+    position: relative;
+    transform: none;
+    left: 0;
+    top: 0;
+  }
+}
+
+.extra-links {
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-gap: 1.1em;
+  justify-content: center;
+  margin: 4em 0;
+
+  @media (min-width: 320px) {
+    grid-gap: 1.4em;
+  }
+
+  @media (min-width: 720px) {
+    margin: 0;
+    grid-column: extra-links;
+  }
+
+  & a {
+    font-family: 'Google Sans', roboto, sans-serif;
+    line-height: normal;
+    font-size: 0.8em;
+
+    @media (min-width: 450px) {
+      font-size: 1em;
+    }
+
+    @media (min-width: 720px) {
+      font-size: 0.8em;
+      color: var(--offblack);
+      text-decoration: none;
+    }
+  }
+}

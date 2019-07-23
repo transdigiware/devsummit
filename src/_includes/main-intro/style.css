@@ -67,7 +67,6 @@
     margin: 5.9rem 0 4rem;
     display: grid;
     grid-auto-columns: min-content;
-    font-size: 0.75rem;
     grid-auto-flow: column;
     align-items: start;
     grid-gap: 1.6em;
@@ -75,13 +74,7 @@
 }
 
 .register {
-  text-decoration: none;
-  color: #fff;
-  background: var(--link-color);
-  border-radius: 1000px;
-  padding: 0.9em 3em;
-  display: block;
-  box-shadow: 0 3px 16px var(--blue-a25);
+  composes: register from '../utils.css';
   display: none;
 
   @media (min-width: 720px) {
@@ -90,6 +83,7 @@
 }
 
 .cal {
+  font-size: 0.75rem;
   padding: 0.9em 0;
   display: block;
   position: relative;

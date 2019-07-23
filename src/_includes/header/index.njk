@@ -1,0 +1,24 @@
+{% set css = "/_includes/header/style.css" %}
+
+<link rel="stylesheet" href="confboxAsset({{css}})">
+
+<div class="{% className css, 'root' %}">
+  <div class="{% className css, 'title' %}">
+    <div class="{% className css, 'logo-container' %}">
+      <div class="{% className css, 'aspect-ratio' %}" style="--aspect-ratio: 1">
+        <img class="{% className css, 'media-fill' %}" src="confboxAsset(/assets/chromelogo.svg)" alt="Chrome">
+      </div>
+    </div>
+    <div class="{% className css, 'title-text' %}">
+      <div class="{% className css, 'title-main' %}">dev summit</div>
+      <span class="{% className css, 'title-year' %}">{% confDate conf.start, 'YYYY' %}</span>
+    </div>
+  </div>
+  <div class="{% className css, 'extra-links' %}">
+    <a href="#">Schedule</a>
+    <a href="#">Speakers</a>
+    <a href="#">Venue</a>
+    <a href="#">Guidelines</a>
+  </div>
+  <a href="#" class="{% className css, 'register' %}">Register</a>
+</div>
