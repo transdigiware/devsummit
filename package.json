@@ -24,6 +24,7 @@
     "glob": "^7.1.4",
     "html-minifier": "^4.0.0",
     "husky": "^3.0.0",
+    "idb-keyval": "^3.2.0",
     "lit-html": "^1.1.1",
     "mkdirp": "^0.5.1",
     "postcss": "^7.0.17",
