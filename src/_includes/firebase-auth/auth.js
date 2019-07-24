@@ -1,11 +1,9 @@
 import firebase from 'firebase/app';
 import firebaseConfig from './firebase.config';
 
-// Add the Firebase products that you want to use
 import 'firebase/auth';
-import 'firebase/firestore';
+// import 'firebase/firestore';
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 export function onLoginStateChange(cb) {

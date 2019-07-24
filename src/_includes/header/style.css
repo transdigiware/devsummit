@@ -17,7 +17,7 @@
     position: sticky;
     top: 0;
     display: grid;
-    grid-template-columns: [title] max-content 2.6em [reg] 1fr [extra-links] max-content;
+    grid-template-columns: [title] max-content 2.6em [reg] 1fr [extra-links] max-content [login] max-content;
     place-items: center start;
     font-size: 0.8rem;
   }
@@ -130,4 +130,9 @@
 }
 
 .login {
+  grid-column: extra-links;
+}
+
+.login-btn {
+  composes: register from '../utils.css';
 }

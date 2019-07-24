@@ -7,6 +7,7 @@ import eleventyPlugin from './lib/11ty-plugin.js';
 import globInputPlugin from './lib/glob-input-plugin';
 import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
+import classnamePlugin from './lib/classname-plugin';
 
 export default async function({ watch }) {
   await Promise.all([postCSSBuild('src/**/*.css', '.build-tmp', { watch })]);
@@ -40,6 +41,9 @@ export default async function({ watch }) {
       eleventyPlugin(),
       globInputPlugin('.build-tmp/**/*.html'),
       htmlCSSPlugin(),
+      classnamePlugin({
+        cssFileDir: '.build-tmp',
+      }),
       terser({ ecma: 8, module: true }),
     ],
   };
