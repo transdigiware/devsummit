@@ -1,0 +1,30 @@
+{%- set css = "/_includes/footer/style.css" -%}
+<link rel="stylesheet" href="confboxAsset({{css}})">
+<div class="{% className css, 'root' %}">
+  <div class="{% className css, 'divider' %}"></div>
+  <div class="{% className css, 'language' %}">United States</div>
+  <ul class="{% className css, 'social' %}">
+    <li><a href="#"><span class="{% className css, 'icon' %}" style="--icon: url(confboxAsset(/_includes/footer/assets/chromium.svg))"></span></a></li>
+    <li><a href="#"><span class="{% className css, 'icon-mask' %}" style="--icon: url(confboxAsset(/_includes/footer/assets/twitter.svg))"></span></a></li>
+    <li><a href="#"><span class="{% className css, 'icon-mask' %}" style="--icon: url(confboxAsset(/_includes/footer/assets/youtube.svg))"></span></a></li>
+    <li><a href="#"><span class="{% className css, 'icon-mask' %}" style="--icon: url(confboxAsset(/_includes/footer/assets/email.svg))"></span></a></li>
+  </ul>
+  <div class="{% className css, 'logo' %}"></div>
+  <ul class="{% className css, 'links' %}">
+    <li><a href="#">Schedule</a></li>
+    <li><a href="#">Speakers</a></li>
+    <li><a href="#">Community</a></li>
+    <li><a href="#">Guidelines</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Conduct</a></li>
+  </ul>
+  <ul class="{% className css, 'legal' %}">
+    <li><a href="#"><span class="{% className css, 'icon-mask' %}" style="--icon: url(confboxAsset(/_includes/footer/assets/github.svg)"></span> Source Code</a></li>
+    <li><a href="#">Privacy & Terms</a></li>
+    <li><a href="#">@ChromiumDev</a></li>
+    <li>© Google 2019</li>
+  </ul>
+</div>
