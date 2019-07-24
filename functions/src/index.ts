@@ -16,6 +16,7 @@
  */
 
 import { AuthApp } from './auth.js';
+import { UserApp } from './user.js';
 
 import { UserData } from './types.js';
 
@@ -60,8 +61,9 @@ const authApp = AuthApp({
 });
 app.use('/auth', authApp.app);
 
+const userApp = UserApp({ fbAdmin });
 app.use('/user', authApp.needsAuthenticatedUser());
-app.get('/user', (req, res) => res.send({ displayName: 'lol' }));
+app.use('/user', userApp);
 
 const router = Express_();
 router.use('/backend', app);

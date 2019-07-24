@@ -1,9 +1,13 @@
 export async function getUserData() {
-  const r = await fetch('/backend/user');
-  if (!r.ok) {
+  try {
+    const r = await fetch('/backend/user/info');
+    if (!r.ok) {
+      return null;
+    }
+    return r.json();
+  } catch (e) {
     return null;
   }
-  return r.json();
 }
 
 export function login() {

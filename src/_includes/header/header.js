@@ -20,9 +20,9 @@ async function run() {
   render(
     html`
       <img
-        src="${userData.photoURL}"
+        src="${userData.picture}"
         class=${avatarClass}
-        alt=${`Logged in as ${userData.displayName}`}
+        alt=${`Logged in as ${userData.name}`}
         @click=${logout}
       />
     `,
