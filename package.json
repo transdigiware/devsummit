@@ -8,7 +8,8 @@
     "clean": "del build .build-tmp",
     "deploy:prod": "npm run build && firebase deploy",
     "serve:netlify": "netlify dev -c 'npm run build' -d 'build'",
-    "serve:firebase": "firebase serve --only hosting"
+    "serve:firebase": "firebase serve --only hosting,functions",
+    "loadsecrets": "firebase functions:config:get > functions/.runtimeconfig.json"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",

@@ -1,14 +1,13 @@
 import { render, html } from 'lit-html';
 
-import { onLoginStateChange, login, logout } from '../firebase-auth/auth';
+import { getUserData, login, logout } from '../firebase-auth/auth';
 import loginBtnClass from 'classname:_includes/header/style.css:login-btn';
 import avatarClass from 'classname:_includes/header/style.css:avatar';
 
-const loginEl = document.querySelector('#login');
-
-onLoginStateChange(user => {
-  // Logged out
-  if (!user) {
+async function run() {
+  const loginEl = document.querySelector('#login');
+  const userData = await getUserData();
+  if (!userData) {
     render(
       html`
         <button class=${loginBtnClass} @click=${login}></button>
@@ -21,12 +20,13 @@ onLoginStateChange(user => {
   render(
     html`
       <img
-        src="${user.photoURL}"
+        src="${userData.photoURL}"
         class=${avatarClass}
-        alt=${`Logged in as ${user.displayName}`}
+        alt=${`Logged in as ${userData.displayName}`}
         @click=${logout}
       />
     `,
     loginEl,
   );
-});
+}
+run();

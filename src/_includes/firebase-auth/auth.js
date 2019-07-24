@@ -1,21 +1,15 @@
-import firebase from 'firebase/app';
-import firebaseConfig from './firebase.config';
-
-import 'firebase/auth';
-// import 'firebase/firestore';
-
-firebase.initializeApp(firebaseConfig);
-
-export function onLoginStateChange(cb) {
-  firebase.auth().onAuthStateChanged(cb);
+export async function getUserData() {
+  const r = await fetch('/backend/user');
+  if (!r.ok) {
+    return null;
+  }
+  return r.json();
 }
 
 export function login() {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('profile');
-  firebase.auth().signInWithPopup(provider);
+  location.href = '/backend/auth/login';
 }
 
 export function logout() {
-  firebase.auth().signOut();
+  location.href = '/backend/auth/logout';
 }
