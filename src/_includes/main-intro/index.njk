@@ -1,5 +1,6 @@
 {%- set css = "/_includes/main-intro/style.css" -%}
-<link rel="stylesheet" href="confboxAsset({{css}})">
+{% css page, css %}
+
 <div class="{% className css, 'root' %}">
   <div aria-hidden="true" class="{% className css, 'dino-crossing' %}">
     <svg viewBox="0 0 2 5" class="{% className css, 'sign' %}">

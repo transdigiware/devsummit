@@ -30,14 +30,28 @@ CSS files are processed as [CSS Modules](https://github.com/css-modules/css-modu
 …and it will output the transformed class name. Eg:
 
 ```njk
-{% set talkCSS = "/_includes/talk/style.css" %}
-<h2 class="{% className talkCSS, 'talk-header' %}">Building offline-first apps</h2>
-<div class="{% className talkCSS, 'talk-description' %}">
+{% set css = "/_includes/talk/style.css" %}
+<h2 class="{% className css, 'talk-header' %}">Building offline-first apps</h2>
+<div class="{% className css, 'talk-description' %}">
   …
 </div>
 ```
 
 In the example above, `set` is used to avoid repeating the path to the CSS.
+
+## `{% css page, cssURL %}`
+
+This will output a `<link>` pointing to the `cssURL` unless it's been included already for the current page. This means you can use an include multiple times without loading the CSS multiple times.
+
+- `page` - This is the page object available in every template.
+- `cssURL` - CSS url.
+
+Example:
+
+```njk
+{% set css = "/_includes/talk/style.css" %}
+{% css page, css %}
+```
 
 ## `confboxAsset(url)`
 

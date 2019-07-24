@@ -1,5 +1,6 @@
 {%- set css = "/_includes/footer/style.css" -%}
-<link rel="stylesheet" href="confboxAsset({{css}})">
+{% css page, css %}
+
 <div class="{% className css, 'root' %}">
   <div class="{% className css, 'divider' %}"></div>
   <div class="{% className css, 'language' %}">United States</div>

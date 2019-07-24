@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const date = require('date-and-time');
+const nunjucks = require('nunjucks');
 
 const { utcOffset } = require('./lib/confbox-config');
 
@@ -45,6 +46,23 @@ module.exports = function(eleventyConfig) {
   /** Get a class name from a CSS module */
   eleventyConfig.addShortcode('className', (css, className) => {
     return modCSS.getClassName(css, className);
+  });
+
+  const cssPerPage = new Map();
+
+  /** Add some CSS, deduping anything along the way */
+  eleventyConfig.addShortcode('css', (page, url) => {
+    if (!cssPerPage.has(page.url)) {
+      cssPerPage.set(page.url, new Set());
+    }
+
+    const set = cssPerPage.get(page.url);
+
+    if (set.has(url)) return '';
+    set.add(url);
+    return new nunjucks.runtime.SafeString(
+      `<link rel="stylesheet" href="confboxAsset(${url})">`,
+    );
   });
 
   /** Format a date in the timezone of the conference */
