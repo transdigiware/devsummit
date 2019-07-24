@@ -1,4 +1,5 @@
 import { terser } from 'rollup-plugin-terser';
+import nodeResolve from 'rollup-plugin-node-resolve';
 
 import htmlCSSPlugin from './lib/html-css-plugin.js';
 import postCSSBuild from './lib/postcss-build.js';
@@ -29,6 +30,7 @@ export default async function({ watch }) {
       exclude: '.build-tmp/**/*.html',
     },
     plugins: [
+      nodeResolve(),
       {
         resolveFileUrl({ fileName }) {
           return JSON.stringify('/' + fileName);
