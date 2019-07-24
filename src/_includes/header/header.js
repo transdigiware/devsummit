@@ -1,5 +1,4 @@
 import { render, html } from 'lit-html';
-// import {until} from "lit-html/directives/until";
 
 import { onLoginStateChange, login, logout } from '../firebase-auth/auth';
 import loginBtnClass from 'classname:_includes/header/style.css:login-btn';
