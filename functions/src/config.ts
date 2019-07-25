@@ -20,6 +20,8 @@ import Passport from 'passport';
 
 // @ts-ignore
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+// @ts-ignore
+import { Strategy as GitHubStrategy } from 'passport-github';
 
 import { Context, UserBlob } from './types.js';
 
@@ -49,6 +51,25 @@ Passport.use(
         // On Google APIs, we can append this to resize the avatar
         // to 96x96 to save bandwidth.
         picture: `${profile.photos[0].value}=s96`,
+        name: profile.displayName,
+      };
+      return cb(null, userBlob);
+    },
+  ),
+);
+
+Passport.use(
+  new GitHubStrategy(
+    {
+      clientID: config.auth.github.id,
+      clientSecret: config.auth.github.secret,
+      callbackURL: `${process.env.HOST || ''}/backend/auth/github/callback`,
+    },
+    (accessToken: string, refreshToken: string, profile: any, cb: any) => {
+      const userBlob: UserBlob = {
+        uid: profile.id,
+        email: profile.emails[0].value,
+        picture: profile.photos[0].value,
         name: profile.displayName,
       };
       return cb(null, userBlob);
@@ -91,6 +112,7 @@ const configMiddleware: Express.RequestHandler = (req, res, next) => {
     },
     authOpts: {
       google: { scope: ['openid', 'email', 'profile'] },
+      github: { scope: [] },
     },
     // Length of a session in seconds
     sessionLength: 24 * 60 * 60,
