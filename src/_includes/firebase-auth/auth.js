@@ -6,7 +6,7 @@ export async function onLoginStateChange(cb) {
 }
 
 export function login() {
-  location.href = '/backend/auth/login';
+  location.href = '/backend/auth/google/login';
 }
 
 export async function logout() {
@@ -25,6 +25,7 @@ export async function checkRealLoginState() {
     set('user', userBlob);
     notify(userBlob);
   } catch (e) {
+    await del('user');
     notify(null);
   }
 }

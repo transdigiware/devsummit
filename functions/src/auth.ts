@@ -1,6 +1,5 @@
 /**
- *
- * Copyright 2018 Google Inc. All rights reserved.
+ * Copyright 2019 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,137 +14,69 @@
  * limitations under the License.
  */
 
-import url from 'url';
-
 import Express from 'express';
-import cookieParser from 'cookie-parser';
-import querystring from 'querystring';
-import { OAuth2Client } from 'google-auth-library';
 import StatusCode from 'http-status-codes';
+import Passport from 'passport';
 
-import { UserBlob, Context } from './types.js';
+import sessionMiddleware from './session.js';
+import { Context, UserBlob } from './types.js';
 
-export interface SessionMiddlewareOptions {
-  loggedInOnly: boolean;
-}
+Passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
-const sessionMiddlewareDefaultOpts: SessionMiddlewareOptions = {
-  loggedInOnly: false,
-};
-export function sessionMiddleware(
-  userOpts: Partial<SessionMiddlewareOptions> = {},
-) {
-  const opts = Object.assign({}, sessionMiddlewareDefaultOpts, userOpts);
+Passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
-  return async (
-    req: Express.Request,
-    res: Express.Response,
-    next: Express.NextFunction,
-  ) => {
-    const context = res.locals as Context;
-    await new Promise(resolve =>
-      cookieParser(context.cookieSecret)(req, res, resolve),
-    );
-    const userId = req.signedCookies[context.cookieName];
-    if (userId) {
-      context.userId = userId;
-    }
-    if (opts.loggedInOnly && !userId) {
-      res.statusCode = StatusCode.FORBIDDEN;
-      res.send('Must be logged in');
-      return;
-    }
-    next();
-  };
-}
+const authApp = Express();
 
-function oauthClientFactory(context: Context) {
-  const [clientId, clientSecret, callback] = context.oauthCredentials;
-  return new OAuth2Client(clientId, clientSecret, callback);
-}
-
-function login(req: Express.Request, res: Express.Response) {
+// This is required so we can read/write the signed session cookie.
+authApp.use(sessionMiddleware());
+authApp.use('/:service/login', (req, res, next) => {
   const context = res.locals as Context;
-  const authUrl = oauthClientFactory(context).generateAuthUrl({
-    scope: ['openid', 'email', 'profile'],
-    state: '',
-  });
-
-  res.redirect(StatusCode.TEMPORARY_REDIRECT, authUrl);
-}
-
-function logout(req: Express.Request, res: Express.Response) {
-  const context = res.locals as Context;
-  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
-  res.redirect('/');
-}
-
-async function oauth2callback(req: Express.Request, res: Express.Response) {
-  const context = res.locals as Context;
-
-  const oauthClient = oauthClientFactory(context);
-  const parsedUrl = url.parse(req.url);
-  if (!parsedUrl.query) {
+  const serviceName = req.params.service;
+  if (!context.authOpts[serviceName]) {
     res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('No query part in URL');
+    res.send('Unknown authentication provider');
     return;
   }
-  const qs = querystring.parse(parsedUrl.query);
-  if (!qs.code) {
+  Passport.authenticate(serviceName, context.authOpts[serviceName])(
+    req,
+    res,
+    next,
+  );
+});
+
+authApp.use('/:service/callback', async (req, res, next) => {
+  const context = res.locals as Context;
+  const serviceName = req.params.service;
+  if (!context.authOpts[serviceName]) {
     res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('No code present');
+    res.send('Unknown authentication provider');
     return;
   }
-  let code = qs.code;
-  // FIXME: This might not be the best way to handle this.
-  if (Array.isArray(code)) {
-    code = code[0];
-  }
-  const r = await oauthClient.getToken(code);
-  oauthClient.setCredentials(r.tokens);
+  await new Promise(resolve =>
+    Passport.authenticate(serviceName)(req, res, resolve),
+  );
 
-  if (!r.tokens.id_token) {
-    res.statusCode = StatusCode.UNAUTHORIZED;
-    res.send('Authorization failed');
-    return;
-  }
-  const loginData = await oauthClient.verifyIdToken({
-    idToken: r.tokens.id_token,
-  } as any);
-  if (!loginData) {
-    res.statusCode = StatusCode.UNAUTHORIZED;
-    res.send('Couldn’t obtain user data');
-    return;
-  }
-  const loginPayload = loginData.getPayload();
-
-  if (!loginPayload) {
-    res.statusCode = StatusCode.UNAUTHORIZED;
-    res.send('No ID in user account');
-    return;
-  }
-
-  const user: UserBlob = {
-    email: loginPayload.email || '',
-    name: loginPayload.name || '',
-    picture: (loginPayload.picture || '').replace(/\/s96-c\/.*$/, '/s512-c/'),
-    uid: loginPayload.sub,
-  };
-  context.storeUserBlob(user);
-
-  res.cookie(context.cookieName, user.uid, {
+  const userBlob = req.user as UserBlob;
+  await context.storeUserBlob(userBlob);
+  res.cookie(context.cookieName, userBlob.uid, {
     httpOnly: true,
     maxAge: context.sessionLength * 1000,
     signed: true,
   });
+  // This logs out Passport’s session.
+  // We have our own session management.
+  req.logout();
   res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
-}
+});
 
-const authApp = Express();
-
-authApp.use(sessionMiddleware());
-authApp.get('/login', login);
-authApp.get('/oauth2callback', oauth2callback);
-authApp.get('/logout', logout);
+authApp.use('/logout', (req, res, next) => {
+  const context = res.locals as Context;
+  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
+  res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
+});
 
 export default authApp;

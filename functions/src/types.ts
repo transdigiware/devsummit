@@ -1,3 +1,6 @@
+// import Express from "express";
+import { AuthenticateOptions } from 'passport';
+
 export interface UserBlob {
   uid: string;
   email: string;
@@ -11,6 +14,7 @@ export interface Context {
   cookieSecret: string;
   storeUserBlob(blob: UserBlob): Promise<void>;
   getUserBlob(uid: string): Promise<UserBlob | null>;
-  oauthCredentials: any[];
+  // passportMiddlewares: {[x: string]: Express.RequestHandler };
+  authOpts: { [x: string]: AuthenticateOptions };
   sessionLength: number;
 }

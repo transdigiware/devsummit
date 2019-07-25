@@ -16,6 +16,10 @@
 import * as Functions from 'firebase-functions';
 import * as fbAdmin from 'firebase-admin';
 import Express from 'express';
+import Passport from 'passport';
+
+// @ts-ignore
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 import { Context, UserBlob } from './types.js';
 
@@ -25,6 +29,27 @@ fbAdmin.initializeApp(
     credential: fbAdmin.credential.cert(config.serviceaccount),
     databaseURL: 'https://cds2019-d4673.firebaseio.com/',
   }),
+);
+
+// Register all your Passport strategies here.
+// Use the callback to populate the UserBlob.
+Passport.use(
+  new GoogleStrategy(
+    {
+      clientID: config.auth.oauth2id,
+      clientSecret: config.auth.oauth2secret,
+      callbackURL: 'http://localhost:5000/backend/auth/google/callback',
+    },
+    (accessToken: string, refreshToken: string, profile: any, cb: any) => {
+      const userBlob: UserBlob = {
+        uid: profile.id,
+        email: profile.emails[0].value,
+        picture: profile.photos[0].value,
+        name: profile.displayName,
+      };
+      return cb(null, userBlob);
+    },
+  ),
 );
 
 const configMiddleware: Express.RequestHandler = (req, res, next) => {
@@ -60,11 +85,9 @@ const configMiddleware: Express.RequestHandler = (req, res, next) => {
 
       return ev.val();
     },
-    oauthCredentials: [
-      config.auth.oauth2id,
-      config.auth.oauth2secret,
-      'http://localhost:5000/backend/auth/oauth2callback',
-    ],
+    authOpts: {
+      google: { scope: ['openid', 'email', 'profile'] },
+    },
     // Length of a session in seconds
     sessionLength: 24 * 60 * 60,
   };

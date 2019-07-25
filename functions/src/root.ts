@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 import Express from 'express';
+import Passport from 'passport';
 
 import configMiddleware from './config.js';
-import authApp, { sessionMiddleware } from './auth.js';
+import sessionMiddleware from './session.js';
+import authApp from './auth.js';
 import userApp from './user.js';
 
 const appsRouter = Express();
@@ -28,6 +30,8 @@ appsRouter.use('/user', userApp);
 
 const rootRouter = Express();
 rootRouter.use(configMiddleware);
+rootRouter.use(Passport.initialize());
+rootRouter.use(Passport.session());
 rootRouter.use('/backend', appsRouter);
 
 export default rootRouter;
