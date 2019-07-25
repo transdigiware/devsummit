@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",
+    "@types/joi": "^14.3.3",
     "cssnano": "^4.1.10",
     "date-and-time": "^0.8.1",
     "del-cli": "^2.0.0",
@@ -43,5 +44,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "joi": "^14.3.1"
   }
 }

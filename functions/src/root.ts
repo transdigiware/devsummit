@@ -13,10 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Express from 'express';
 
-// `rootRouter` is an Express app that contains the entire backend app.
-import rootRouter from './root.js';
+import configMiddleware from './config.js';
+import authApp, { sessionMiddleware } from './auth.js';
+import userApp from './user.js';
 
-// Here, we hook it up to Firebase functions.
-import * as Functions from 'firebase-functions';
-export const backend = Functions.https.onRequest(rootRouter);
+const appsRouter = Express();
+
+appsRouter.use('/auth', authApp);
+
+appsRouter.use('/user', sessionMiddleware({ loggedInOnly: true }));
+appsRouter.use('/user', userApp);
+
+const rootRouter = Express();
+rootRouter.use(configMiddleware);
+rootRouter.use('/backend', appsRouter);
+
+export default rootRouter;

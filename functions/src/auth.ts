@@ -15,172 +15,137 @@
  * limitations under the License.
  */
 
-import * as Express from 'express';
-import * as FbAdmin from 'firebase-admin';
+import url from 'url';
+
+import Express from 'express';
+import cookieParser from 'cookie-parser';
+import querystring from 'querystring';
 import { OAuth2Client } from 'google-auth-library';
+import StatusCode from 'http-status-codes';
 
-import { UserData } from './types.js';
+import { UserBlob, Context } from './types.js';
 
-// This is a weird hack because the Express typings are awful.
-// https://github.com/rollup/rollup/issues/670
-// tslint:disable-next-line:variable-name
-const Express_ = Express;
-
-const url = require('url');
-const querystring = require('querystring');
-const cookieParser = require('cookie-parser');
-
-// DO NOT CHANGE THE COOKIE NAME! It’s the only one firebase allows
-// https://firebase.google.com/docs/hosting/functions#using_cookies
-const COOKIE_NAME = '__session';
-
-export interface AuthenticatedRequest extends Express.Request {
-  userId?: string;
-  user?: UserData;
+export interface SessionMiddlewareOptions {
+  loggedInOnly: boolean;
 }
 
-export interface AuthAppOptions {
-  callback: string;
-  cookieSecret: string;
-  clientId: string;
-  clientSecret: string;
-  sessionLengthInSeconds: number;
-  loginFilter?: (user: UserData) => boolean;
-  userDbFactory: () => FbAdmin.database.Reference;
-}
+const sessionMiddlewareDefaultOpts: SessionMiddlewareOptions = {
+  loggedInOnly: false,
+};
+export function sessionMiddleware(
+  userOpts: Partial<SessionMiddlewareOptions> = {},
+) {
+  const opts = Object.assign({}, sessionMiddlewareDefaultOpts, userOpts);
 
-export function AuthApp({
-  callback,
-  cookieSecret,
-  clientId,
-  clientSecret,
-  loginFilter,
-  userDbFactory,
-  sessionLengthInSeconds,
-}: AuthAppOptions) {
-  function oauthClientFactory() {
-    return new OAuth2Client(clientId, clientSecret, callback);
-  }
-
-  function login(req: Express.Request, res: Express.Response) {
-    const authUrl = oauthClientFactory().generateAuthUrl({
-      scope: ['openid', 'email', 'profile'],
-      state: '',
-    });
-
-    res.redirect(301, authUrl);
-  }
-
-  async function getUser(req: Express.Request): Promise<UserData | null> {
-    const cookieValue = req.signedCookies[COOKIE_NAME];
-    if (!cookieValue || cookieValue.length === 0) {
-      return null;
+  return async (
+    req: Express.Request,
+    res: Express.Response,
+    next: Express.NextFunction,
+  ) => {
+    const context = res.locals as Context;
+    await new Promise(resolve =>
+      cookieParser(context.cookieSecret)(req, res, resolve),
+    );
+    const userId = req.signedCookies[context.cookieName];
+    if (userId) {
+      context.userId = userId;
     }
-    return (await userDbFactory()
-      .child(cookieValue)
-      .once('value')).val();
-  }
-
-  function logout(req: Express.Request, res: Express.Response) {
-    res.clearCookie(COOKIE_NAME, { signed: true, httpOnly: true });
-    res.redirect('/');
-  }
-
-  async function oauth2callback(req: Express.Request, res: Express.Response) {
-    const oauthClient = oauthClientFactory();
-    const qs = querystring.parse(url.parse(req.url).query);
-    const r = await oauthClient.getToken(qs.code);
-    oauthClient.setCredentials(r.tokens);
-
-    if (!r.tokens.id_token) {
-      res.statusCode = 500;
-      res.send('Authorization failed');
+    if (opts.loggedInOnly && !userId) {
+      res.statusCode = StatusCode.FORBIDDEN;
+      res.send('Must be logged in');
       return;
     }
-    const loginData = await oauthClient.verifyIdToken({
-      idToken: r.tokens.id_token,
-    } as any);
-    if (!loginData) {
-      res.statusCode = 500;
-      res.send('Couldn’t obtain user data');
-      return;
-    }
-    const loginPayload = loginData.getPayload();
-
-    if (!loginPayload) {
-      res.statusCode = 500;
-      res.send('No ID in user account');
-      return;
-    }
-
-    const user: UserData = {
-      email: loginPayload.email || '',
-      name: loginPayload.name || '',
-      picture: (loginPayload.picture || '').replace(/\/s96-c\/.*$/, '/s512-c/'),
-      uid: loginPayload.sub,
-    };
-
-    if (loginFilter && !loginFilter(user)) {
-      res.statusCode = 403;
-      res.send('You are not allowed');
-      return;
-    }
-
-    const ref = userDbFactory().child(user.uid);
-    const oldUser = (await ref.once('value')).val();
-    const newUser = Object.assign({}, oldUser, user);
-    await ref.set(newUser);
-
-    res.cookie(COOKIE_NAME, user.uid, {
-      httpOnly: true,
-      maxAge: sessionLengthInSeconds * 1000,
-      signed: true,
-    });
-    res.redirect(301, '/');
-  }
-
-  function needsAuthenticatedUser() {
-    const router = Express.Router();
-    router.use(cookieParser(cookieSecret));
-    router.use((async (
-      req: AuthenticatedRequest,
-      res: Express.Response,
-      next: Express.NextFunction,
-    ) => {
-      const userId = req.signedCookies[COOKIE_NAME];
-      if (!userId) {
-        res.statusCode = 403;
-        res.send('Not logged in.');
-        return;
-      }
-      req.userId = userId;
-      next();
-    }) as any);
-    return router;
-  }
-
-  const authApp = Express_();
-
-  authApp.use(cookieParser(cookieSecret));
-  authApp.use(
-    (
-      req: Express.Request,
-      res: Express.Response,
-      next: Express.NextFunction,
-    ) => {
-      // This is required for cookie headers to not get stripped.
-      // https://bit.ly/2Q2s2cH
-      res.setHeader('Cache-Control', 'private');
-      next();
-    },
-  );
-  authApp.get('/login', login);
-  authApp.get('/oauth2callback', oauth2callback);
-  authApp.get('/logout', logout);
-
-  return {
-    app: authApp,
-    needsAuthenticatedUser,
-    getUser,
+    next();
   };
 }
+
+function oauthClientFactory(context: Context) {
+  const [clientId, clientSecret, callback] = context.oauthCredentials;
+  return new OAuth2Client(clientId, clientSecret, callback);
+}
+
+function login(req: Express.Request, res: Express.Response) {
+  const context = res.locals as Context;
+  const authUrl = oauthClientFactory(context).generateAuthUrl({
+    scope: ['openid', 'email', 'profile'],
+    state: '',
+  });
+
+  res.redirect(StatusCode.TEMPORARY_REDIRECT, authUrl);
+}
+
+function logout(req: Express.Request, res: Express.Response) {
+  const context = res.locals as Context;
+  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
+  res.redirect('/');
+}
+
+async function oauth2callback(req: Express.Request, res: Express.Response) {
+  const context = res.locals as Context;
+
+  const oauthClient = oauthClientFactory(context);
+  const parsedUrl = url.parse(req.url);
+  if (!parsedUrl.query) {
+    res.statusCode = StatusCode.BAD_REQUEST;
+    res.send('No query part in URL');
+    return;
+  }
+  const qs = querystring.parse(parsedUrl.query);
+  if (!qs.code) {
+    res.statusCode = StatusCode.BAD_REQUEST;
+    res.send('No code present');
+    return;
+  }
+  let code = qs.code;
+  // FIXME: This might not be the best way to handle this.
+  if (Array.isArray(code)) {
+    code = code[0];
+  }
+  const r = await oauthClient.getToken(code);
+  oauthClient.setCredentials(r.tokens);
+
+  if (!r.tokens.id_token) {
+    res.statusCode = StatusCode.UNAUTHORIZED;
+    res.send('Authorization failed');
+    return;
+  }
+  const loginData = await oauthClient.verifyIdToken({
+    idToken: r.tokens.id_token,
+  } as any);
+  if (!loginData) {
+    res.statusCode = StatusCode.UNAUTHORIZED;
+    res.send('Couldn’t obtain user data');
+    return;
+  }
+  const loginPayload = loginData.getPayload();
+
+  if (!loginPayload) {
+    res.statusCode = StatusCode.UNAUTHORIZED;
+    res.send('No ID in user account');
+    return;
+  }
+
+  const user: UserBlob = {
+    email: loginPayload.email || '',
+    name: loginPayload.name || '',
+    picture: (loginPayload.picture || '').replace(/\/s96-c\/.*$/, '/s512-c/'),
+    uid: loginPayload.sub,
+  };
+  context.storeUserBlob(user);
+
+  res.cookie(context.cookieName, user.uid, {
+    httpOnly: true,
+    maxAge: context.sessionLength * 1000,
+    signed: true,
+  });
+  res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
+}
+
+const authApp = Express();
+
+authApp.use(sessionMiddleware());
+authApp.get('/login', login);
+authApp.get('/oauth2callback', oauth2callback);
+authApp.get('/logout', logout);
+
+export default authApp;

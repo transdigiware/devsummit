@@ -16,28 +16,29 @@ export async function logout() {
 
 export async function checkRealLoginState() {
   try {
-    const r = await fetch('/backend/user/info');
+    const r = await fetch('/backend/user/blob');
     if (!r.ok) {
+      // Go to catch handler
       throw null;
     }
-    const userData = await r.json();
-    set('user', userData);
-    notify(userData);
+    const userBlob = await r.json();
+    set('user', userBlob);
+    notify(userBlob);
   } catch (e) {
     notify(null);
   }
 }
 
-async function notify(userData) {
+async function notify(userBlob) {
   for (const listener of listeners) {
-    listener(userData);
+    listener(userBlob);
   }
 }
 
 async function init() {
-  const userData = await get('user');
-  if (userData) {
-    notify(userData);
+  const userBlob = await get('user');
+  if (userBlob) {
+    notify(userBlob);
   }
   checkRealLoginState();
 }
