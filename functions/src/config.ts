@@ -23,6 +23,8 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 import { Context, UserBlob } from './types.js';
 
+// This initializes Firebase and gets our secrets via Firebase’s
+// config API.
 const config = Functions.config();
 fbAdmin.initializeApp(
   Object.assign({}, config.firebase, {
@@ -36,9 +38,9 @@ fbAdmin.initializeApp(
 Passport.use(
   new GoogleStrategy(
     {
-      clientID: config.auth.oauth2id,
-      clientSecret: config.auth.oauth2secret,
-      callbackURL: 'http://localhost:5000/backend/auth/google/callback',
+      clientID: config.auth.google.id,
+      clientSecret: config.auth.google.secret,
+      callbackURL: `${process.env.HOST || ''}/backend/auth/google/callback`,
     },
     (accessToken: string, refreshToken: string, profile: any, cb: any) => {
       const userBlob: UserBlob = {
@@ -64,11 +66,11 @@ const configMiddleware: Express.RequestHandler = (req, res, next) => {
     // The name of the cookie to store the session in.
     // If you are using Firebase functions,
     // DO NOT CHANGE THE COOKIE NAME!
-    // It’s the only one firebase allows:
+    // It’s the only one Firebase allows:
     // https://firebase.google.com/docs/hosting/functions#using_cookies
     cookieName: '__session',
     // Secret to encrypt the session cookie with.
-    cookieSecret: 'lol123',
+    cookieSecret: config.auth.cookiesecret,
     // Called by other apps to update a user’s blob.
     async storeUserBlob(userBlob: UserBlob) {
       await fbAdmin

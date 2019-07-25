@@ -11,7 +11,7 @@ export function login() {
 
 export async function logout() {
   await del('user');
-  location.href = '/backend/auth/logout';
+  location.href = 'p/backend/auth/logout';
 }
 
 export async function checkRealLoginState() {
