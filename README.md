@@ -65,3 +65,19 @@ This will take a `date` and format it for the timezone of the conference (as set
 ```njk
 <p>The conference starts {% confDate conf.start, 'MMMM DD' %}</p>
 ```
+
+## Login
+
+The login system currently relies on Firebase Realtime Database and
+Firebase Functions.
+
+For development with functions enabled, do the following:
+
+```
+$ cd functions
+$ npm install
+$ npm run build
+$ cd ..
+$ npm run loadsecrets
+$ npm run serve:firebase
+```
