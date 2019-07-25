@@ -44,7 +44,9 @@ Passport.use(
       const userBlob: UserBlob = {
         uid: profile.id,
         email: profile.emails[0].value,
-        picture: profile.photos[0].value,
+        // On Google APIs, we can append this to resize the avatar
+        // to 96x96 to save bandwidth.
+        picture: `${profile.photos[0].value}=s96`,
         name: profile.displayName,
       };
       return cb(null, userBlob);
