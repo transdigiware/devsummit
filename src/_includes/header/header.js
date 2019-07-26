@@ -4,7 +4,7 @@ import { onLoginStateChange, login, logout } from '../auth/auth';
 import loginBtnClass from 'classname:_includes/header/style.css:login-btn';
 import avatarClass from 'classname:_includes/header/style.css:avatar';
 
-async function run() {
+function run() {
   const loginEl = document.querySelector('#login');
   onLoginStateChange(userData => {
     if (!userData) {
