@@ -16,22 +16,10 @@
 
 import Express from 'express';
 import cookieParser from 'cookie-parser';
-import StatusCode from 'http-status-codes';
 
 import { Context } from './types.js';
 
-export interface SessionMiddlewareOptions {
-  loggedInOnly: boolean;
-}
-
-const sessionMiddlewareDefaultOpts: SessionMiddlewareOptions = {
-  loggedInOnly: false,
-};
-export default function sessionMiddleware(
-  userOpts: Partial<SessionMiddlewareOptions> = {},
-) {
-  const opts = Object.assign({}, sessionMiddlewareDefaultOpts, userOpts);
-
+export default function sessionMiddleware() {
   return async (
     req: Express.Request,
     res: Express.Response,
@@ -44,11 +32,6 @@ export default function sessionMiddleware(
     const userId = req.signedCookies[context.cookieName];
     if (userId) {
       context.userId = userId;
-    }
-    if (opts.loggedInOnly && !userId) {
-      res.statusCode = StatusCode.FORBIDDEN;
-      res.send('Must be logged in');
-      return;
     }
     next();
   };

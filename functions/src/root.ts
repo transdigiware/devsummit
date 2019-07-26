@@ -18,20 +18,22 @@ import Passport from 'passport';
 
 import configMiddleware from './config.js';
 import sessionMiddleware from './session.js';
-import authApp from './auth.js';
+import authApp, { authenticationRequiredMiddleware } from './auth.js';
 import userApp from './user.js';
 
 const appsRouter = Express();
 
 appsRouter.use('/auth', authApp);
 
-appsRouter.use('/user', sessionMiddleware({ loggedInOnly: true }));
+appsRouter.use('/user', authenticationRequiredMiddleware());
 appsRouter.use('/user', userApp);
 
 const rootRouter = Express();
-rootRouter.use(configMiddleware);
 rootRouter.use(Passport.initialize());
 rootRouter.use(Passport.session());
+
+rootRouter.use(configMiddleware);
+rootRouter.use(sessionMiddleware());
 rootRouter.use('/backend', appsRouter);
 
 export default rootRouter;

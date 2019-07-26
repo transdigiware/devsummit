@@ -80,3 +80,19 @@ authApp.use('/logout', (req, res, next) => {
 });
 
 export default authApp;
+
+export function authenticationRequiredMiddleware() {
+  return async (
+    req: Express.Request,
+    res: Express.Response,
+    next: Express.NextFunction,
+  ) => {
+    const context = res.locals as Context;
+    if (!context.userId) {
+      res.statusCode = StatusCode.FORBIDDEN;
+      res.send('Not logged in');
+      return;
+    }
+    next();
+  };
+}
