@@ -38,9 +38,7 @@ async function notify(userBlob) {
 
 async function init() {
   const userBlob = await get('user');
-  if (userBlob) {
-    notify(userBlob);
-  }
+  notify(userBlob);
   checkRealLoginState();
 }
 init();
