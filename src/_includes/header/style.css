@@ -169,5 +169,7 @@
     border-radius: 50%;
     height: var(--size);
     width: var(--size);
+    background-image: var(--avatar);
+    background-size: cover;
   }
 }

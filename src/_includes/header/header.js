@@ -10,7 +10,7 @@ function run() {
     if (!userData) {
       render(
         html`
-          <button class=${loginBtnClass} @click=${login}></button>
+          <button class=${loginBtnClass} title="Login" @click=${login}></button>
         `,
         loginEl,
       );
@@ -19,10 +19,10 @@ function run() {
 
     render(
       html`
-        <img
-          src="${userData.picture}"
+        <button
+          style=${`--avatar: url(${userData.picture})`}
           class=${avatarClass}
-          alt=${`Logged in as ${userData.name}`}
+          title=${`Logged in as ${userData.name}. Click to Logout.`}
           @click=${logout}
         />
       `,
