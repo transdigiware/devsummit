@@ -1,7 +1,7 @@
 import { get, set, del } from 'idb-keyval';
 
 const listeners = new Set();
-export async function onLoginStateChange(cb) {
+export function onLoginStateChange(cb) {
   listeners.add(cb);
 }
 
