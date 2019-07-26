@@ -40,6 +40,18 @@ export function asyncMiddleware(
   };
 }
 
+// A middleware wrapper that catches errors and sends them as a HTTP 500.
+export function catchMiddleware(
+  mw: Express.RequestHandler,
+): Express.RequestHandler {
+  return (req, res, next) => {
+    mw(req, res, next).catch((err: Error) => {
+      res.statusCode = 500;
+      res.send(err.message);
+    });
+  };
+}
+
 export function runMiddleware(
   mw: Express.RequestHandler,
   req: Express.Request,

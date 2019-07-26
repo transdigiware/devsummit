@@ -20,6 +20,7 @@ import SessionMiddleware from './session.js';
 import AuthApp, { authenticationRequiredMiddleware } from './auth.js';
 import UserApp from './user.js';
 import { UserBlob } from './types.js';
+import { catchMiddleware } from './utils.js';
 
 export interface BackendOptions {
   cookieName: string;
@@ -43,6 +44,6 @@ export default function Backend(options: BackendOptions) {
   rootRouter.use(Passport.session());
 
   rootRouter.use(SessionMiddleware(options));
-  rootRouter.use('/backend', appsRouter);
+  rootRouter.use('/backend', catchMiddleware(appsRouter));
   return rootRouter;
 }
