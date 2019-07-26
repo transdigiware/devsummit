@@ -5,9 +5,13 @@
     "noUnusedLocals": true,
     "outDir": "lib",
     "esModuleInterop": true,
+    "composite": true,
+    "declarationMap": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "rootDir": "src",
+    "importHelpers": true
   },
   "compileOnSave": true,
   "include": ["src"]
