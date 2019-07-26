@@ -8,6 +8,7 @@ import globInputPlugin from './lib/glob-input-plugin';
 import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
+import assetPlugin from './lib/asset-plugin';
 
 export default async function({ watch }) {
   await Promise.all([postCSSBuild('src/**/*.css', '.build-tmp', { watch })]);
@@ -18,6 +19,7 @@ export default async function({ watch }) {
   return {
     input: {
       'nuke-sw': 'src/nuke-sw.js',
+      sw: 'src/sw.js',
     },
     output: {
       dir: 'build',
@@ -31,6 +33,7 @@ export default async function({ watch }) {
       exclude: '.build-tmp/**/*.html',
     },
     plugins: [
+      assetPlugin(),
       nodeResolve(),
       {
         resolveFileUrl({ fileName }) {

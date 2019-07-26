@@ -12,5 +12,7 @@
     {% include 'header/index.njk' %}
 
     {% block content %}{{ content | safe }}{% endblock %}
+    <script type="module" src="confboxAsset(/_includes/sw/sw-installer.js)"></script>
+    <script type="module" src="confboxAsset(/_includes/push/push.js)"></script>
   </body>
 </html>
