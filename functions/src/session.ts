@@ -18,21 +18,49 @@ import Express from 'express';
 import cookieParser from 'cookie-parser';
 
 import { Context } from './types.js';
+import { asyncMiddleware, alwaysNextMiddleware } from './utils.js';
+
+export interface CookieValue {
+  userId: string;
+  // Expiry date as a timestamp
+  expires: number;
+}
 
 export default function sessionMiddleware() {
-  return async (
-    req: Express.Request,
-    res: Express.Response,
-    next: Express.NextFunction,
-  ) => {
-    const context = res.locals as Context;
-    await new Promise(resolve =>
-      cookieParser(context.cookieSecret)(req, res, resolve),
-    );
-    const userId = req.signedCookies[context.cookieName];
-    if (userId) {
+  return alwaysNextMiddleware(
+    asyncMiddleware(async (req: Express.Request, res: Express.Response) => {
+      const context = res.locals as Context;
+      await new Promise(resolve =>
+        cookieParser(context.cookieSecret)(req, res, resolve),
+      );
+      req.cookies[context.cookieName];
+      const { userId, expires } = req.signedCookies[context.cookieName];
+      if (new Date().getTime() > expires) {
+        return;
+      }
       context.userId = userId;
-    }
-    next();
+    }),
+  );
+}
+
+export function setSessionCookie(req: Express.Request, res: Express.Response) {
+  const context = res.locals as Context;
+  const cookieValue = {
+    userId: context.userId,
+    expires: new Date().getTime() + context.sessionLength * 1000,
   };
+
+  res.cookie(context.cookieName, cookieValue, {
+    httpOnly: true,
+    maxAge: context.sessionLength * 1000,
+    signed: true,
+  });
+}
+
+export function unsetSessionCookie(
+  req: Express.Request,
+  res: Express.Response,
+) {
+  const context = res.locals as Context;
+  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
 }

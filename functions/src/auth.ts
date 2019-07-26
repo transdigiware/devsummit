@@ -18,7 +18,10 @@ import Express from 'express';
 import StatusCode from 'http-status-codes';
 import Passport from 'passport';
 
-import sessionMiddleware from './session.js';
+import sessionMiddleware, {
+  unsetSessionCookie,
+  setSessionCookie,
+} from './session.js';
 import { Context, UserBlob } from './types.js';
 
 Passport.serializeUser(function(user, done) {
@@ -61,12 +64,10 @@ authApp.use('/:service/callback', async (req, res, next) => {
   );
 
   const userBlob = req.user as UserBlob;
+  context.userId = userBlob.uid;
   await context.storeUserBlob(userBlob);
-  res.cookie(context.cookieName, userBlob.uid, {
-    httpOnly: true,
-    maxAge: context.sessionLength * 1000,
-    signed: true,
-  });
+  setSessionCookie(req, res);
+
   // This logs out Passport’s session.
   // We have our own session management.
   req.logout();
@@ -74,8 +75,7 @@ authApp.use('/:service/callback', async (req, res, next) => {
 });
 
 authApp.use('/logout', (req, res, next) => {
-  const context = res.locals as Context;
-  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
+  unsetSessionCookie(req, res);
   res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
 });
 
