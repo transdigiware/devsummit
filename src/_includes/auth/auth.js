@@ -22,11 +22,9 @@ export async function checkRealLoginState() {
       throw null;
     }
     const userBlob = await r.json();
-    set('user', userBlob);
-    notify(userBlob);
+    await set('user', userBlob);
   } catch (e) {
     await del('user');
-    notify(null);
   }
 }
 
@@ -37,8 +35,11 @@ function notify(userBlob) {
 }
 
 async function init() {
-  const userBlob = await get('user');
-  notify(userBlob);
-  checkRealLoginState();
+  // Notify immediately with whatever we have in the cache.
+  notify(await get('user'));
+  // Now hit the network
+  await checkRealLoginState();
+  // And notify again in case the user profile got updated.
+  notify(await get('user'));
 }
 init();
