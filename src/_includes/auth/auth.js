@@ -1,7 +1,9 @@
 import { get, set, del } from 'idb-keyval';
 
 const listeners = new Set();
-export function onLoginStateChange(cb) {
+export async function onLoginStateChange(cb) {
+  // New subscribers get the lastest state immediately to catch up.
+  cb(await get('user'));
   listeners.add(cb);
 }
 
@@ -14,7 +16,7 @@ export async function logout() {
   location.href = '/backend/auth/logout';
 }
 
-export async function checkRealLoginState() {
+export async function putRealLoginStateIntoIDB() {
   try {
     const r = await fetch('/backend/user/blob');
     if (r.status === 403) {
@@ -37,11 +39,7 @@ function notify(userBlob) {
 }
 
 async function init() {
-  // Notify immediately with whatever we have in the cache.
-  notify(await get('user'));
-  // Now hit the network
-  await checkRealLoginState();
-  // And notify again in case the user profile got updated.
+  await putRealLoginStateIntoIDB();
   notify(await get('user'));
 }
 init();
