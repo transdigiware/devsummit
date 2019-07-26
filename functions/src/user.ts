@@ -20,41 +20,46 @@ import BodyParser from 'body-parser';
 import Joi from 'joi';
 
 import { Context, UserBlob } from './types.js';
+import { BackendOptions } from './backend.js';
+import { runMiddleware } from './utils.js';
 
-const app = Express();
-app.use(BodyParser.json());
-app.get('/blob', async (req, res) => {
-  const context = res.locals as Context;
-  if (!context.userId) {
-    res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('User not logged in');
-    return;
-  }
-  const userBlob = await context.getUserBlob(context.userId);
-  res.send(userBlob);
-});
+export default function UserApp(options: BackendOptions) {
+  const app = Express();
 
-app.post('/blob', async (req, res) => {
-  const context = res.locals as Context;
-  if (!context.userId) {
-    res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('User not logged in');
-    return;
-  }
-  const schema = Joi.object({
-    uid: Joi.string().required(),
-    email: Joi.string()
-      .email()
-      .required(),
-    picture: Joi.string()
-      .uri()
-      .optional(),
-    name: Joi.string().required(),
+  app.get('/blob', async (req, res) => {
+    const context = res.locals as Context;
+    const userBlob = await options.getUserBlob(context.userId!);
+    res.send(userBlob);
   });
-  await Joi.validate(req.body, schema);
-  const userBlob = req.body as UserBlob;
-  context.storeUserBlob(userBlob);
-  res.statusCode = StatusCode.NO_CONTENT;
-  res.send();
-});
-export default app;
+
+  app.post('/blob', async (req, res) => {
+    await runMiddleware(BodyParser.json(), req, res);
+    console.log(req.body);
+    const schema = Joi.object({
+      uid: Joi.string().required(),
+      email: Joi.string()
+        .email()
+        .required(),
+      picture: Joi.string()
+        .uri()
+        .optional(),
+      name: Joi.string().required(),
+    });
+    try {
+      await Joi.validate(req.body, schema);
+    } catch (e) {
+      res.statusCode = StatusCode.BAD_REQUEST;
+      res.send(`Invalid body payload: ${e.message}`);
+      return;
+    }
+
+    const context = res.locals as Context;
+    const userBlob = req.body as UserBlob;
+    userBlob.uid = context.userId!;
+    options.storeUserBlob(userBlob);
+    res.statusCode = StatusCode.NO_CONTENT;
+    res.send();
+  });
+
+  return app;
+}

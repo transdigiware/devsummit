@@ -39,3 +39,13 @@ export function asyncMiddleware(
     Promise.resolve(mw(req, res, next)).catch(next);
   };
 }
+
+export function runMiddleware(
+  mw: Express.RequestHandler,
+  req: Express.Request,
+  res: Express.Response,
+) {
+  return new Promise(resolve => {
+    mw(req, res, resolve);
+  });
+}

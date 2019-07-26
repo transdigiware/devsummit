@@ -19,6 +19,7 @@ import cookieParser from 'cookie-parser';
 
 import { Context } from './types.js';
 import { asyncMiddleware, alwaysNextMiddleware } from './utils.js';
+import { BackendOptions } from './backend.js';
 
 export interface CookieValue {
   userId: string;
@@ -26,33 +27,36 @@ export interface CookieValue {
   expires: number;
 }
 
-export default function sessionMiddleware() {
+export default function SessionMiddleware(options: BackendOptions) {
   return alwaysNextMiddleware(
     asyncMiddleware(async (req: Express.Request, res: Express.Response) => {
-      const context = res.locals as Context;
       await new Promise(resolve =>
-        cookieParser(context.cookieSecret)(req, res, resolve),
+        cookieParser(options.cookieSecret)(req, res, resolve),
       );
-      req.cookies[context.cookieName];
-      const { userId, expires } = req.signedCookies[context.cookieName];
+      const { userId, expires } = req.signedCookies[options.cookieName];
       if (new Date().getTime() > expires) {
         return;
       }
+      const context = res.locals as Context;
       context.userId = userId;
     }),
   );
 }
 
-export function setSessionCookie(req: Express.Request, res: Express.Response) {
+export function setSessionCookie(
+  req: Express.Request,
+  res: Express.Response,
+  options: BackendOptions,
+) {
   const context = res.locals as Context;
   const cookieValue = {
     userId: context.userId,
-    expires: new Date().getTime() + context.sessionLength * 1000,
+    expires: new Date().getTime() + options.sessionLength * 1000,
   };
 
-  res.cookie(context.cookieName, cookieValue, {
+  res.cookie(options.cookieName, cookieValue, {
     httpOnly: true,
-    maxAge: context.sessionLength * 1000,
+    maxAge: options.sessionLength * 1000,
     signed: true,
   });
 }
@@ -60,7 +64,7 @@ export function setSessionCookie(req: Express.Request, res: Express.Response) {
 export function unsetSessionCookie(
   req: Express.Request,
   res: Express.Response,
+  options: BackendOptions,
 ) {
-  const context = res.locals as Context;
-  res.clearCookie(context.cookieName, { signed: true, httpOnly: true });
+  res.clearCookie(options.cookieName, { signed: true, httpOnly: true });
 }

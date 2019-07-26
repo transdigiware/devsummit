@@ -18,68 +18,57 @@ import Express from 'express';
 import StatusCode from 'http-status-codes';
 import Passport from 'passport';
 
-import sessionMiddleware, {
-  unsetSessionCookie,
-  setSessionCookie,
-} from './session.js';
+import { unsetSessionCookie, setSessionCookie } from './session.js';
 import { Context, UserBlob } from './types.js';
+import { BackendOptions } from './backend.js';
+import { runMiddleware } from './utils.js';
 
-Passport.serializeUser(function(user, done) {
-  done(null, user);
-});
+export default function AuthApp(options: BackendOptions) {
+  const app = Express();
 
-Passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
+  app.use('/:service/login', async (req, res, next) => {
+    const serviceName = req.params.service;
+    if (!options.authOpts[serviceName]) {
+      res.statusCode = StatusCode.BAD_REQUEST;
+      res.send('Unknown authentication provider');
+      return;
+    }
+    await runMiddleware(
+      Passport.authenticate(serviceName, options.authOpts[serviceName]),
+      req,
+      res,
+    );
+    next();
+  });
 
-const authApp = Express();
+  app.use('/:service/callback', async (req, res, next) => {
+    const serviceName = req.params.service;
+    if (!options.authOpts[serviceName]) {
+      res.statusCode = StatusCode.BAD_REQUEST;
+      res.send('Unknown authentication provider');
+      return;
+    }
+    await runMiddleware(Passport.authenticate(serviceName), req, res);
 
-// This is required so we can read/write the signed session cookie.
-authApp.use(sessionMiddleware());
-authApp.use('/:service/login', (req, res, next) => {
-  const context = res.locals as Context;
-  const serviceName = req.params.service;
-  if (!context.authOpts[serviceName]) {
-    res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('Unknown authentication provider');
-    return;
-  }
-  Passport.authenticate(serviceName, context.authOpts[serviceName])(
-    req,
-    res,
-    next,
-  );
-});
+    const userBlob = req.user as UserBlob;
+    const context = res.locals as Context;
+    context.userId = userBlob.uid;
+    await options.storeUserBlob(userBlob);
+    setSessionCookie(req, res, options);
 
-authApp.use('/:service/callback', async (req, res, next) => {
-  const context = res.locals as Context;
-  const serviceName = req.params.service;
-  if (!context.authOpts[serviceName]) {
-    res.statusCode = StatusCode.BAD_REQUEST;
-    res.send('Unknown authentication provider');
-    return;
-  }
-  await new Promise(resolve =>
-    Passport.authenticate(serviceName)(req, res, resolve),
-  );
+    // This logs out Passport’s session.
+    // We have our own session management.
+    req.logout();
+    res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
+  });
 
-  const userBlob = req.user as UserBlob;
-  context.userId = userBlob.uid;
-  await context.storeUserBlob(userBlob);
-  setSessionCookie(req, res);
+  app.use('/logout', (req, res, next) => {
+    unsetSessionCookie(req, res, options);
+    res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
+  });
 
-  // This logs out Passport’s session.
-  // We have our own session management.
-  req.logout();
-  res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
-});
-
-authApp.use('/logout', (req, res, next) => {
-  unsetSessionCookie(req, res);
-  res.redirect(StatusCode.TEMPORARY_REDIRECT, '/');
-});
-
-export default authApp;
+  return app;
+}
 
 export function authenticationRequiredMiddleware() {
   return async (

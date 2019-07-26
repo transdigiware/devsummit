@@ -1,5 +1,3 @@
-import { AuthenticateOptions } from 'passport';
-
 export interface UserBlob {
   uid: string;
   email: string;
@@ -9,10 +7,4 @@ export interface UserBlob {
 
 export interface Context {
   userId?: string;
-  cookieName: string;
-  cookieSecret: string;
-  storeUserBlob(blob: UserBlob): Promise<void>;
-  getUserBlob(uid: string): Promise<UserBlob | null>;
-  authOpts: { [x: string]: AuthenticateOptions };
-  sessionLength: number;
 }
