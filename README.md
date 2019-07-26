@@ -1,6 +1,6 @@
 ```
 npm i
-npm run build
+npm run build (node 12+ required)
 ```
 
 The `src` folder uses [11ty](https://www.11ty.io).
