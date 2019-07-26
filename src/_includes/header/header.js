@@ -1,6 +1,6 @@
 import { render, html } from 'lit-html';
 
-import { onLoginStateChange, login, logout } from '../firebase-auth/auth';
+import { onLoginStateChange, login, logout } from '../auth/auth';
 import loginBtnClass from 'classname:_includes/header/style.css:login-btn';
 import avatarClass from 'classname:_includes/header/style.css:avatar';
 
