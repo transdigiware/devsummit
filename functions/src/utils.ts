@@ -45,7 +45,7 @@ export function catchMiddleware(
   mw: Express.RequestHandler,
 ): Express.RequestHandler {
   return (req, res, next) => {
-    mw(req, res, next).catch((err: Error) => {
+    Promise.resolve(mw(req, res, next)).catch((err: Error) => {
       res.statusCode = 500;
       res.send(err.message);
     });
