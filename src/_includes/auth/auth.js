@@ -30,7 +30,7 @@ export async function checkRealLoginState() {
   }
 }
 
-async function notify(userBlob) {
+function notify(userBlob) {
   for (const listener of listeners) {
     listener(userBlob);
   }
