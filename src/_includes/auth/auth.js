@@ -17,15 +17,17 @@ export async function logout() {
 export async function checkRealLoginState() {
   try {
     const r = await fetch('/backend/user/blob');
+    if (r.status === 403) {
+      // We are logged out
+      await del('user');
+      return;
+    }
     if (!r.ok) {
-      // Go to catch handler
-      throw null;
+      return;
     }
     const userBlob = await r.json();
     await set('user', userBlob);
-  } catch (e) {
-    await del('user');
-  }
+  } catch (e) {}
 }
 
 function notify(userBlob) {
