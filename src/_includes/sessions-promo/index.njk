@@ -1,0 +1,24 @@
+{% extends "layouts/media-module/index.njk" %}
+
+{% block main %}
+  <h1 class="{% className mediaCSS, 'heading' %}">sessions</h1>
+
+  <p>
+    CDS is a <strong>single track event</strong> focusing on lorem ipsum dolor sit amet, consectetur adipiscing elit. CDS is a single track event focusing on lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </p>
+
+  <p>
+    CDS is a single track event <strong>focusing on the web platform</strong> lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </p>
+{% endblock %}
+
+{% block media %}
+  <div class="{% className mediaCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <img
+      class="{% className mediaCSS, 'media-fill' %}"
+      src="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg)"
+      srcset="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg) 900w, confboxAsset(/_includes/sessions-promo/assets/audience-large.jpg) 1800w"
+      sizes="(min-width: 1280px) 40vw, 100vw"
+    >
+  </div>
+{% endblock %}
