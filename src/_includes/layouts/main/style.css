@@ -129,7 +129,6 @@ a {
 }
 
 ::selection {
-  background: var(--highlight-blue);
-  color: var(--white);
+  background: var(--blue-a25);
   text-shadow: none;
 }
