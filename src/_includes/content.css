@@ -1,3 +1,9 @@
 .content-area {
-  /* Nothing here yet. */
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    max-width: 60ch;
+  }
 }
