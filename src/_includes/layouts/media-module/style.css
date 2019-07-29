@@ -18,9 +18,11 @@
 
   @media (min-width: 300px) {
     display: block;
+    margin: 0 calc(var(--side-margin) * -1);
   }
 
   @media (min-width: 1280px) {
+    margin: 0;
     grid-column: media;
     align-self: start;
   }

@@ -3,7 +3,7 @@
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
 
-  &:nth-of-type(2n + 0) {
+  &:nth-of-type(odd) {
     background-color: var(--offwhite);
   }
 
@@ -13,7 +13,7 @@
 }
 
 .module-heading {
-  font-family: 'Google Sans', sans-serif;
+  font: bold 2rem 'Google Sans', sans-serif;
   color: var(--grey);
   text-transform: lowercase;
 
