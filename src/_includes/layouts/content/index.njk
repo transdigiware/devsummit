@@ -1,0 +1,13 @@
+{%- set css = "/_includes/layouts/content/style.css" -%}
+
+{% extends 'layouts/main/index.njk' %}
+
+{% block content %}
+  {% css page, css %}
+  <div class="{% className css, 'root' %}">
+    <h1 class="{% className css, 'module-heading' %}">{{ title }}</h1>
+    <section class="{% className css, 'content-area' %}">
+      {{ content | safe }}
+    </section>
+  </div>
+{% endblock %}

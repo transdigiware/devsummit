@@ -1,10 +1,10 @@
-{%- set css = "/_includes/layouts/main/style.css" -%}
+{%- set mainCss = "/_includes/layouts/main/style.css" -%}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% css page, css %}
+    {% css page, mainCss %}
     {% block extraHead %}{% endblock %}
     <title>{{title}}</title>
   </head>
