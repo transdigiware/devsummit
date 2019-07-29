@@ -71,5 +71,28 @@ module.exports = function(eleventyConfig) {
     return date.format(offsetTime, format);
   });
 
+  eleventyConfig.addCollection('faqs', collection => {
+    const faqs = collection
+      .getFilteredByTag('faq')
+      .sort((a, b) => (a.inputPath < b.inputPath ? -1 : 1));
+
+    const sections = [];
+    let section;
+
+    for (const faq of faqs) {
+      if (!section || section.title !== faq.data.sectionTitle) {
+        section = {
+          title: faq.data.sectionTitle,
+          items: [],
+        };
+        sections.push(section);
+      }
+
+      section.items.push(faq);
+    }
+
+    return sections;
+  });
+
   return config;
 };

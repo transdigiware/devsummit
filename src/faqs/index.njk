@@ -1,0 +1,16 @@
+---
+layout: layouts/content/index.njk
+title: FAQs
+---
+
+{% for section in collections.faqs %}
+  <h1>{{ section.title }}</h1>
+  {% for faq in section.items %}
+    <section>
+      <h1>{{ faq.data.title }}</h1>
+      <section>
+        {{ faq.templateContent | safe }}
+      </section>
+    </section>
+  {% endfor %}
+{% endfor %}
