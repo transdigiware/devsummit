@@ -1,5 +1,5 @@
 ---
-layout: content/index.njk
+layout: layouts/content/index.njk
 title: community guidelines
 ---
 

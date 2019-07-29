@@ -1,0 +1,11 @@
+.root {
+  composes: module from '../../module.css';
+}
+
+.module-heading {
+  composes: module-heading from '../../module.css';
+}
+
+.content-area {
+  composes: content-area from '../../content.css';
+}
