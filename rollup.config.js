@@ -41,9 +41,7 @@ export default async function({ watch }) {
       eleventyPlugin(),
       globInputPlugin('.build-tmp/**/*.html'),
       htmlCSSPlugin(),
-      classnamePlugin({
-        cssFileDir: '.build-tmp',
-      }),
+      classnamePlugin('.build-tmp'),
       terser({ ecma: 8, module: true }),
     ],
   };

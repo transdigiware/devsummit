@@ -1,8 +1,7 @@
 import { render, html } from 'lit-html';
 
 import { onLoginStateChange, login, logout } from '../auth/auth';
-import loginBtnClass from 'classname:_includes/header/style.css:login-btn';
-import avatarClass from 'classname:_includes/header/style.css:avatar';
+import { avatar, loginBtn } from 'classnames:_includes/header/style.css';
 
 function run() {
   const loginEl = document.querySelector('#login');
@@ -10,7 +9,7 @@ function run() {
     if (!userData) {
       render(
         html`
-          <button class=${loginBtnClass} title="Login" @click=${login}></button>
+          <button class=${loginBtn} title="Login" @click=${login} />
         `,
         loginEl,
       );
@@ -21,7 +20,7 @@ function run() {
       html`
         <button
           style=${`--avatar: url(${userData.picture})`}
-          class=${avatarClass}
+          class=${avatar}
           title=${`Logged in as ${userData.name}. Click to Logout.`}
           @click=${logout}
         />
