@@ -1,6 +1,6 @@
 ---
 layout: layouts/content/index.njk
-title: community guidelines
+title: Community guidelines
 ---
 
 # Google Event Community Guidelines & Anti-Harrassment Policy
