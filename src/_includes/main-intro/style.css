@@ -12,6 +12,10 @@
     background: linear-gradient(to bottom, #fff, var(--offwhite));
     padding: 0;
   }
+
+  @media (min-width: 1920px) {
+    padding: 0 calc((100vw - 1920px) / 2);
+  }
 }
 
 .conf-detail {
