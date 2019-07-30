@@ -127,3 +127,8 @@ body {
 a {
   color: var(--link-color);
 }
+
+::selection {
+  background: var(--blue-a25);
+  text-shadow: none;
+}
