@@ -2,7 +2,7 @@
 {% css page, css %}
 
 <div class="{% className css, 'root' %}">
-  <div class="{% className css, 'title' %}">
+  <a class="{% className css, 'title' %}" href="/">
     <div class="{% className css, 'logo-container' %}">
       <div class="{% className css, 'aspect-ratio' %}" style="--aspect-ratio: 1">
         <img class="{% className css, 'media-fill' %}" src="confboxAsset(/assets/chromelogo.svg)" alt="Chrome">
@@ -12,7 +12,7 @@
       <div class="{% className css, 'title-main' %}">dev summit</div>
       <span class="{% className css, 'title-year' %}">{% confDate conf.start, 'YYYY' %}</span>
     </div>
-  </div>
+  </a>
   <div class="{% className css, 'extra-links' %}">
     <a href="#">Schedule</a>
     <a href="#">Speakers</a>
