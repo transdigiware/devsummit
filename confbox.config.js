@@ -1,5 +1,9 @@
 module.exports = {
   /**
+   * Name of the conference.
+   */
+  conferenceName: 'Chrome Dev Summit 2019',
+  /**
    * Timezone of the conference, in the form [+-]HHMM.
    * Examples: -0800, +0100, +0530
    */

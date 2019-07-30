@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% css page, mainCss %}
     {% block extraHead %}{% endblock %}
-    <title>{{title}}</title>
+    {% if title %}
+      <title>{{title}} - {{conf.conferenceName}}</title>
+    {% else %}
+      <title>{{conf.conferenceName}}</title>
+    {% endif %}
   </head>
   <body>
     {% include 'header/index.njk' %}
