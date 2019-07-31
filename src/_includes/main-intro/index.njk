@@ -6,9 +6,13 @@
 <div class="{% className css, 'root' %}">
   <div aria-hidden="true" class="{% className css, 'dino-crossing' %}">
     <svg viewBox="0 0 2 5" class="{% className css, 'sign' %}">
-      <path class="{% className css, 'sign-path' %}" d="M 1,5 V2 L0,1 L1,0 L2,1 L1,2"/>
-      <use class="{% className css, 'sign-dino' %}" width="0.7" height="0.7" href="#dino"/>
-      <text class="{% className css, 'sign-text' %}" x="1" y="1.45">Crossing</text>
+      <clipPath id="sign-clip-path">
+        <use href="#sign-path" transform="translate(1, 1) scale(0.9) translate(-1, -1)" />
+      </clipPath>
+      <path id="sign-path" class="{% className css, 'sign-path' %}" d="M 1,5 V2 L0,1 L1,0 L2,1 L1,2"/>
+      <path clip-path="url(#sign-clip-path)" class="{% className css, 'crossing-path' %}" d="M0,1.36 H2 M0,1.6 H2"/>
+      <use class="{% className css, 'sign-dino-outline' %}" width="0.9" height="0.9" x="0.56" y="0.57" href="#dino"/>
+      <use class="{% className css, 'sign-dino' %}" width="0.9" height="0.9" x="0.56" y="0.57" href="#dino"/>
     </svg>
     <div class="{% className css, 'dinos' %}">
       <svg class="{% className css, 'parent-dino' %}" id="dino" viewBox="0 0 495 534"><path d="M216 0H25m166 64h-26V38h26zM25 0v25H0v115h127v25H51v26h101v50H89v64h25v-38h26v76h25v38h26v25h25v102h-25v26h50v-77h26v-25h25v25h26v26h25v25h-25v26h50V432h26v-26h25v-25h26v-25h25v-26h25V191h-25v50h-25v26h-26v25h-51v-25h-25v-26h-38v-25h-38v-25h-26V25h-25V0"/></svg>

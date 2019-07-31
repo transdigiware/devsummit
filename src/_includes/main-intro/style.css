@@ -145,16 +145,19 @@
   vector-effect: non-scaling-stroke;
 }
 
-.sign-dino {
-  fill: var(--midgrey);
-  x: 0.66;
-  y: 0.53;
+.crossing-path {
+  stroke: var(--midgrey);
+  stroke-width: 0.04px;
 }
 
-.sign-text {
-  font-size: 0.2px;
-  text-anchor: middle;
+.sign-dino {
   fill: var(--midgrey);
+}
+
+.sign-dino-outline {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 40;
 }
 
 .dinos {
