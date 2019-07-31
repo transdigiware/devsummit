@@ -3,7 +3,7 @@ const fs = require('fs');
 const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 
-const { utcOffset } = require('./lib/confbox-config');
+const { utcOffset, path: confboxPath } = require('./lib/confbox-config');
 
 class ModularClassName {
   constructor(output) {
@@ -39,6 +39,7 @@ module.exports = function(eleventyConfig) {
       input: 'src',
       output: '.build-tmp',
     },
+    pathPrefix: confboxPath,
   };
 
   const modCSS = new ModularClassName(config.dir.output);

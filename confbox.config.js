@@ -1,5 +1,9 @@
 module.exports = {
   /**
+   * Path of the site. / if it's top-level.
+   */
+  path: '/devsummit/',
+  /**
    * Name of the conference.
    */
   conferenceName: 'Chrome Dev Summit 2019',
