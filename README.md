@@ -79,3 +79,9 @@ This will take a `date` and format it for the timezone of the conference (as set
 ```njk
 <p>The conference starts {% confDate conf.start, 'MMMM DD' %}</p>
 ```
+
+## `{% isoDate date %}`
+
+Returns an ISO 8601 version of a date. This is suitable for `<time datetime>` and other machine-readable formats like iCal.
+
+- `date` - The date to display. This can be a `Date` object or a timestamp.

@@ -20,7 +20,7 @@
       <span class="{% className css, 'date' %}">
         <span class="{% className css, 'month' %}">{% confDate conf.start, 'MMMM' %}</span>
         <a href="#" class="{% className css, 'date-link' %}">
-          {% confDate conf.start, 'DD' %}-{% confDate conf.end, 'DD' %}
+          <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
         </a>
       </span>
       <a href="#" class="{% className css, 'location-main' %}">Yerba Buena Center for the Arts</a>

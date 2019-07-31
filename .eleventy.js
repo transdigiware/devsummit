@@ -71,6 +71,11 @@ module.exports = function(eleventyConfig) {
     return date.format(offsetTime, format);
   });
 
+  /** Get an ISO 8601 version of a date */
+  eleventyConfig.addShortcode('isoDate', (timestamp, format) => {
+    return new Date(timestamp.valueOf()).toISOString();
+  });
+
   eleventyConfig.addCollection('faqs', collection => {
     const faqs = collection
       .getFilteredByTag('faq')
