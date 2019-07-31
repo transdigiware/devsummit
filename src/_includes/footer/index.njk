@@ -1,7 +1,9 @@
+{%- set moduleCSS = "/_includes/module.css" -%}
+{% css page, moduleCSS %}
 {%- set css = "/_includes/footer/style.css" -%}
 {% css page, css %}
 
-<div class="{% className css, 'root' %}">
+<div class="{% className moduleCSS, 'root' %} {% className css, 'root' %}">
   <div class="{% className css, 'divider' %}"></div>
   <div class="{% className css, 'language' %}">United States</div>
   <ul class="{% className css, 'social' %}">

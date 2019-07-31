@@ -1,8 +1,10 @@
+{%- set moduleCSS = "/_includes/module.css" -%}
+{% css page, moduleCSS %}
 {%- set css = "/_includes/previously/style.css" -%}
 {% css page, css %}
 
-<section class="{% className css, 'root' %}">
-  <h1 class="{% className css, 'heading' %}">Previously</h1>
+<section class="{% className moduleCSS, 'root-alt' %}">
+  <h1 class="{% className moduleCSS, 'heading' %}">Previously</h1>
 
   <p>
     All previous sessions are on YouTube:

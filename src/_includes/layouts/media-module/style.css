@@ -1,6 +1,4 @@
 .root {
-  composes: module from '../../module.css';
-
   @media (min-width: 1280px) {
     display: grid;
     grid-template-columns: [main] 1fr [media] 54%;
@@ -26,16 +24,4 @@
     grid-column: media;
     align-self: start;
   }
-}
-
-.heading {
-  composes: module-heading from '../../module.css';
-}
-
-.media-fill {
-  composes: media-fill from '../../utils.css';
-}
-
-.aspect-ratio {
-  composes: aspect-ratio from '../../utils.css';
 }

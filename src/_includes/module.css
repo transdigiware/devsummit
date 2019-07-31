@@ -1,11 +1,8 @@
-.module {
+.root,
+.root-alt {
   --vertical-padding: 1.6rem;
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
-
-  &:nth-of-type(odd) {
-    background-color: var(--offwhite);
-  }
 
   @media (min-width: 1280px) {
     --vertical-padding: 4.5rem;
@@ -17,7 +14,11 @@
   }
 }
 
-.module-heading {
+.root-alt {
+  background-color: var(--offwhite);
+}
+
+.heading {
   font: bold 2rem 'Google Sans', sans-serif;
   color: var(--grey);
   text-align: center;

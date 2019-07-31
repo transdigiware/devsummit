@@ -1,5 +1,7 @@
 {%- set css = "/_includes/main-intro/style.css" -%}
 {% css page, css %}
+{%- set utilsCSS = "/_includes/utils.css" -%}
+{% css page, utilsCSS %}
 
 <div class="{% className css, 'root' %}">
   <div aria-hidden="true" class="{% className css, 'dino-crossing' %}">
@@ -27,7 +29,7 @@
       <span class="{% className css, 'location-sub' %}">San Francisco, CA</span>
     </p>
     <div class="{% className css, 'actions' %}">
-      <a href="#" class="{% className css, 'register' %}">Register</a>
+      <a href="#" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Register</a>
       <a href="#" class="{% className css, 'cal' %}">Add to Calendar</a>
     </div>
   </div>

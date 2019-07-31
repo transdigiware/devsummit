@@ -1,11 +1,12 @@
-{%- set css = "/_includes/layouts/content/style.css" -%}
-
 {% extends 'layouts/main/index.njk' %}
 
 {% block content %}
+  {%- set moduleCSS = "/_includes/module.css" -%}
+  {% css page, moduleCSS %}
+  {%- set css = "/_includes/content.css" -%}
   {% css page, css %}
-  <div class="{% className css, 'root' %}">
-    <h1 class="{% className css, 'module-heading' %}">{{ title }}</h1>
+  <div class="{% className moduleCSS, 'root' %}">
+    <h1 class="{% className moduleCSS, 'heading' %}">{{ title }}</h1>
     <section class="{% className css, 'content-area' %}">
       {{ content | safe }}
     </section>
