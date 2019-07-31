@@ -78,7 +78,6 @@
 }
 
 .register {
-  composes: register from '../utils.css';
   display: none;
 
   @media (min-width: 720px) {

@@ -1,6 +1,4 @@
 .root {
-  composes: module from '../module.css';
-
   --icon-size: 1.6em;
   --spacer: 7rem;
   padding-bottom: 0;

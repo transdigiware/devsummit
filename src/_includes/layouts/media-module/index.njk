@@ -1,7 +1,9 @@
+{%- set moduleCSS = "/_includes/module.css" -%}
+{% css page, moduleCSS %}
 {%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
 {% css page, mediaCSS %}
 
-<section class="{% className mediaCSS, 'root' %}">
+<section class="{% block moduleClass %}{% className moduleCSS, 'root' %}{% endblock %} {% className mediaCSS, 'root' %}">
   <div class="{% className mediaCSS, 'main' %}">
     {% block main %}{% endblock %}
   </div>

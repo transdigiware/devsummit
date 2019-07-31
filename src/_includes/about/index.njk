@@ -1,7 +1,7 @@
 {% extends "layouts/media-module/index.njk" %}
 
 {% block main %}
-  <h1 class="{% className mediaCSS, 'heading' %}">About</h1>
+  <h1 class="{% className moduleCSS, 'heading' %}">About</h1>
   <p>
     <strong>Chrome Dev Summit</strong> is back! Join us for our annual developer conference at the <a href="https://goo.gl/maps/bUAF6Bore8khBojZ8">Yerba Buena Center for the Arts</a> in San Francisco, CA on <strong><time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>—<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time> {% confDate conf.start, 'MMMM YYYY' %}</strong>.
   </p>
@@ -11,7 +11,9 @@
 {% endblock %}
 
 {% block media %}
-  <div class="{% className mediaCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
-    <iframe class="{% className mediaCSS, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  {%- set utilsCSS = "/_includes/utils.css" -%}
+  {% css page, utilsCSS %}
+  <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <iframe class="{% className utilsCSS, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 {% endblock %}
