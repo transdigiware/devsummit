@@ -65,6 +65,20 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  eleventyConfig.addShortcode('slugify', str => {
+    return new nunjucks.runtime.SafeString(
+      str.replace(
+        /\s/g,
+        () => `
+          <span class=${modCSS.getClassName(
+            '/_includes/module.css',
+            'slug-dash',
+          )}></span>
+        `,
+      ),
+    );
+  });
+
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', (timestamp, format) => {
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);

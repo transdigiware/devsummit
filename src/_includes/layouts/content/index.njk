@@ -6,7 +6,7 @@
   {%- set css = "/_includes/content.css" -%}
   {% css page, css %}
   <div class="{% className moduleCSS, 'root' %}">
-    <h1 class="{% className moduleCSS, 'heading' %}">{{ title }}</h1>
+    <h1 class="{% className moduleCSS, 'heading' %}">{% slugify title %}</h1>
     <section class="{% className css, 'content-area' %}">
       {{ content | safe }}
     </section>
