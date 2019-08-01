@@ -14,6 +14,7 @@ module.exports = function({ name, start, end }) {
     BEGIN:VCALENDAR
     VERSION:2.0
     PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+    X-WR-CALNAME:${name}
     BEGIN:VEVENT
     DTSTAMP:${timestampToCalDate(0)}
     DTSTART:${dtstart}
