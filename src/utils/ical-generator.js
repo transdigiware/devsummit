@@ -20,7 +20,7 @@ module.exports = function({ name, start, end }) {
     DTSTAMP:${timestampToCalDate(0)}
     DTSTART:${dtstart}
     DTEND:${dtend}
-    SUMMARY:${name}
+    SUMMARY:${name}!!
     UID:${dtstart}-${dtend}@google.com
     END:VEVENT
     END:VCALENDAR
