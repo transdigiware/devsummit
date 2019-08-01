@@ -44,3 +44,24 @@
     }
   }
 }
+
+.heading-split {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 1.66rem 0;
+
+  & > :first-child {
+    flex: 1;
+    margin-right: 0.5em;
+  }
+
+  & > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.heading-link {
+  display: block;
+}

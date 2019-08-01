@@ -51,6 +51,12 @@ module.exports = function(eleventyConfig) {
 
   const cssPerPage = new Map();
 
+  // This is to hack around https://github.com/11ty/eleventy/issues/638
+  eleventyConfig.addShortcode('pageStart', page => {
+    cssPerPage.set(page.url, new Set());
+    return '';
+  });
+
   /** Add some CSS, deduping anything along the way */
   eleventyConfig.addShortcode('css', (page, url) => {
     if (!cssPerPage.has(page.url)) {
@@ -112,6 +118,15 @@ module.exports = function(eleventyConfig) {
     }
 
     return sections;
+  });
+
+  eleventyConfig.addCollection('featuredFAQs', collection => {
+    const faqs = collection
+      .getFilteredByTag('faq')
+      .filter(item => item.data.featured)
+      .sort((a, b) => a.data.featured - b.data.featured);
+
+    return faqs;
   });
 
   return config;

@@ -1,0 +1,56 @@
+.root {
+  background: var(--offwhite);
+}
+
+.faq-container {
+  @media (min-width: 500px) {
+    overflow-x: auto;
+    padding: 1rem 0;
+    margin: 0 calc(var(--side-margin) * -1);
+    margin-top: -1rem;
+  }
+}
+
+.faqs {
+  @media (min-width: 500px) {
+    padding: 0 var(--side-margin);
+    display: inline-grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column dense;
+    --grid-gap: 3.9rem;
+    grid-gap: var(--grid-gap);
+    align-items: start;
+  }
+}
+
+.faq {
+  background: #fff;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+  padding: 0 1.6rem;
+  margin: 2rem 0;
+
+  @media (min-width: 500px) {
+    width: 20rem;
+    margin: 0;
+  }
+}
+
+.faq-heading {
+  color: var(--darkgrey);
+  margin: 1.2rem 0 0;
+  font-weight: 500;
+}
+
+.faq-content {
+  color: var(--midgrey);
+
+  & > :first-child {
+    margin-top: 0.5rem;
+  }
+
+  & > :last-child {
+    margin-bottom: 1.2rem;
+  }
+}
