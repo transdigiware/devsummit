@@ -38,7 +38,7 @@ export default async function({ watch }) {
       },
       buildStartSequencePlugin(),
       eleventyPlugin(),
-      globInputPlugin('.build-tmp/**/*.html'),
+      globInputPlugin('.build-tmp/**/*.{html,ics}'),
       htmlCSSPlugin(),
       terser({ ecma: 8, module: true }),
     ],
