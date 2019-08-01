@@ -76,12 +76,11 @@ module.exports = function(eleventyConfig) {
     return new nunjucks.runtime.SafeString(
       str.replace(
         /\s/g,
-        () => `
-          <span class=${modCSS.getClassName(
+        () =>
+          `<span class=${modCSS.getClassName(
             '/_includes/module.css',
             'slug-dash',
-          )}></span>
-        `,
+          )}></span>`,
       ),
     );
   });
