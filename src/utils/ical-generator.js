@@ -15,6 +15,7 @@ module.exports = function({ name, start, end }) {
     VERSION:2.0
     PRODID:-//hacksw/handcal//NONSGML v1.0//EN
     X-WR-CALNAME:${name}
+    X-WR-CALDESC:${name}
     BEGIN:VEVENT
     DTSTAMP:${timestampToCalDate(0)}
     DTSTART:${dtstart}
