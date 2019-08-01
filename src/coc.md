@@ -1,6 +1,7 @@
 ---
 layout: layouts/content/index.njk
 title: Community guidelines
+description: Treat everyone with respect. Participate while acknowledging that everyone deserves to be here — and each of us has the right to enjoy our experience without fear of harassment, discrimination, or condescension, whether blatant or via micro-aggressions.
 ---
 
 # Google Event Community Guidelines & Anti-Harrassment Policy

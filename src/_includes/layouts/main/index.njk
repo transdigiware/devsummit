@@ -7,11 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="confboxAsset(/assets/chromelogo.png)">
     {% css page, mainCss %}
-    {% block extraHead %}{% endblock %}
     {% if title %}
       <title>{{title}} - {{conf.conferenceName}}</title>
     {% else %}
       <title>{{conf.conferenceName}}</title>
+    {% endif %}
+
+    <meta property="og:type" content="website">
+
+    {% if title %}
+      <meta property="og:title" content="{{title}} - {{conf.conferenceName}}">
+      <meta name="twitter:title" content="{{title}} - {{conf.conferenceName}}">
+    {% else %}
+      <meta property="og:title" content="{{conf.conferenceName}}">
+      <meta name="twitter:title" content="{{conf.conferenceName}}">
+    {% endif %}
+
+    {% if description %}
+      <meta name="description" content="{{description}}">
+      <meta property="og:description" content="{{description}}">
+      <meta name="twitter:description" content="{{description}}">
+    {% endif %}
+
+    {% if metaImage %}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
+      <meta property="og:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
+    {% else %}
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:image" content="{{conf.origin}}confboxAsset(/assets/chromelogo.png)">
+      <meta property="og:image" content="{{conf.origin}}confboxAsset(/assets/chromelogo.png)">
+    {% endif %}
+
+    {% if conf.twitter %}
+      <meta name="twitter:site" content="{{conf.twitter}}">
     {% endif %}
   </head>
   <body>
