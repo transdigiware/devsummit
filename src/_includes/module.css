@@ -22,6 +22,7 @@
   font: bold 2rem 'Google Sans', sans-serif;
   color: var(--grey);
   text-align: center;
+  position: relative;
 
   @media (min-width: 480px) {
     text-transform: lowercase;
@@ -30,6 +31,17 @@
     &::before {
       content: 'chrome://';
       color: var(--lightgrey);
+    }
+  }
+
+  /*
+    This hacks around the sticky header when scrolling into view.
+    This could be replaced by scroll-padding once all browsers have support.
+  */
+  @media (min-width: 720px) {
+    &:target {
+      margin-top: calc(-100px + 0.86em);
+      padding-top: 100px;
     }
   }
 }

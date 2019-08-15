@@ -49,7 +49,7 @@
 
   white-space: nowrap;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   justify-content: center;
   grid-column-gap: 6rem;
   grid-row-gap: 1rem;
@@ -85,16 +85,6 @@
   }
   @media (min-width: 960px) {
     justify-content: flex-start;
-  }
-}
-
-.language {
-  /* Disabled for now   */
-  display: none;
-  grid-area: language;
-  margin: 0 auto;
-  @media (min-width: 720px) {
-    margin: 0 1.6rem;
   }
 }
 
@@ -155,6 +145,8 @@
   width: var(--icon-size);
   height: var(--icon-size);
   display: inline-block;
+  overflow: hidden;
+  color: transparent;
 }
 
 .icon {
