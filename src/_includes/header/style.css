@@ -19,6 +19,18 @@
   }
 }
 
+/*
+  This hacks around the sticky header when scrolling into view.
+  This could be replaced by scroll-padding once all browsers have support.
+*/
+@media (min-width: 720px) {
+  :target {
+    --scroll-padding: 100px;
+    margin-top: calc(var(--scroll-padding) * -1);
+    padding-top: var(--scroll-padding);
+  }
+}
+
 .title {
   margin: 4.6em 0;
   text-decoration: none;

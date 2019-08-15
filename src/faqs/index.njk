@@ -5,10 +5,10 @@ description: Everything you need to know about Chrome Dev Summit.
 ---
 
 {% for section in collections.faqs %}
-  <h1>{{ section.title }}</h1>
+  <h1 id="{% idify section.title %}">{{ section.title }}</h1>
   {% for faq in section.items %}
     <section>
-      <h1>{{ faq.data.title }}</h1>
+      {% if faq.data.title %}<h1 id="{% idify faq.data.title %}">{{ faq.data.title }}</h1>{% endif %}
       <section>
         {{ faq.templateContent | safe }}
       </section>

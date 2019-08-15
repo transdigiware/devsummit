@@ -30,6 +30,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
   padding: 0 1.6rem;
   margin: 2rem 0;
+  font-size: 0.8rem;
 
   @media (min-width: 500px) {
     width: 20rem;

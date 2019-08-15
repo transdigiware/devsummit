@@ -2,8 +2,8 @@
   @media (min-width: 1280px) {
     display: grid;
     grid-template-columns: [main] 1fr [media] 54%;
-    place-items: stretch;
     grid-column-gap: 4rem;
+    align-items: center;
   }
 }
 
@@ -22,6 +22,5 @@
   @media (min-width: 1280px) {
     margin: 0;
     grid-column: media;
-    align-self: start;
   }
 }

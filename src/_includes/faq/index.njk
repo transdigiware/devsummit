@@ -6,19 +6,35 @@
 <section class="{% className moduleCSS, 'root' %} {% className css, 'root' %}">
   <div class="{% className moduleCSS, 'heading-split' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">FAQ</h1>
-    <a href="/faqs/" class="{% className moduleCSS, 'heading-link' %}">All {{ collections.faq.length }} frequently asked questions</a>
+    <a href="{{conf.path}}faqs/" class="{% className moduleCSS, 'heading-link' %}">All {{ collections.faq.length }} frequently asked questions</a>
   </div>
 
   <div class="{% className css, 'faq-container' %}">
     <div class="{% className css, 'faqs' %}">
-      {% for faq in collections.featuredFAQs %}
-        <section class="{% className css, 'faq' %}">
-          <h1 class="{% className css, 'faq-heading' %}">{{ faq.data.title }}</h1>
-          <section class="{% className css, 'faq-content' %}">
-            {{ faq.templateContent | safe }}
-          </section>
+      <section class="{% className css, 'faq' %}">
+        <h1 class="{% className css, 'faq-heading' %}">What is Chrome Dev Summit 2019?</h1>
+        <section class="{% className css, 'faq-content' %}">
+          <p>Chrome Dev Summit is an annual conference where developers can learn about the latest tools and updates coming to the Google Chrome browser. <a href="{{conf.path}}faqs/#general">Read more</a>.</p>
         </section>
-      {% endfor %}
+      </section>
+      <section class="{% className css, 'faq' %}">
+        <h1 class="{% className css, 'faq-heading' %}">How can I register for Chrome Dev Summit 2019 and how much does it cost?</h1>
+        <section class="{% className css, 'faq-content' %}">
+          <p>Tickets to Chrome Dev Summit are offered at no charge, but you must submit an application to register and admissions are invite-only. <a href="{{conf.path}}faqs/#registration">Read more</a>.</p>
+        </section>
+      </section>
+      <section class="{% className css, 'faq' %}">
+        <h1 class="{% className css, 'faq-heading' %}">Can you accommodate people who require special assistance?</h1>
+        <section class="{% className css, 'faq-content' %}">
+          <p>Google strives to make events open and accessible to everyone, regardless of disability or special needs. <a href="{{conf.path}}faqs/#accessibility-accommodations-for-attendees">Read more</a>.</p>
+        </section>
+      </section>
+      <section class="{% className css, 'faq' %}">
+        <h1 class="{% className css, 'faq-heading' %}">Do you have any tips to help me navigate through Chrome Dev Summit?</h1>
+        <section class="{% className css, 'faq-content' %}">
+          <p>Our registration process quickly gets attendees and speakers in to the event and straight to the Chrome content. <a href="{{conf.path}}faqs/#attendance-details">Read more</a>.</p>
+        </section>
+      </section>
     </div>
   </div>
 </section>
