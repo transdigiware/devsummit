@@ -28,11 +28,9 @@
     <p>
       <span class="{% className css, 'date' %}">
         <span class="{% className css, 'month' %}">{% confDate conf.start, 'MMMM' %}</span>
-        <a href="#" class="{% className css, 'date-link' %}">
-          <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
-        </a>
+        <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
       </span>
-      <a href="#" class="{% className css, 'location-main' %}">Yerba Buena Center for the Arts</a>
+      <a href="https://goo.gl/maps/TBiTuFitnqe1wxPW7" rel="noopener noreferrer" target="_blank" class="{% className css, 'location-main' %}">Yerba Buena Center for the Arts</a>
       <span class="{% className css, 'location-sub' %}">San Francisco, CA</span>
     </p>
     <div class="{% className css, 'about' %}">
