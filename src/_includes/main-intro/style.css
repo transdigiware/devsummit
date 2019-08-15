@@ -62,6 +62,12 @@
   }
 }
 
+.about {
+  max-width: 530px;
+  line-height: 2;
+  margin: 2.1em auto;
+}
+
 .date-link {
   white-space: nowrap;
   text-decoration: none;
@@ -69,7 +75,7 @@
 
 .actions {
   @media (min-width: 720px) {
-    margin: 5.9rem 0 4rem;
+    margin: 3.2rem 0 4rem;
     display: grid;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
