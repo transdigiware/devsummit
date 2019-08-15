@@ -7,4 +7,8 @@
   @media (min-width: 720px) {
     --side-margin: 4.6rem;
   }
+
+  @media (min-width: 1920px) {
+    --side-margin: calc((100vw - 1920px) / 2 + 4.6rem);
+  }
 }

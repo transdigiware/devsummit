@@ -13,10 +13,6 @@
     place-items: center start;
     font-size: 0.8rem;
   }
-
-  @media (min-width: 820px) {
-    font-size: 1rem;
-  }
 }
 
 .title {

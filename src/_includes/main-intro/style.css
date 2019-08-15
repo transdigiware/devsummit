@@ -70,7 +70,7 @@
   @media (min-width: 720px) {
     margin: 5.9rem 0 4rem;
     display: grid;
-    grid-auto-columns: min-content;
+    grid-auto-columns: max-content;
     grid-auto-flow: column;
     align-items: start;
     grid-gap: 1.6em;
@@ -98,7 +98,6 @@
 
     &::before {
       content: '';
-      --icon-size: 30px;
       background: url('confboxAsset(assets/calendar.svg)') no-repeat;
       background-size: contain;
       width: var(--icon-size);
