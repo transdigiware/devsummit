@@ -13,6 +13,10 @@
     place-items: center start;
     font-size: 0.8rem;
   }
+
+  @media (min-width: 960px) {
+    font-size: 1rem;
+  }
 }
 
 .title {
@@ -115,5 +119,15 @@
       color: var(--offblack);
       text-decoration: none;
     }
+  }
+}
+
+.community {
+  @media (min-width: 720px) {
+    display: none;
+  }
+
+  @media (min-width: 780px) {
+    display: inline;
   }
 }

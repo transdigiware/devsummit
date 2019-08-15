@@ -26,7 +26,6 @@
 
   @media (min-width: 720px) {
     text-align: left;
-    font-size: 1.25rem;
   }
 }
 
@@ -49,12 +48,14 @@
 
 .location-main {
   display: block;
+  font-size: 1.25rem;
 }
 
 .location-sub {
   display: block;
   font-weight: 300;
   margin: 0.35em 0;
+  font-size: 1.25rem;
 
   @media (min-width: 720px) {
     margin: 0.2em 0;

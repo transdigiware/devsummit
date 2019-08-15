@@ -26,7 +26,7 @@
 
 .register {
   position: relative;
-  font-size: 0.75rem;
+  font-size: 0.75em;
   line-height: normal;
   text-decoration: none;
   color: var(--lightblue);
