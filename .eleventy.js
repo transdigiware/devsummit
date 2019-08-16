@@ -67,8 +67,9 @@ module.exports = function(eleventyConfig) {
 
     if (set.has(url)) return '';
     set.add(url);
+
     return new nunjucks.runtime.SafeString(
-      `<link rel="stylesheet" href="confboxAsset(${url})">`,
+      `<style>confboxInline(confboxAsset(${url}))</style>`,
     );
   });
 
