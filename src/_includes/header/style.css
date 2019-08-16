@@ -130,6 +130,10 @@
       font-size: 0.8em;
       color: var(--offblack);
       text-decoration: none;
+
+      &:hover {
+        color: var(--link-color);
+      }
     }
   }
 }
