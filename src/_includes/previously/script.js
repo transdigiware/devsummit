@@ -6,6 +6,7 @@
   if (!self.IntersectionObserver) {
     imgs.forEach(img => {
       img.src = img.dataset.src;
+      img.srcset = img.dataset.srcset;
       img.style.opacity = 1;
     });
     return;
@@ -17,6 +18,7 @@
       for (const { isIntersecting, target } of entries) {
         if (!isIntersecting) continue;
         target.src = target.dataset.src;
+        target.srcset = target.dataset.srcset;
         target.style.opacity = 1;
         observer.unobserve(target);
       }
