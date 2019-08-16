@@ -112,6 +112,13 @@
   }
 }
 
+.get-updates {
+  font-size: 0.75rem;
+  padding: 0.9em 0;
+  display: block;
+  white-space: nowrap;
+}
+
 .dino-crossing {
   position: absolute;
   top: 0;
