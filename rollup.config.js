@@ -1,3 +1,5 @@
+import { promises as fsp } from 'fs';
+
 import { terser } from 'rollup-plugin-terser';
 
 import htmlCSSPlugin from './lib/html-css-plugin.js';
@@ -41,6 +43,16 @@ export default async function({ watch }) {
       globInputPlugin('.build-tmp/**/*.html'),
       htmlCSSPlugin(),
       terser({ ecma: 8, module: true }),
+      {
+        // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
+        // Firebase hosting will look for the 404 page.
+        async writeBundle(bundle) {
+          const notFound = Object.values(bundle).find(entry =>
+            entry.fileName.endsWith('404.html'),
+          );
+          await fsp.writeFile('build/404.html', notFound.code);
+        },
+      },
     ],
   };
 }
