@@ -35,6 +35,11 @@
   padding: 0.9em 1.5em;
   box-shadow: 0 3px 16px var(--blue-a25);
 
+  &:hover {
+    color: var(--lightblue);
+    text-decoration: underline;
+  }
+
   @media (min-width: 720px) {
     --icon-size: 1.7em;
     padding-left: calc(var(--icon-size) + 1.8em);

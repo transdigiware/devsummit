@@ -1,5 +1,6 @@
 :root {
   --link-color: var(--blue);
+  --link-hover-color: var(--darkblue);
 
   --side-margin: 0.87rem;
 
