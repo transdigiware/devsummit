@@ -67,12 +67,13 @@ module.exports = function(eleventyConfig) {
 
     if (set.has(url)) return '';
     set.add(url);
+
     return new nunjucks.runtime.SafeString(
-      `<link rel="stylesheet" href="confboxAsset(${url})">`,
+      `<style>confboxInline(confboxAsset(${url}))</style>`,
     );
   });
 
-  eleventyConfig.addShortcode('slugify', str => {
+  eleventyConfig.addShortcode('headingSlug', str => {
     return new nunjucks.runtime.SafeString(
       str.replace(
         /\s/g,
@@ -85,6 +86,10 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  eleventyConfig.addShortcode('idify', str => {
+    return str.toLowerCase().replace(/\s/g, '-');
+  });
+
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', (timestamp, format) => {
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
@@ -92,7 +97,7 @@ module.exports = function(eleventyConfig) {
   });
 
   /** Get an ISO 8601 version of a date */
-  eleventyConfig.addShortcode('isoDate', (timestamp, format) => {
+  eleventyConfig.addShortcode('isoDate', timestamp => {
     return new Date(timestamp.valueOf()).toISOString();
   });
 
@@ -117,15 +122,6 @@ module.exports = function(eleventyConfig) {
     }
 
     return sections;
-  });
-
-  eleventyConfig.addCollection('featuredFAQs', collection => {
-    const faqs = collection
-      .getFilteredByTag('faq')
-      .filter(item => item.data.featured)
-      .sort((a, b) => a.data.featured - b.data.featured);
-
-    return faqs;
   });
 
   return config;

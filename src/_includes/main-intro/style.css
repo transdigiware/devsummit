@@ -26,7 +26,6 @@
 
   @media (min-width: 720px) {
     text-align: left;
-    font-size: 1.25rem;
   }
 }
 
@@ -49,28 +48,31 @@
 
 .location-main {
   display: block;
+  font-size: 1.25rem;
 }
 
 .location-sub {
   display: block;
   font-weight: 300;
   margin: 0.35em 0;
+  font-size: 1.25rem;
 
   @media (min-width: 720px) {
     margin: 0.2em 0;
   }
 }
 
-.date-link {
-  white-space: nowrap;
-  text-decoration: none;
+.about {
+  max-width: 530px;
+  line-height: 2;
+  margin: 2.1em auto;
 }
 
 .actions {
   @media (min-width: 720px) {
-    margin: 5.9rem 0 4rem;
+    margin: 3.2rem 0 4rem;
     display: grid;
-    grid-auto-columns: min-content;
+    grid-auto-columns: max-content;
     grid-auto-flow: column;
     align-items: start;
     grid-gap: 1.6em;
@@ -98,7 +100,6 @@
 
     &::before {
       content: '';
-      --icon-size: 30px;
       background: url('confboxAsset(assets/calendar.svg)') no-repeat;
       background-size: contain;
       width: var(--icon-size);
@@ -109,6 +110,13 @@
       transform: translateY(-50%);
     }
   }
+}
+
+.get-updates {
+  font-size: 0.75rem;
+  padding: 0.9em 0;
+  display: block;
+  white-space: nowrap;
 }
 
 .dino-crossing {

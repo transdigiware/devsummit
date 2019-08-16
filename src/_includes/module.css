@@ -1,16 +1,11 @@
 .root,
 .root-alt {
-  --vertical-padding: 1.6rem;
+  --vertical-padding: 2.4rem;
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
 
   @media (min-width: 1280px) {
     --vertical-padding: 4.5rem;
-  }
-
-  @media (min-width: 1920px) {
-    padding: var(--vertical-padding)
-      calc((100vw - 1920px) / 2 + var(--side-margin));
   }
 }
 
@@ -23,6 +18,7 @@
   color: var(--grey);
   text-align: center;
   position: relative;
+  margin-top: 0;
 
   @media (min-width: 480px) {
     text-transform: lowercase;
@@ -31,17 +27,6 @@
     &::before {
       content: 'chrome://';
       color: var(--lightgrey);
-    }
-  }
-
-  /*
-    This hacks around the sticky header when scrolling into view.
-    This could be replaced by scroll-padding once all browsers have support.
-  */
-  @media (min-width: 720px) {
-    &:target {
-      margin-top: calc(-100px + 0.86em);
-      padding-top: 100px;
     }
   }
 }
@@ -58,19 +43,24 @@
 }
 
 .heading-split {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
   margin: 1.66rem 0;
+  text-align: center;
 
-  & > :first-child {
-    flex: 1;
-    margin-right: 0.5em;
-  }
+  @media (min-width: 480px) {
+    text-align: left;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 
-  & > * {
-    margin-top: 0;
-    margin-bottom: 0;
+    & > :first-child {
+      flex: 1;
+      margin-right: 0.5em;
+    }
+
+    & > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 
