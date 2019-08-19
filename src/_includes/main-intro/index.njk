@@ -30,11 +30,11 @@
         <span class="{% className css, 'month' %}">{% confDate conf.start, 'MMMM' %}</span>
         <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
       </span>
-      <a href="https://goo.gl/maps/TBiTuFitnqe1wxPW7" rel="noopener noreferrer" target="_blank" class="{% className css, 'location-main' %}">Yerba Buena Center for the Arts</a>
-      <span class="{% className css, 'location-sub' %}">San Francisco, CA</span>
+      <a href="{{conf.venue.mapsLink}}" rel="noopener noreferrer" target="_blank" class="{% className css, 'location-main' %}">{{conf.venue.name}}</a>
+      <span class="{% className css, 'location-sub' %}">{{conf.venue.city}}, {{conf.venue.region}}</span>
     </p>
     <div class="{% className css, 'about' %}">
-      <p>Join us at our annual developer conference for two days of conversations, demos and office hours with the Chrome team, as we work with the community to build the future of the Web.</p>
+      <p>{{conf.teaser}}</p>
     </div>
     <div class="{% className css, 'actions' %}">
       <a href="https://events.withgoogle.com/chrome-dev-summit-2019/registrations/new/" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>

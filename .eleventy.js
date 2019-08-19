@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const date = require('date-and-time');
 const nunjucks = require('nunjucks');
+const { dirname, basename } = require('path');
 
 const { utcOffset, path: confboxPath } = require('./lib/confbox-config');
 
@@ -110,9 +111,15 @@ module.exports = function(eleventyConfig) {
     let section;
 
     for (const faq of faqs) {
-      if (!section || section.title !== faq.data.sectionTitle) {
+      const folder = basename(dirname(faq.data.page.inputPath));
+      if (!section || section.folder !== folder || faq.data.question) {
         section = {
-          title: faq.data.sectionTitle,
+          title: faq.data.question ? faq.data.title : faq.data.sectionTitle,
+          question: faq.data.question
+            ? faq.data.question
+            : faq.data.sectionQuestion,
+          answer: faq.data.question ? faq.data.answer : faq.data.sectionAnswer,
+          folder,
           items: [],
         };
         sections.push(section);
