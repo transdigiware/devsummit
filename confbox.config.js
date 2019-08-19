@@ -11,6 +11,20 @@ module.exports = {
    * Name of the conference.
    */
   conferenceName: 'Chrome Dev Summit 2019',
+  teaser:
+    'Join us at our annual developer conference for two days of conversations, demos and office hours with the Chrome team, as we work with the community to build the future of the Web.',
+  /**
+   * Data of the conference venue.
+   */
+  venue: {
+    name: 'Yerba Buena Center for the Arts',
+    city: 'San Francisco',
+    region: 'CA',
+    country: 'US',
+    postalCode: '94103',
+    streetAddress: '701 Mission St',
+    mapsLink: 'https://goo.gl/maps/TBiTuFitnqe1wxPW7',
+  },
   /**
    * Conference Twitter account
    */
