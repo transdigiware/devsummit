@@ -1,5 +1,5 @@
 ---
-title: Ticket Types
+title: Confirmation
 question: Where is my ticket?
 answer: If we accept your application, you will receive a confirmation email with a ticket.
 ---
