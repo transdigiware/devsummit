@@ -9,6 +9,8 @@ import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
 
+const confboxConfig = require('./confbox.config.js');
+
 export default async function({ watch }) {
   await Promise.all([postCSSBuild('src/**/*.css', '.build-tmp', { watch })]);
   if (watch) {
@@ -20,7 +22,7 @@ export default async function({ watch }) {
       'nuke-sw': 'src/nuke-sw.js',
     },
     output: {
-      dir: 'build',
+      dir: 'build' + confboxConfig.path,
       format: 'esm',
       assetFileNames: '[name]-[hash][extname]',
     },
@@ -34,7 +36,7 @@ export default async function({ watch }) {
       nodeResolve(),
       {
         resolveFileUrl({ fileName }) {
-          return JSON.stringify('/' + fileName);
+          return JSON.stringify(confboxConfig.path + fileName);
         },
       },
       buildStartSequencePlugin(),

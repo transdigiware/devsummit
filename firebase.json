@@ -4,10 +4,6 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
       {
-        "source": "**/*.js",
-        "destination": "/nuke-sw.js"
-      },
-      {
         "source": "**/*",
         "headers": [
           {
@@ -24,12 +20,25 @@
             "value": "private"
           }
         ]
+      },
+      {
+        "source": "**/*-+([0-9a-f]).*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
       }
     ],
     "rewrites": [
       {
         "source": "/backend/**",
         "function": "backend"
+      },
+      {
+        "source": "**/*.js",
+        "destination": "/nuke-sw.js"
       }
     ]
   },

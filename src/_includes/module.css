@@ -1,26 +1,69 @@
-.module {
-  --vertical-padding: 1.6rem;
+.root,
+.root-alt {
+  --vertical-padding: 2.4rem;
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
-
-  &:nth-of-type(2n + 0) {
-    background-color: var(--offwhite);
-  }
 
   @media (min-width: 1280px) {
     --vertical-padding: 4.5rem;
   }
 }
 
-.module-heading {
-  font-family: 'Google Sans', sans-serif;
-  color: var(--grey);
-  text-transform: lowercase;
+.root-alt {
+  background-color: var(--offwhite);
+}
 
-  @media (min-width: 720px) {
+.heading {
+  font: bold 2rem 'Google Sans', sans-serif;
+  color: var(--grey);
+  text-align: center;
+  position: relative;
+  margin-top: 0;
+
+  @media (min-width: 480px) {
+    text-transform: lowercase;
+    text-align: left;
+
     &::before {
       content: 'chrome://';
       color: var(--lightgrey);
     }
   }
+}
+
+.slug-dash {
+  &:before {
+    content: ' ';
+  }
+  @media (min-width: 720px) {
+    &:before {
+      content: '-';
+    }
+  }
+}
+
+.heading-split {
+  margin: 1.66rem 0;
+  text-align: center;
+
+  @media (min-width: 480px) {
+    text-align: left;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    & > :first-child {
+      flex: 1;
+      margin-right: 0.5em;
+    }
+
+    & > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.heading-link {
+  display: block;
 }

@@ -1,0 +1,22 @@
+{% extends 'layouts/main/index.njk' %}
+
+{% block additionsToHead %}
+  <script type="a"></script>
+  {% block moreAdditionsToHead %}
+  {% endblock %}
+  <script type="b"></script>
+  {{ moreAdditionsToHead | safe }}
+  <script type="c"></script>
+{% endblock %}
+{% block content %}
+  {%- set moduleCSS = "/_includes/module.css" -%}
+  {% css page, moduleCSS %}
+  {%- set css = "/_includes/content.css" -%}
+  {% css page, css %}
+  <div class="{% className moduleCSS, 'root' %}">
+    <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug title %}</h1>
+    <section class="{% className css, 'content-area' %}">
+      {{ content | safe }}
+    </section>
+  </div>
+{% endblock %}

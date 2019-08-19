@@ -1,26 +1,14 @@
 .root {
-  composes: module from '../module.css';
-
   --icon-size: 1.6em;
-  --spacer: 7rem;
   padding-bottom: 0;
+  padding-top: 1.8rem;
 
   @media (min-width: 720px) {
     display: grid;
-    grid-template-rows: 1fr auto auto auto;
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas:
-      'logo     logo    links'
-      'divider  divider divider'
-      'social   social  social'
-      'legal legal   legal';
-  }
-
-  @media (min-width: 960px) {
     grid-template-rows: 1fr auto auto;
     grid-template-columns: 1fr auto auto;
     grid-template-areas:
-      'logo    logo     links'
+      'logo    logo     logo'
       'divider divider  divider'
       'social  language legal';
   }
@@ -38,31 +26,11 @@
   background-position: center;
   grid-area: logo;
   height: 2.6rem;
-  margin: var(--spacer) 0;
+  margin: 5.9rem 0;
   @media (min-width: 720px) {
     background-image: url('confboxAsset(/_includes/footer/assets/fullgoogle.svg)');
     margin: 0;
     background-position: top left;
-  }
-}
-
-.links {
-  grid-area: links;
-
-  white-space: nowrap;
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: center;
-  grid-column-gap: 6rem;
-  grid-row-gap: 1rem;
-  margin-bottom: var(--spacer);
-  a {
-    color: var(--midgrey);
-    text-decoration: none;
-  }
-  @media (min-width: 720px) {
-    margin: 0;
-    justify-content: end;
   }
 }
 
@@ -85,18 +53,8 @@
     line-height: var(--icon-size);
     height: var(--icon-size);
   }
-  @media (min-width: 960px) {
-    justify-content: flex-start;
-  }
-}
-
-.language {
-  /* Disabled for now   */
-  display: none;
-  grid-area: language;
-  margin: 0 auto;
   @media (min-width: 720px) {
-    margin: 0 1.6rem;
+    justify-content: flex-start;
   }
 }
 
@@ -145,7 +103,7 @@
 .divider {
   display: none;
   grid-area: divider;
-  margin-top: var(--vertical-padding);
+  margin-top: 1.1rem;
   @media (min-width: 720px) {
     display: block;
     border-top: 1px solid var(--darkoffwhite);
@@ -157,6 +115,8 @@
   width: var(--icon-size);
   height: var(--icon-size);
   display: inline-block;
+  overflow: hidden;
+  color: transparent;
 }
 
 .icon {

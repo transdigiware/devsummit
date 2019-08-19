@@ -1,0 +1,21 @@
+{% extends "layouts/media-module/index.njk" %}
+
+{% block main %}
+  <h1 id="sessions" class="{% className moduleCSS, 'heading' %}">{% headingSlug "Sessions" %}</h1>
+  <p>Chrome Dev Summit features a varied lineup of talks given by the Chrome team and community. The summit is a single-track event so everyone gets the opportunity to attend every session, fueling meaningful discussions among all attendees.</p>
+  <p>Over the two days, the team will deep-dive into the latest updates we're making to the browser, the platform and to our tools to improve developer productivity as they build pinnacle web experiences for their users.</p>
+  <p>We’ll be sharing more details, as we get closer to the event.</p>
+{% endblock %}
+
+{% block media %}
+  {%- set utilsCSS = "/_includes/utils.css" -%}
+  {% css page, utilsCSS %}
+  <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <img
+      class="{% className utilsCSS, 'media-fill' %}"
+      src="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg)"
+      srcset="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg) 900w, confboxAsset(/_includes/sessions-promo/assets/audience-large.jpg) 1800w"
+      sizes="(min-width: 1280px) 40vw, 100vw"
+    >
+  </div>
+{% endblock %}

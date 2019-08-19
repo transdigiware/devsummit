@@ -1,16 +1,61 @@
-{%- set css = "/_includes/layouts/main/style.css" -%}
+{%- pageStart page -%}
+{%- set mainCss = "/_includes/layouts/main/style.css" -%}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="confboxAsset({{css}})">
-    {% block extraHead %}{% endblock %}
-    <title>{{title}}</title>
+    <link rel="icon" href="confboxAsset(/assets/chromelogo.png)">
+    <link rel="preload" href="confboxAsset(/assets/google-sans/regular/latin.woff2)">
+    <link rel="preload" href="confboxAsset(/assets/google-sans/bold/latin.woff2)">
+    {% css page, mainCss %}
+    {% if title %}
+      <title>{{title}} - {{conf.conferenceName}}</title>
+    {% else %}
+      <title>{{conf.conferenceName}}</title>
+    {% endif %}
+
+    <meta property="og:type" content="website">
+
+    {% if title %}
+      <meta property="og:title" content="{{title}} - {{conf.conferenceName}}">
+      <meta name="twitter:title" content="{{title}} - {{conf.conferenceName}}">
+    {% else %}
+      <meta property="og:title" content="{{conf.conferenceName}}">
+      <meta name="twitter:title" content="{{conf.conferenceName}}">
+    {% endif %}
+
+    {% if description %}
+      <meta name="description" content="{{description}}">
+      <meta property="og:description" content="{{description}}">
+      <meta name="twitter:description" content="{{description}}">
+    {% endif %}
+
+    <meta name="twitter:card" content="summary_large_image">
+    {% if metaImage %}
+      <meta name="twitter:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
+      <meta property="og:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
+    {% else %}
+      <meta name="twitter:image" content="{{conf.origin}}confboxAsset(/assets/social-share.png)">
+      <meta property="og:image" content="{{conf.origin}}confboxAsset(/assets/social-share.png)">
+    {% endif %}
+
+    {% if conf.twitter %}
+      <meta name="twitter:site" content="{{conf.twitter}}">
+    {% endif %}
   </head>
   <body>
     {% include 'header/index.njk' %}
-
     {% block content %}{{ content | safe }}{% endblock %}
+    {% include 'footer/index.njk' %}
+    <!-- Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-41980257-1', 'auto');
+    ga('send', 'pageview');
+    </script>
   </body>
 </html>

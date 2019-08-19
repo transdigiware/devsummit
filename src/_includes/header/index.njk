@@ -1,27 +1,28 @@
+{% set utilsCSS = "/_includes/utils.css" %}
+{% css page, utilsCSS %}
 {% set css = "/_includes/header/style.css" %}
-
-<link rel="stylesheet" href="confboxAsset({{css}})">
+{% css page, css %}
 
 <div class="{% className css, 'root' %}">
-  <div class="{% className css, 'title' %}">
+  <a class="{% className css, 'title' %}" href="{{conf.path}}">
     <div class="{% className css, 'logo-container' %}">
-      <div class="{% className css, 'aspect-ratio' %}" style="--aspect-ratio: 1">
-        <img class="{% className css, 'media-fill' %}" src="confboxAsset(/assets/chromelogo.svg)" alt="Chrome">
+      <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: 1">
+        <img class="{% className utilsCSS, 'media-fill' %}" src="confboxAsset(/assets/chromelogo.svg)" alt="Chrome">
       </div>
     </div>
     <div class="{% className css, 'title-text' %}">
       <div class="{% className css, 'title-main' %}">dev summit</div>
-      <span class="{% className css, 'title-year' %}">{% confDate conf.start, 'YYYY' %}</span>
+      <time class="{% className css, 'title-year' %}">{% confDate conf.start, 'YYYY' %}</time>
     </div>
-  </div>
+  </a>
   <div class="{% className css, 'extra-links' %}">
-    <a href="#">Schedule</a>
-    <a href="#">Speakers</a>
-    <a href="#">Venue</a>
-    <a href="#">Guidelines</a>
+    <a href="{{conf.path}}#livestream">Livestream</a>
+    <a href="{{conf.path}}#sessions">Sessions</a>
+    <a href="{{conf.path}}community-guidelines/"><span class="{% className css, 'community' %}">Community </span>Guidelines</a>
+    <a href="{{conf.path}}faqs/">FAQs</a>
   </div>
   <div class="{% className css, 'login' %}" id="login">
   </div>
-  <a href="#" class="{% className css, 'register' %}">Register</a>
+  <a href="https://events.withgoogle.com/chrome-dev-summit-2019/registrations/new/" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
 </div>
 <script type="module" src="confboxAsset(/_includes/header/header.js)"></script>
