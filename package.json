@@ -3,6 +3,7 @@
   "version": "2019.0.0",
   "private": true,
   "scripts": {
+    "start": "node ./server.js",
     "build": "npm run clean && rollup -c && del .build-tmp",
     "watch": "npm run clean && rollup -c --watch",
     "clean": "del build .build-tmp",
@@ -16,7 +17,6 @@
     "date-and-time": "^0.8.1",
     "del-cli": "^2.0.0",
     "escape-string-regexp": "^2.0.0",
-    "express": "^4.17.1",
     "find-free-port": "^2.0.0",
     "firebase-tools": "^7.1.0",
     "glob": "^7.1.4",
@@ -38,5 +38,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }

@@ -1,9 +1,5 @@
 runtime: nodejs10
 
 handlers:
-  - url: /(.*)/
-    static_files: build/\1/index.html
-    upload: build/.*
-  - url: /(.*)
-    static_files: build/\1
-    upload: build/.*
+  - url: /.*
+    script: auto
