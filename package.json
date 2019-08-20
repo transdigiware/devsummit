@@ -8,8 +8,7 @@
     "watch": "npm run clean && rollup -c --watch",
     "clean": "del build .build-tmp",
     "deploy:prod": "npm run build && gcloud app deploy",
-    "serve:netlify": "netlify dev -c 'npm run build' -d 'build'",
-    "serve:firebase": "firebase serve --only hosting"
+    "serve": "node ./server.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",
