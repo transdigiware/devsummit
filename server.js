@@ -1,7 +1,11 @@
 const fsp = require('fs').promises;
 const express = require('express');
 
+const { backend } = require('./functions');
+
 const app = express();
+
+app.use('/devsummit/backend/', backend);
 
 app.use(
   '/',

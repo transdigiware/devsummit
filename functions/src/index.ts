@@ -23,21 +23,34 @@ import { Strategy as GitHubStrategy } from 'passport-github';
 // `rootRouter` is an Express app that contains the entire backend app.
 import Backend, { BackendOptions } from './backend.js';
 
-// We are using Firebase functions.
-import * as Functions from 'firebase-functions';
-import * as fbAdmin from 'firebase-admin';
+// // We are using Firebase functions.
+// import * as Functions from 'firebase-functions';
+// import * as fbAdmin from 'firebase-admin';
 
 import { UserBlob } from './types.js';
 
 // This initializes Firebase and gets our secrets via Firebase’s
 // config API.
-const config = Functions.config();
-fbAdmin.initializeApp(
-  Object.assign({}, config.firebase, {
-    credential: fbAdmin.credential.cert(config.serviceaccount),
-    databaseURL: 'https://cds2019-d4673.firebaseio.com/',
-  }),
-);
+// const config = Functions.config();
+// fbAdmin.initializeApp(
+//   Object.assign({}, config.firebase, {
+//     credential: fbAdmin.credential.cert(config.serviceaccount),
+//     databaseURL: 'https://cds2019-d4673.firebaseio.com/',
+//   }),
+// );
+const config = {
+  auth: {
+    google: {
+      id: 'lol',
+      secret: 'lol',
+    },
+    github: {
+      id: 'lol',
+      secret: 'lol',
+    },
+    cookiesecret: 'asfasf',
+  },
+};
 
 Passport.serializeUser(function(user, done) {
   done(null, user);
@@ -100,21 +113,22 @@ const options: BackendOptions = {
   cookieSecret: config.auth.cookiesecret,
   // Called by other apps to update a user’s blob.
   async storeUserBlob(userBlob: UserBlob) {
-    await fbAdmin
-      .database()
-      .ref('users')
-      .child(userBlob.uid)
-      .set(userBlob);
+    // await fbAdmin
+    //   .database()
+    //   .ref('users')
+    //   .child(userBlob.uid)
+    //   .set(userBlob);
   },
   // Called by other apps to get the current user’s blob.
   async getUserBlob(uid: string): Promise<UserBlob | null> {
-    const ev = await fbAdmin
-      .database()
-      .ref('users')
-      .child(uid)
-      .once('value');
+    // const ev = await fbAdmin
+    //   .database()
+    //   .ref('users')
+    //   .child(uid)
+    //   .once('value');
 
-    return ev.val();
+    // return ev.val();
+    return {} as any;
   },
   authOpts: {
     google: { scope: ['openid', 'email', 'profile'] },
@@ -124,4 +138,4 @@ const options: BackendOptions = {
   sessionLength: 24 * 60 * 60,
 };
 
-export const backend = Functions.https.onRequest(Backend(options));
+export const backend = Backend(options);

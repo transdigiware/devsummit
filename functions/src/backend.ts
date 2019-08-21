@@ -34,16 +34,12 @@ export interface BackendOptions {
 export default function Backend(options: BackendOptions) {
   const appsRouter = Express();
 
+  appsRouter.use(SessionMiddleware(options));
+  appsRouter.use(Passport.initialize());
+  appsRouter.use(Passport.session());
   appsRouter.use('/auth', AuthApp(options));
 
-  appsRouter.use('/user', authenticationRequiredMiddleware());
-  appsRouter.use('/user', UserApp(options));
+  appsRouter.use('/user', authenticationRequiredMiddleware(), UserApp(options));
 
-  const rootRouter = Express();
-  rootRouter.use(Passport.initialize());
-  rootRouter.use(Passport.session());
-
-  rootRouter.use(SessionMiddleware(options));
-  rootRouter.use('/backend', catchMiddleware(appsRouter));
-  return rootRouter;
+  return catchMiddleware(appsRouter);
 }
