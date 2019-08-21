@@ -3,7 +3,7 @@
   "version": "2019.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node ./server.js --no-emulator",
     "build": "npm run clean && rollup -c && del .build-tmp",
     "watch": "npm run clean && rollup -c --watch",
     "clean": "del build .build-tmp",
@@ -44,6 +44,7 @@
     }
   },
   "dependencies": {
+    "commander": "^3.0.0",
     "express": "^4.17.1"
   }
 }

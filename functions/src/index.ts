@@ -21,7 +21,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as GitHubStrategy } from 'passport-github';
 
 // `rootRouter` is an Express app that contains the entire backend app.
-import Backend, { BackendOptions } from './backend.js';
+import Backend from './backend.js';
 
 // // We are using Firebase functions.
 // import * as Functions from 'firebase-functions';
@@ -29,113 +29,113 @@ import Backend, { BackendOptions } from './backend.js';
 
 import { UserBlob } from './types.js';
 
-// This initializes Firebase and gets our secrets via Firebase’s
-// config API.
-// const config = Functions.config();
-// fbAdmin.initializeApp(
-//   Object.assign({}, config.firebase, {
-//     credential: fbAdmin.credential.cert(config.serviceaccount),
-//     databaseURL: 'https://cds2019-d4673.firebaseio.com/',
-//   }),
-// );
-const config = {
-  auth: {
-    google: {
-      id: 'lol',
-      secret: 'lol',
+export function instantiate() {
+  // This initializes Firebase and gets our secrets via Firebase’s
+  // config API.
+  // const config = Functions.config();
+  // fbAdmin.initializeApp(
+  //   Object.assign({}, config.firebase, {
+  //     credential: fbAdmin.credential.cert(config.serviceaccount),
+  //     databaseURL: 'https://cds2019-d4673.firebaseio.com/',
+  //   }),
+  // );
+  const config = {
+    auth: {
+      google: {
+        id: 'lol',
+        secret: 'lol',
+      },
+      github: {
+        id: 'lol',
+        secret: 'lol',
+      },
+      cookiesecret: 'asfasf',
     },
-    github: {
-      id: 'lol',
-      secret: 'lol',
+  };
+
+  Passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  Passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  // Register all your Passport strategies here.
+  // Use the callback to populate the UserBlob.
+  Passport.use(
+    new GoogleStrategy(
+      {
+        clientID: config.auth.google.id,
+        clientSecret: config.auth.google.secret,
+        callbackURL: `${process.env.HOST || ''}/backend/auth/google/callback`,
+      },
+      (accessToken: string, refreshToken: string, profile: any, cb: any) => {
+        const userBlob: UserBlob = {
+          uid: profile.id,
+          email: profile.emails[0].value,
+          // On Google APIs, we can append this to resize the avatar
+          // to 96x96 to save bandwidth.
+          picture: `${profile.photos[0].value}=s96`,
+          name: profile.displayName,
+        };
+        return cb(null, userBlob);
+      },
+    ),
+  );
+
+  Passport.use(
+    new GitHubStrategy(
+      {
+        clientID: config.auth.github.id,
+        clientSecret: config.auth.github.secret,
+        callbackURL: `${process.env.HOST || ''}/backend/auth/github/callback`,
+      },
+      (accessToken: string, refreshToken: string, profile: any, cb: any) => {
+        const userBlob: UserBlob = {
+          uid: profile.id,
+          email: profile.emails[0].value,
+          picture: profile.photos[0].value,
+          name: profile.displayName,
+        };
+        return cb(null, userBlob);
+      },
+    ),
+  );
+
+  return Backend({
+    // The name of the cookie to store the session in.
+    // If you are using Firebase functions,
+    // DO NOT CHANGE THE COOKIE NAME!
+    // It’s the only one Firebase allows:
+    // https://firebase.google.com/docs/hosting/functions#using_cookies
+    cookieName: '__session',
+    // Secret to encrypt the session cookie with.
+    cookieSecret: config.auth.cookiesecret,
+    // Called by other apps to update a user’s blob.
+    async storeUserBlob(userBlob: UserBlob) {
+      // await fbAdmin
+      //   .database()
+      //   .ref('users')
+      //   .child(userBlob.uid)
+      //   .set(userBlob);
     },
-    cookiesecret: 'asfasf',
-  },
-};
+    // Called by other apps to get the current user’s blob.
+    async getUserBlob(uid: string): Promise<UserBlob | null> {
+      // const ev = await fbAdmin
+      //   .database()
+      //   .ref('users')
+      //   .child(uid)
+      //   .once('value');
 
-Passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-Passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-// Register all your Passport strategies here.
-// Use the callback to populate the UserBlob.
-Passport.use(
-  new GoogleStrategy(
-    {
-      clientID: config.auth.google.id,
-      clientSecret: config.auth.google.secret,
-      callbackURL: `${process.env.HOST || ''}/backend/auth/google/callback`,
+      // return ev.val();
+      return {} as any;
     },
-    (accessToken: string, refreshToken: string, profile: any, cb: any) => {
-      const userBlob: UserBlob = {
-        uid: profile.id,
-        email: profile.emails[0].value,
-        // On Google APIs, we can append this to resize the avatar
-        // to 96x96 to save bandwidth.
-        picture: `${profile.photos[0].value}=s96`,
-        name: profile.displayName,
-      };
-      return cb(null, userBlob);
+    authOpts: {
+      google: { scope: ['openid', 'email', 'profile'] },
+      github: { scope: [] },
     },
-  ),
-);
-
-Passport.use(
-  new GitHubStrategy(
-    {
-      clientID: config.auth.github.id,
-      clientSecret: config.auth.github.secret,
-      callbackURL: `${process.env.HOST || ''}/backend/auth/github/callback`,
-    },
-    (accessToken: string, refreshToken: string, profile: any, cb: any) => {
-      const userBlob: UserBlob = {
-        uid: profile.id,
-        email: profile.emails[0].value,
-        picture: profile.photos[0].value,
-        name: profile.displayName,
-      };
-      return cb(null, userBlob);
-    },
-  ),
-);
-
-const options: BackendOptions = {
-  // The name of the cookie to store the session in.
-  // If you are using Firebase functions,
-  // DO NOT CHANGE THE COOKIE NAME!
-  // It’s the only one Firebase allows:
-  // https://firebase.google.com/docs/hosting/functions#using_cookies
-  cookieName: '__session',
-  // Secret to encrypt the session cookie with.
-  cookieSecret: config.auth.cookiesecret,
-  // Called by other apps to update a user’s blob.
-  async storeUserBlob(userBlob: UserBlob) {
-    // await fbAdmin
-    //   .database()
-    //   .ref('users')
-    //   .child(userBlob.uid)
-    //   .set(userBlob);
-  },
-  // Called by other apps to get the current user’s blob.
-  async getUserBlob(uid: string): Promise<UserBlob | null> {
-    // const ev = await fbAdmin
-    //   .database()
-    //   .ref('users')
-    //   .child(uid)
-    //   .once('value');
-
-    // return ev.val();
-    return {} as any;
-  },
-  authOpts: {
-    google: { scope: ['openid', 'email', 'profile'] },
-    github: { scope: [] },
-  },
-  // Length of a session in seconds
-  sessionLength: 24 * 60 * 60,
-};
-
-export const backend = Backend(options);
+    // Length of a session in seconds
+    sessionLength: 24 * 60 * 60,
+  });
+}
