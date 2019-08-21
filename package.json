@@ -3,13 +3,12 @@
   "version": "2019.0.0",
   "private": true,
   "scripts": {
+    "start": "node ./server.js",
     "build": "npm run clean && rollup -c && del .build-tmp",
     "watch": "npm run clean && rollup -c --watch",
     "clean": "del build .build-tmp",
     "deploy:prod": "npm run build && gcloud app deploy",
-    "serve:netlify": "netlify dev -c 'npm run build' -d 'build'",
-    "serve:firebase": "HOST='http://localhost:5000' firebase serve --only hosting,functions",
-    "loadsecrets": "firebase functions:config:get > functions/.runtimeconfig.json"
+    "serve": "node ./server.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.8.3",
@@ -18,7 +17,6 @@
     "date-and-time": "^0.8.1",
     "del-cli": "^2.0.0",
     "escape-string-regexp": "^2.0.0",
-    "express": "^4.17.1",
     "find-free-port": "^2.0.0",
     "firebase": "^6.3.1",
     "firebase-tools": "^7.1.0",
@@ -45,5 +43,7 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
