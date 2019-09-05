@@ -91,7 +91,12 @@ module.exports = function(eleventyConfig) {
     return str.toLowerCase().replace(/\s/g, '-');
   });
 
-  /** Format a date in the timezone of the conference */
+  /** Format a date/timestamp */
+  eleventyConfig.addShortcode('date', (timestamp, format) => {
+    return date.format(new Date(timestamp.valueOf()), format);
+  });
+
+  /** Format a date/timestamp in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', (timestamp, format) => {
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
     return date.format(offsetTime, format);

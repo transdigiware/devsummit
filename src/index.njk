@@ -10,8 +10,8 @@ description: Connect with Chrome engineers and other leading developers for an e
       "@context": "https://schema.org",
       "@type": "Event",
       "name": "{{conf.conferenceName}}",
-      "startDate": "{% confDate conf.start, 'YYYY-MM-DDTHH:mm' %}",
-      "endDate": "{% confDate conf.end, 'YYYY-MM-DDTHH:mm' %}",
+      "startDate": "{% confDate conf.start, 'YYYY-MM-DD' %}",
+      "endDate": "{% confDate conf.end, 'YYYY-MM-DD' %}",
       "location": {
         "@type": "Place",
         "name": "{{conf.venue.name}}",

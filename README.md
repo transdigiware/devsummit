@@ -69,12 +69,16 @@ In templates and CSS, references assets via `confboxAsset('/path/to/asset.jpg')`
 
 Assets ending `.js` will be bundled together using Rollup.
 
-## `{% confDate date, format %}`
+## `{% date date, format %}`
 
-This will take a `date` and format it for the timezone of the conference (as set in `/confbox.config.js`).
+This will take a `date` and format it. This will always use the UTC timezone. If you're formatting for human eyes, use `{% confDate date, format %}` instead.
 
 - `date` - The date to display. This can be a `Date` object or a timestamp.
 - `format` - A formatting string as used by [date-and-time](https://www.npmjs.com/package/date-and-time#formatdateobj-formatstring-utc).
+
+## `{% confDate date, format %}`
+
+As `{% date date, format %}`, but in the timezone of the conference (as set in `/confbox.config.js`).
 
 ```njk
 <p>The conference starts {% confDate conf.start, 'MMMM DD' %}</p>
