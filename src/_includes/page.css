@@ -1,0 +1,39 @@
+.header {
+  background: var(--offwhite);
+  padding: 8rem var(--side-margin) 2rem;
+  min-height: 11rem;
+
+  @media (min-width: 1280px) {
+    display: grid;
+    grid-template-columns: 1fr 54%;
+    grid-column-gap: 4rem;
+  }
+}
+
+.heading {
+  margin: 0;
+}
+
+.heading-extra {
+  font-size: 0.8rem;
+}
+
+.boxed-content {
+  background: var(--white);
+  padding: 1.6rem 1.8rem;
+  box-shadow: 0 55px 99px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  font-size: 0.9rem;
+
+  p {
+    margin: 1.8rem 0;
+  }
+
+  & :first-child {
+    margin-top: 0;
+  }
+
+  & :last-child {
+    margin-bottom: 0;
+  }
+}

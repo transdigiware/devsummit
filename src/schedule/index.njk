@@ -1,0 +1,27 @@
+---
+description: Everything that's happening at Chrome Dev Summit.
+---
+
+{% extends 'layouts/main/index.njk' %}
+
+{% block content %}
+  {%- set moduleCSS = "/_includes/module.css" -%}
+  {% css page, moduleCSS %}
+  {%- set pageCSS = "/_includes/page.css" -%}
+  {% css page, pageCSS %}
+  {%- set css = "/schedule/style.css" -%}
+  {% css page, css %}
+
+  <div class="{% className pageCSS, 'header' %}">
+    <div>
+      <h1 id="sessions" class="{% className moduleCSS, 'heading' %} {% className pageCSS, 'heading' %}">{% headingSlug "Schedule" %}</h1>
+      <div class="{% className pageCSS, 'heading-extra' %}">{% include 'add-to-cal/index.njk' %}</div>
+    </div>
+    <div>
+      <div class="{% className pageCSS, 'boxed-content' %}">
+        <p>Need copy! We will <strong>update this page</strong> with 2019 event speakers as we get closer to the event.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

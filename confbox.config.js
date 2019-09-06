@@ -42,4 +42,15 @@ module.exports = {
    * Start of conference in the above timezone, in the format: YYYY/MM/DD HH:mm.
    */
   end: '2019/11/12 17:00',
+  /**
+   * Additional schedule items. These are merged with the content in /sessions/.
+   *
+   */
+  extraSchedule: [
+    {
+      title: 'Registration & breakfast',
+      start: '2019/11/11 09:00',
+      end: '2019/11/11 09:30',
+    },
+  ],
 };
