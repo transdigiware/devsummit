@@ -4,28 +4,29 @@
 {%- set css = "/_includes/previously/style.css" -%}
 {% css page, css %}
 
-{% 
-  set images =[
-    "BE8A5681",
-    "BE8A6532",
-    "CDSP18-057",
-    "CDSP18-214",
-    "CDSP18-256",
-    "CDSP18-109",
-    "BE8A4369",
-    "CDSP18-076",
-    "BE8A4245",
-    "BE8A6854"
+{%
+  set images = [
+    {url: "BE8A5681", alt: "Chrome Dev Summit 2018 lobby in the dark"},
+    {url: "BE8A6532", alt: "Chrome Dev Summit 2018 lobby in the light"},
+    {url: "CDSP18-056", alt: "Robert Nyman outside the sign-up tent"},
+    {url: "CDSP18-214", alt: "Attendee with baby"},
+    {url: "CDSP18-256", alt: "Google Developers certification stand"},
+    {url: "CDSP18-109", alt: "Speakers on stage"},
+    {url: "BE8A4369", alt: "Audience applauding"},
+    {url: "CDSP18-076", alt: "Stickers"},
+    {url: "BE8A4245", alt: "That moment where Jake dropped a cake"},
+    {url: "BE8A6854", alt: "Demos in the lobby"}
   ]
 %}
 
 {% macro imageTag(image) %}
-  <img 
-    decoding="async" 
-    data-src="confboxAsset(/_includes/previously/assets/{{ image }}_1x.jpg)"
+  <img
+    decoding="async"
+    alt="{{ image.alt }}"
+    data-src="confboxAsset(/_includes/previously/assets/{{ image.url }}_1x.jpg)"
     data-srcset="
-      confboxAsset(/_includes/previously/assets/{{ image }}_3x.jpg) 3x,
-      confboxAsset(/_includes/previously/assets/{{ image }}_2x.jpg) 2x
+      confboxAsset(/_includes/previously/assets/{{ image.url }}_3x.jpg) 3x,
+      confboxAsset(/_includes/previously/assets/{{ image.url }}_2x.jpg) 2x
     "
   >
 {% endmacro %}
