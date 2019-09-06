@@ -1,7 +1,11 @@
 .header {
   background: var(--offwhite);
-  padding: 8rem var(--side-margin) 2rem;
-  min-height: 11rem;
+  padding: 3rem var(--side-margin) 0;
+
+  @media (min-width: 720px) {
+    padding: 8rem var(--side-margin) 2rem;
+    min-height: 11rem;
+  }
 
   @media (min-width: 1280px) {
     display: grid;
@@ -16,16 +20,22 @@
 
 .heading-extra {
   font-size: 0.8rem;
+  text-align: center;
+
+  @media (min-width: 480px) {
+    text-align: left;
+  }
 }
 
 .boxed-content {
-  background: var(--white);
-  padding: 1.6rem 1.8rem;
-  box-shadow: 0 55px 99px rgba(0, 0, 0, 0.15);
-  border-radius: 1rem;
   font-size: 0.9rem;
+  margin: 0 calc(var(--side-margin) * -1);
+  padding: 2rem var(--side-margin);
+  margin-top: 3rem;
+  background: var(--white);
 
   p {
+    max-width: 60ch;
     margin: 1.8rem 0;
   }
 
@@ -35,5 +45,26 @@
 
   & :last-child {
     margin-bottom: 0;
+  }
+
+  @media (min-width: 720px) {
+    margin: 0;
+    padding: 0;
+    background: none;
+
+    & :first-child {
+      margin-top: 1.8rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    background: var(--white);
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 55px 99px rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+
+    & :first-child {
+      margin-top: 0;
+    }
   }
 }
