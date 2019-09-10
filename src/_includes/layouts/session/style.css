@@ -1,0 +1,36 @@
+.heading {
+  text-align: initial;
+  text-transform: none;
+}
+.heading:before {
+  display: none;
+}
+
+.taglist {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  font-size: 0.78rem;
+  height: 1em;
+  line-height: 1em;
+  padding: 1em 2em;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+  margin: 0 1em;
+  &:first-of-type {
+    margin-left: 0;
+  }
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.tag > a {
+  text-decoration: none;
+  color: var(--blue);
+}

@@ -1,7 +1,7 @@
 ---
-layout: layouts/content/index.njk
+layout: layouts/session/index.njk
 title: Making the web faster
-session-tags:
+session_tags:
   - Performance
   - Frameworks
 speakers:
