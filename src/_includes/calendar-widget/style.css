@@ -1,0 +1,47 @@
+.root {
+}
+
+.icon {
+  background: var(--blue);
+  border-radius: 0.9rem;
+  width: 5.8rem;
+  height: 5.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--white);
+}
+
+.day,
+.month {
+  display: block;
+  line-height: 1em;
+  text-align: center;
+}
+.day {
+  font-size: 3.8rem;
+}
+
+.month {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+}
+
+.date-container {
+}
+
+.weekday {
+  font-weight: bold;
+}
+.full-date {
+}
+.time {
+  --icon-size: 1em;
+}
+.time:before {
+  content: '';
+  background: url('confboxAsset(assets/clock.svg)') no-repeat;
+  background-size: contain;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}

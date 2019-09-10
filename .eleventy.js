@@ -93,6 +93,9 @@ module.exports = function(eleventyConfig) {
 
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', (timestamp, format) => {
+    if (typeof timestamp === 'string') {
+      timestamp = new Date(timestamp);
+    }
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
     return date.format(offsetTime, format);
   });
