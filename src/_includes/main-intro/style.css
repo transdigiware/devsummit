@@ -87,13 +87,15 @@
   }
 }
 
-.cal {
+.calicon,
+.callink {
   font-size: 0.75rem;
   padding: 0.9em 0;
   display: block;
   position: relative;
   white-space: nowrap;
-
+}
+.calicon {
   @media (min-width: 720px) {
     --icon-size: 1.5rem;
     padding-left: calc(var(--icon-size) + 0.6em);
