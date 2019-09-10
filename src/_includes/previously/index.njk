@@ -1,10 +1,38 @@
+
 {%- set moduleCSS = "/_includes/module.css" -%}
 {% css page, moduleCSS %}
 {%- set css = "/_includes/previously/style.css" -%}
 {% css page, css %}
 
+{%
+  set images = [
+    {url: "BE8A5681", alt: "Chrome Dev Summit 2018 lobby in the dark"},
+    {url: "BE8A6532", alt: "Chrome Dev Summit 2018 lobby in the light"},
+    {url: "CDSP18-056", alt: "Robert Nyman outside the sign-up tent"},
+    {url: "CDSP18-214", alt: "Attendee with baby"},
+    {url: "CDSP18-256", alt: "Google Developers certification stand"},
+    {url: "CDSP18-109", alt: "Speakers on stage"},
+    {url: "BE8A4369", alt: "Audience applauding"},
+    {url: "CDSP18-076", alt: "Stickers"},
+    {url: "BE8A4245", alt: "That moment where Jake dropped a cake"},
+    {url: "BE8A6854", alt: "Demos in the lobby"}
+  ]
+%}
+
+{% macro imageTag(image) %}
+  <img
+    decoding="async"
+    alt="{{ image.alt }}"
+    data-src="confboxAsset(/_includes/previously/assets/{{ image.url }}_1x.jpg)"
+    data-srcset="
+      confboxAsset(/_includes/previously/assets/{{ image.url }}_3x.jpg) 3x,
+      confboxAsset(/_includes/previously/assets/{{ image.url }}_2x.jpg) 2x
+    "
+  >
+{% endmacro %}
+
 <section class="{% className moduleCSS, 'root-alt' %}">
-  <h1 class="{% className moduleCSS, 'heading' %}">{% slugify "Previously" %}</h1>
+  <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug "Previously" %}</h1>
 
   <p>
     All previous sessions are on YouTube:
@@ -13,23 +41,22 @@
     <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj">2016</a>,
     <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICcHeQY02XLvoGL34rZFWZn">2015</a>. You get the picture!
   </p>
-
   <div class="{% className css, 'pics' %}">
     <div class="{% className css, 'initial-pics' %}">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
+      {{ imageTag(images[0]) }}
+      {{ imageTag(images[1]) }}
+      {{ imageTag(images[2]) }}
     </div>
     <div class="{% className css, 'extra-pics' %}">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
+      {{ imageTag(images[3]) }}
       <div></div>
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
+      {{ imageTag(images[4]) }}
+      {{ imageTag(images[5]) }}
+      {{ imageTag(images[6]) }}
       <div></div>
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
+      {{ imageTag(images[7]) }}
       <div></div>
-      <img decoding="async" data-src="confboxAsset(/_includes/previously/assets/cake-drop.jpg)" alt="Jake dropped the cake">
+      {{ imageTag(images[8]) }}
     </div>
   </div>
   <script async src="confboxAsset(/_includes/previously/script.js)"></script>

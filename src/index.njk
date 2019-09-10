@@ -1,13 +1,39 @@
 ---
-description: Connect with Chrome engineers and other leading developers for an exploration of building beautiful and performant experiences.
+description: Registration for the annual Chrome Dev Summit is open! Request your invite today.
 ---
 
 {% extends 'layouts/main/index.njk' %}
 
 {% block content %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "{{conf.conferenceName}}",
+      "startDate": "{% confDate conf.start, 'YYYY-MM-DDTHH:mm' %}",
+      "endDate": "{% confDate conf.end, 'YYYY-MM-DDTHH:mm' %}",
+      "location": {
+        "@type": "Place",
+        "name": "{{conf.venue.name}}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "{{conf.venue.streetAddress}}",
+          "addressLocality": "{{conf.venue.city}}",
+          "postalCode": "{{conf.venue.postalCode}}",
+          "addressRegion": "{{conf.venue.region}}",
+          "addressCountry": "{{conf.venue.country}}"
+        }
+      },
+      "image": [
+        "{{conf.origin}}confboxAsset(/assets/social-share.png)"
+      ],
+      "description": "{{conf.teaser}}"
+    }
+  </script>
+
   {% include 'main-intro/index.njk' %}
+  {% include 'livestream/index.njk' %}
   {% include 'sessions-promo/index.njk' %}
-  {% include 'about/index.njk' %}
   {% include 'previously/index.njk' %}
   {% include 'faq/index.njk' %}
 {% endblock %}

@@ -1,16 +1,11 @@
 .root,
 .root-alt {
-  --vertical-padding: 1.6rem;
+  --vertical-padding: 2.4rem;
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
 
   @media (min-width: 1280px) {
     --vertical-padding: 4.5rem;
-  }
-
-  @media (min-width: 1920px) {
-    padding: var(--vertical-padding)
-      calc((100vw - 1920px) / 2 + var(--side-margin));
   }
 }
 
@@ -22,6 +17,8 @@
   font: bold 2rem 'Google Sans', sans-serif;
   color: var(--grey);
   text-align: center;
+  position: relative;
+  margin-top: 0;
 
   @media (min-width: 480px) {
     text-transform: lowercase;
@@ -46,19 +43,24 @@
 }
 
 .heading-split {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
   margin: 1.66rem 0;
+  text-align: center;
 
-  & > :first-child {
-    flex: 1;
-    margin-right: 0.5em;
-  }
+  @media (min-width: 480px) {
+    text-align: left;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 
-  & > * {
-    margin-top: 0;
-    margin-bottom: 0;
+    & > :first-child {
+      flex: 1;
+      margin-right: 0.5em;
+    }
+
+    & > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 

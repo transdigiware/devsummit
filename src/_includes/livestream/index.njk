@@ -1,0 +1,18 @@
+{% extends "layouts/media-module/index.njk" %}
+
+{% block moduleClass %}{% className moduleCSS, 'root-alt' %}{% endblock %}
+
+{% block main %}
+  <h1 id="livestream" class="{% className moduleCSS, 'heading' %}">{% headingSlug "Livestream" %}</h1>
+
+  <p>We want Chrome Dev Summit to be exciting for everyone. If you can’t join us in person, become our livestream attendee to not only view all the sessions but also get access to our exclusive livestream-only content.</p>
+  <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" rel="noopener noreferrer" target="_blank">Sign up here</a> to stay up to date about the livestream and other event announcements.</p>
+{% endblock %}
+
+{% block media %}
+  {%- set utilsCSS = "/_includes/utils.css" -%}
+  {% css page, utilsCSS %}
+  <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+    <iframe class="{% className utilsCSS, 'media-fill' %}" src="https://www.youtube.com/embed/nImH_dq1NpM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+{% endblock %}

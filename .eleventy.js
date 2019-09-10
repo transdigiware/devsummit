@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const date = require('date-and-time');
 const nunjucks = require('nunjucks');
+const { dirname, basename } = require('path');
 
 const { utcOffset, path: confboxPath } = require('./lib/confbox-config');
 
@@ -67,23 +68,27 @@ module.exports = function(eleventyConfig) {
 
     if (set.has(url)) return '';
     set.add(url);
+
     return new nunjucks.runtime.SafeString(
-      `<link rel="stylesheet" href="confboxAsset(${url})">`,
+      `<style>confboxInline(confboxAsset(${url}))</style>`,
     );
   });
 
-  eleventyConfig.addShortcode('slugify', str => {
+  eleventyConfig.addShortcode('headingSlug', str => {
     return new nunjucks.runtime.SafeString(
       str.replace(
         /\s/g,
-        () => `
-          <span class=${modCSS.getClassName(
+        () =>
+          `<span class=${modCSS.getClassName(
             '/_includes/module.css',
             'slug-dash',
-          )}></span>
-        `,
+          )}></span>`,
       ),
     );
+  });
+
+  eleventyConfig.addShortcode('idify', str => {
+    return str.toLowerCase().replace(/\s/g, '-');
   });
 
   /** Format a date in the timezone of the conference */
@@ -93,7 +98,7 @@ module.exports = function(eleventyConfig) {
   });
 
   /** Get an ISO 8601 version of a date */
-  eleventyConfig.addShortcode('isoDate', (timestamp, format) => {
+  eleventyConfig.addShortcode('isoDate', timestamp => {
     return new Date(timestamp.valueOf()).toISOString();
   });
 
@@ -106,9 +111,15 @@ module.exports = function(eleventyConfig) {
     let section;
 
     for (const faq of faqs) {
-      if (!section || section.title !== faq.data.sectionTitle) {
+      const folder = basename(dirname(faq.data.page.inputPath));
+      if (!section || section.folder !== folder || faq.data.question) {
         section = {
-          title: faq.data.sectionTitle,
+          title: faq.data.question ? faq.data.title : faq.data.sectionTitle,
+          question: faq.data.question
+            ? faq.data.question
+            : faq.data.sectionQuestion,
+          answer: faq.data.question ? faq.data.answer : faq.data.sectionAnswer,
+          folder,
           items: [],
         };
         sections.push(section);
@@ -118,15 +129,6 @@ module.exports = function(eleventyConfig) {
     }
 
     return sections;
-  });
-
-  eleventyConfig.addCollection('featuredFAQs', collection => {
-    const faqs = collection
-      .getFilteredByTag('faq')
-      .filter(item => item.data.featured)
-      .sort((a, b) => a.data.featured - b.data.featured);
-
-    return faqs;
   });
 
   return config;

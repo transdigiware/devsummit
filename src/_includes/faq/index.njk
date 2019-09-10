@@ -6,18 +6,18 @@
 <section class="{% className moduleCSS, 'root' %} {% className css, 'root' %}">
   <div class="{% className moduleCSS, 'heading-split' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">FAQ</h1>
-    <a href="/faqs/" class="{% className moduleCSS, 'heading-link' %}">All {{ collections.faq.length }} frequently asked questions</a>
+    <a href="{{conf.path}}faqs/" class="{% className moduleCSS, 'heading-link' %}">All {{ collections.faq.length }} frequently asked questions</a>
   </div>
 
   <div class="{% className css, 'faq-container' %}">
     <div class="{% className css, 'faqs' %}">
-      {% for faq in collections.featuredFAQs %}
+      {% for faq in collections.faqs %}
         <section class="{% className css, 'faq' %}">
-          <h1 class="{% className css, 'faq-heading' %}">{{ faq.data.title }}</h1>
+          <h1 class="{% className css, 'faq-heading' %}">{{ faq.question }}</h1>
           <section class="{% className css, 'faq-content' %}">
-            {{ faq.templateContent | safe }}
+            <p>{{ faq.answer }} <a href="{{conf.path}}faqs/#{% idify faq.title %}">Read more</a>.</p>
           </section>
-        </section>
+        </section>  
       {% endfor %}
     </div>
   </div>

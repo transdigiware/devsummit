@@ -1,17 +1,10 @@
 {% extends "layouts/media-module/index.njk" %}
 
-{% block moduleClass %}{% className moduleCSS, 'root-alt' %}{% endblock %}
-
 {% block main %}
-  <h1 class="{% className moduleCSS, 'heading' %}">{% slugify "Sessions" %}</h1>
-
-  <p>
-    CDS is a <strong>single track event</strong> focusing on lorem ipsum dolor sit amet, consectetur adipiscing elit. CDS is a single track event focusing on lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  </p>
-
-  <p>
-    CDS is a single track event <strong>focusing on the web platform</strong> lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  </p>
+  <h1 id="sessions" class="{% className moduleCSS, 'heading' %}">{% headingSlug "Sessions" %}</h1>
+  <p>Chrome Dev Summit features a varied lineup of talks given by the Chrome team and community. The summit is a single-track event so everyone gets the opportunity to attend every session, fueling meaningful discussions among all attendees.</p>
+  <p>Over the two days, the team will deep-dive into the latest updates we're making to the browser, the platform and to our tools to improve developer productivity as they build pinnacle web experiences for their users.</p>
+  <p>We’ll be sharing more details as we get closer to the event.</p>
 {% endblock %}
 
 {% block media %}
@@ -23,6 +16,7 @@
       src="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg)"
       srcset="confboxAsset(/_includes/sessions-promo/assets/audience-small.jpg) 900w, confboxAsset(/_includes/sessions-promo/assets/audience-large.jpg) 1800w"
       sizes="(min-width: 1280px) 40vw, 100vw"
+      alt="Audience watching a talk"
     >
   </div>
 {% endblock %}

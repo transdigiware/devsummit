@@ -14,8 +14,20 @@
     font-size: 0.8rem;
   }
 
-  @media (min-width: 820px) {
+  @media (min-width: 960px) {
     font-size: 1rem;
+  }
+}
+
+/*
+  This hacks around the sticky header when scrolling into view.
+  This could be replaced by scroll-padding once all browsers have support.
+*/
+@media (min-width: 720px) {
+  :target {
+    --scroll-padding: 100px;
+    margin-top: calc(var(--scroll-padding) * -1);
+    padding-top: var(--scroll-padding);
   }
 }
 
@@ -89,16 +101,10 @@
 }
 
 .extra-links {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
-  grid-gap: 1.1em;
+  display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   margin: 4em 0;
-
-  @media (min-width: 320px) {
-    grid-gap: 1.4em;
-  }
 
   @media (min-width: 720px) {
     margin: 0;
@@ -109,15 +115,35 @@
     font-family: 'Google Sans', roboto, sans-serif;
     line-height: normal;
     font-size: 0.8em;
+    margin: 0.5em 0.55em;
+
+    @media (min-width: 320px) {
+      margin: 0.5em 0.7em;
+    }
 
     @media (min-width: 450px) {
       font-size: 1em;
     }
 
     @media (min-width: 720px) {
+      margin: 0 0.7em;
       font-size: 0.8em;
       color: var(--offblack);
       text-decoration: none;
+
+      &:hover {
+        color: var(--link-color);
+      }
     }
+  }
+}
+
+.community {
+  @media (min-width: 720px) {
+    display: none;
+  }
+
+  @media (min-width: 780px) {
+    display: inline;
   }
 }

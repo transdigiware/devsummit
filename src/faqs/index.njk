@@ -3,12 +3,34 @@ layout: layouts/content/index.njk
 title: FAQs
 description: Everything you need to know about Chrome Dev Summit.
 ---
-
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for section in collections.faqs %}
+      {
+        "@type": "Question",
+        "name": "{{section.question}}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{section.answer}} <a href=\"{{conf.origin}}{{conf.path}}faqs/#{% idify section.title %}\">Read more.</a>"
+        }
+      }
+      {% if not loop.last %}
+      ,
+      {% endif %}
+      {% endfor %}
+    ]
+  }
+</script>
 {% for section in collections.faqs %}
-  <h1>{{ section.title }}</h1>
+  <h1 id="{% idify section.title %}">{{ section.title }}</h1>
+  <em>{{ section.question }}</em>
+  <p>{{ section.answer | safe }}<p>
   {% for faq in section.items %}
     <section>
-      <h1>{{ faq.data.title }}</h1>
+      {% if (faq.data.title) and (faq.data.title != section.title) %}<h2 id="{% idify faq.data.title %}">{{ faq.data.title }}</h2>{% endif %}
       <section>
         {{ faq.templateContent | safe }}
       </section>
