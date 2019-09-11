@@ -6,8 +6,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem var(--side-margin);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+  padding: 3rem 1rem;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.13);
+  @media (min-width: 720px) {
+    box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
+  }
 }
 
 .icon {
@@ -40,6 +43,9 @@
 .date-container {
   margin-top: 1rem;
   font-size: 1.14rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .weekday {

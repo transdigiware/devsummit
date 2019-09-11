@@ -1,3 +1,7 @@
+.root {
+  color: var(--offblack);
+  padding-top: 10rem;
+}
 .heading {
   text-align: initial;
   text-transform: none;
@@ -10,6 +14,7 @@
 .speakerlist {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   list-style: none;
   margin: 0;
   margin-bottom: 4em;
@@ -25,6 +30,8 @@
   border-radius: 999px;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  background: var(--white);
+  flex-shrink: 0;
 }
 .tag {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
@@ -35,16 +42,75 @@
   color: var(--blue);
 }
 
-.description-heading {
+.factsheet {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-auto-rows: min-content 1fr;
+  grid-template-columns: 1fr;
+  margin-bottom: 5rem;
+
+  @media (min-width: 720px) {
+    grid-template-columns: repeat(2, calc(50% - 2.5rem));
+    grid-column-gap: 5rem;
+  }
+}
+
+.heading {
+  color: var(--darkgrey);
   margin-top: 6rem;
+  font-size: 2rem;
+}
+
+.factsheet .heading {
+  @media (min-width: 720px) {
+    margin-top: 0;
+  }
 }
 
 .description {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-rows: min-content 1fr;
+  grid-auto-rows: min-content 1fr;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  grid-auto-flow: dense;
+
+  @media (min-width: 720px) {
+    grid-template-columns: repeat(2, calc(50% - 2.5rem));
+    grid-column-gap: 5rem;
+  }
+}
+
+.description .heading {
+  margin: 0;
+  font-size: 1.64rem;
+  @media (min-width: 720px) {
+    grid-column: span 2;
+  }
+}
+
+.calendar {
+  @media (min-width: 720px) {
+    place-self: center;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+.description .text {
   margin: 0 calc(-1 * var(--side-margin));
   border-radius: 0.74rem;
   background: var(--white);
   padding: 0.3rem var(--side-margin);
   margin-bottom: 4rem;
+  @media (min-width: 720px) {
+    box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
+
+    grid-column: 2 / span 1;
+    margin: 0;
+    padding: 0.3rem 1.5rem;
+  }
 }
 
 .speaker {
@@ -53,7 +119,6 @@
   flex-direction: row;
   padding: 0.4rem 2rem 0.4rem 0.4rem;
   border: 1px solid var(--darkoffwhite);
-  background: var(--white);
 }
 
 .speaker-avatar {
@@ -79,6 +144,5 @@
   font-size: 0.85rem;
 }
 .speaker-title {
-  color: var(--offblack);
   font-size: 0.64rem;
 }

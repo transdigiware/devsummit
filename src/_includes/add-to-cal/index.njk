@@ -1,8 +1,13 @@
 {%- set css = "/_includes/add-to-cal/style.css" -%}
-{% css page, css %}
-<span class="{% className css, 'root' %}">
-  Add to:
-  <a href="#">Google</a>
-  <a href="#">Apple</a>
-  <a href="#">Outlook</a>
-</span>
+{% css page,
+css %}
+<div class="{% className css, 'root' %}">
+  <span class="{% className css, 'icon' %}">
+    Add to:
+  </span>
+  <span class="{% className css, 'links' %}">
+    <a href="#">Google</a>
+    <a href="#">Apple</a>
+    <a href="#">Outlook</a>
+  </span>
+</div>
