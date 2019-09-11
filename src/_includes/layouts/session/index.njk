@@ -7,16 +7,31 @@
   {% css page, sessionCSS %}
   {%- set css = "/_includes/content.css" -%}
   {% css page, css %}
-  <div class="{% className moduleCSS, 'root' %}">
+  <div class="{% className moduleCSS, 'root-alt' %}">
     <h1 class="{% className moduleCSS, 'heading' %} {% className sessionCSS, 'heading' %}">{{title}}</h1>
     <ul class="{% className sessionCSS, 'taglist' %}">
     {% for tag in session_tags -%}
       <li class="{% className sessionCSS, 'tag' %}"><a href="#">{{tag}}</a></li>
     {%- endfor %}
+    </ul>
 
     {% include "calendar-widget/index.njk" %}
-
     </ul>
+    <h2 class="{% className sessionCSS, 'description-heading' %}">Description</h2>
+    <section class="{% className sessionCSS, 'description' %}">
     {{ content | safe }}
+    </section>
+    <ul class="{% className sessionCSS, 'speakerlist' %}">
+    {% for speaker in speakers -%}
+        <li class="{% className sessionCSS, 'speaker' %}">
+          <img src="confboxAsset({% speakerAttr collections, speaker, "avatar" %})" class="{% className sessionCSS, 'speaker-avatar' %}">
+          <div class="{% className sessionCSS, 'speaker-creds' %}">
+            <div class="{% className sessionCSS, 'speaker-name' %}">{% speakerAttr collections, speaker, "name" %}</div>
+            <div class="{% className sessionCSS, 'speaker-title' %}">{% speakerAttr collections, speaker, "title" %}</div>
+          </div>
+        </li>
+    {%- endfor %}
+    </ul>
+    <!-- Resources here -->
   </div>
 {% endblock %}

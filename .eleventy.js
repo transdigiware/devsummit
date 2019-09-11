@@ -58,6 +58,16 @@ module.exports = function(eleventyConfig) {
     return '';
   });
 
+  eleventyConfig.addShortcode('speakerAttr', (collections, speakerId, attr) => {
+    const speaker = collections.speakers.find(speaker =>
+      speaker.inputPath.endsWith(`/${speakerId}.md`),
+    );
+    if (!speaker) {
+      throw Error(`Unknown speaker ${speakerId}`);
+    }
+    return new nunjucks.runtime.SafeString(speaker.data[attr]);
+  });
+
   /** Add some CSS, deduping anything along the way */
   eleventyConfig.addShortcode('css', (page, url) => {
     if (!cssPerPage.has(page.url)) {
