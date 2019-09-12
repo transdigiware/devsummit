@@ -13,7 +13,7 @@
   {% css page, moduleCSS %}
   {%- set css = "/_includes/content.css" -%}
   {% css page, css %}
-  <div class="{% className moduleCSS, 'root' %}">
+  <div class="{% className moduleCSS, 'root-alt' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug title %}</h1>
     <section class="{% className css, 'content-area' %}">
       {{ content | safe }}
