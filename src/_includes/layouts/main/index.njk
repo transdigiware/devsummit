@@ -43,6 +43,10 @@
     {% if conf.twitter %}
       <meta name="twitter:site" content="{{conf.twitter}}">
     {% endif %}
+
+    <script>
+      self.confUtcOffset = {% json conf.utcOffset %};
+    </script>
   </head>
   <body>
     {% include 'header/index.njk' %}

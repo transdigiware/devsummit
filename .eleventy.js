@@ -10,6 +10,16 @@ const {
   extraSchedule,
 } = require('./lib/confbox-config');
 
+function dateStrToTimestamp(dateStr) {
+  const result = date.parse(dateStr, 'YYYY/MM/DD HH:mm', true);
+  if (isNaN(result)) {
+    throw new TypeError(
+      `Invalid date. Must be in the format YYYY/MM/DD HH:mm'. Found: ${dateStr}`,
+    );
+  }
+  return result.valueOf() - utcOffset;
+}
+
 class ModularClassName {
   constructor(output) {
     this._output = output;
@@ -168,7 +178,7 @@ module.exports = function(eleventyConfig) {
     return sections;
   });
 
-  eleventyConfig.addCollection('schedule', collection => {
+  eleventyConfig.addCollection('jsSchedule', collection => {
     const schedule = [
       ...collection.getFilteredByTag('session').map(session => ({
         start: session.data.start,
@@ -178,6 +188,14 @@ module.exports = function(eleventyConfig) {
       })),
       ...extraSchedule,
     ];
+
+    for (const item of schedule) {
+      // Convert dates to timestamps
+      item.start = dateStrToTimestamp(item.start);
+      item.end = dateStrToTimestamp(item.end);
+    }
+
+    schedule.sort((a, b) => (a.start < b.start ? -1 : 1));
 
     return schedule;
   });

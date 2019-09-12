@@ -7,8 +7,8 @@ session_tags:
 speakers:
   - jake-archibald
   - surma
-start: 2019/11/11 09:00
-end: 2019/11/11 10:15
+start: 2019/11/11 10:00
+end: 2019/11/11 10:45
 ---
 
 How to make the web faster, by just doing lots of things and stuff.

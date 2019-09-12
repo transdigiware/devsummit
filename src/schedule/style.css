@@ -3,7 +3,7 @@
 }
 
 .schedule {
-  --initial-cell-size: 2.5rem;
+  --initial-cell-size: 3.6rem;
   display: flex;
   flex-flow: row wrap;
   padding: 0 var(--side-margin);
@@ -75,10 +75,10 @@
   grid-column: 1;
   font-size: 0.8rem;
   font-weight: normal;
-  text-align: right;
   display: flex;
   height: var(--row-min-height);
   align-items: center;
+  justify-content: flex-end;
 }
 
 .am-pm {

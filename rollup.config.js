@@ -1,6 +1,8 @@
 import { promises as fsp } from 'fs';
 
 import { terser } from 'rollup-plugin-terser';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
 
 import htmlCSSPlugin from './lib/html-css-plugin.js';
 import postCSSBuild from './lib/postcss-build.js';
@@ -8,6 +10,8 @@ import eleventyPlugin from './lib/11ty-plugin.js';
 import globInputPlugin from './lib/glob-input-plugin';
 import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
+import classnamePlugin from './lib/classname-plugin';
+import assetPlugin from './lib/asset-plugin';
 
 const confboxConfig = require('./confbox.config.js');
 
@@ -33,6 +37,7 @@ export default async function({ watch }) {
       exclude: '.build-tmp/**/*.html',
     },
     plugins: [
+      nodeResolve(),
       {
         resolveFileUrl({ fileName }) {
           return JSON.stringify(confboxConfig.path + fileName);
@@ -42,6 +47,11 @@ export default async function({ watch }) {
       eleventyPlugin(),
       globInputPlugin('.build-tmp/**/*.html'),
       htmlCSSPlugin(),
+      assetPlugin(),
+      classnamePlugin('.build-tmp'),
+      babel({
+        exclude: 'node_modules/**',
+      }),
       terser({ ecma: 8, module: true }),
       {
         // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
