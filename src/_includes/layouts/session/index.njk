@@ -2,21 +2,18 @@
 
 {% block content %}
   {%- set moduleCSS = "/_includes/module.css" -%}
-  {% css page,
-  moduleCSS %}
+  {% css page, moduleCSS %}
   {%- set sessionCSS = "/_includes/layouts/session/style.css" -%}
-  {% css page,
-  sessionCSS %}
+  {% css page, sessionCSS %}
   {%- set css = "/_includes/content.css" -%}
-  {% css page,
-  css %}
+  {% css page, css %}
   <div class="{% className moduleCSS, 'root-alt' %} {% className sessionCSS, 'root' %}">
     <section class="{% className sessionCSS, 'factsheet' %}">
       <h1 class="{% className moduleCSS, 'heading' %} {% className sessionCSS, 'heading' %}">{{title}}</h1>
       <ul class="{% className sessionCSS, 'taglist' %}">
         {% for tag in session_tags -%}
           <li class="{% className sessionCSS, 'tag' %}">
-            <a href="#">{{tag}}</a>
+            {{tag}}
           </li>
         {%- endfor %}
       </ul>

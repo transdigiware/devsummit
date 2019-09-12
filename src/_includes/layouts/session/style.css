@@ -34,12 +34,13 @@
   flex-shrink: 0;
 }
 .tag {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.13);
+  color: var(--blue);
 }
 
 .tag > a {
   text-decoration: none;
-  color: var(--blue);
+  color: inherit;
 }
 
 .factsheet {
