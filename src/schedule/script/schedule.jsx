@@ -26,8 +26,7 @@ export default class Schedule extends Component {
   constructor(props) {
     super(props);
   }
-  render({ items }) {
-    const utcOffset = self.confUtcOffset;
+  render({ items, utcOffset }) {
     let currentMonth = '';
     let currentDate = 0;
 
