@@ -4,7 +4,11 @@ const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
 
-const { utcOffset, path: confboxPath } = require('./lib/confbox-config');
+const {
+  utcOffset,
+  path: confboxPath,
+  extraSchedule,
+} = require('./lib/confbox-config');
 
 class ModularClassName {
   constructor(output) {
@@ -122,6 +126,14 @@ module.exports = function(eleventyConfig) {
     return string.replace(/\./g, '');
   });
 
+  /** Dump JSON data in a way that's safe to be output in HTML */
+  eleventyConfig.addShortcode('json', obj => {
+    return JSON.stringify(obj)
+      .replace(/<!--/g, '<\\!--')
+      .replace(/<script/g, '<\\script')
+      .replace(/<\/script/g, '<\\/script');
+  });
+
   /** Get an ISO 8601 version of a date */
   eleventyConfig.addShortcode('isoDate', timestamp => {
     return new Date(timestamp.valueOf()).toISOString();
@@ -154,6 +166,20 @@ module.exports = function(eleventyConfig) {
     }
 
     return sections;
+  });
+
+  eleventyConfig.addCollection('schedule', collection => {
+    const schedule = [
+      ...collection.getFilteredByTag('session').map(session => ({
+        start: session.data.start,
+        end: session.data.end,
+        title: session.data.title,
+        session: true,
+      })),
+      ...extraSchedule,
+    ];
+
+    return schedule;
   });
 
   return config;

@@ -24,4 +24,37 @@ description: Everything that's happening at Chrome Dev Summit.
       </div>
     </div>
   </div>
+
+  <div class="{% className css, 'schedule-block' %}">
+    <section class="{% className css, 'schedule' %}">
+      <div class="{% className css, 'day' %}">
+        <h1 class="{% className css, 'date' %}">
+          <span class="{% className css, 'date-name' %}">Nov</span>
+          <span class="{% className css, 'date-number' %}">11</span>
+        </h1>
+        <div class="{% className css, 'day-title' %}">
+          Day <span class="{% className css, 'day-number' %}">1</span>
+        </div>
+
+        <div class="{% className css, 'time-line' %} {% className css, 'day-gap' %}"></div>
+
+        <h2 class="{% className css, 'time' %}">
+          <time>8 <span class="{% className css, 'am-pm' %}">am</span></time>
+        </h2>
+        <div class="{% className css, 'time-line' %}">
+          <div class="{% className css, 'time-line-content' %}">
+            <div class="{% className css, 'icon-bubble' %}">
+              <img class="{% className css, 'icon' %}" src="confboxAsset('/schedule/assets/coffee.svg')" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="{% className css, 'item' %}">
+          <h3 class="{% className css, 'basic-item-title' %}">Registration &amp; breakfast</h3>
+        </div>
+      </div>
+    <section>
+  </div>
+  <script>
+    self.schedule = {% json collections.schedule %};
+  </script>
 {% endblock %}

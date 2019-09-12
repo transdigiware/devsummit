@@ -1,0 +1,146 @@
+.schedule-block {
+  background: var(--offwhite);
+}
+
+.schedule {
+  --initial-cell-size: 2.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 var(--side-margin);
+  margin-left: calc(var(--initial-cell-size) * -1);
+}
+
+.day {
+  display: grid;
+  grid-template-columns: var(--initial-cell-size) [central] max-content 0.4rem [last] 1fr;
+  --row-min-height: 2.3rem;
+}
+
+.date {
+  font-family: google sans, roboto, sans-serif;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1;
+  grid-column: central;
+  align-self: end;
+  background: var(--blue);
+  color: var(--white);
+  margin: 0;
+  padding: 0.5rem 0.8rem 0.25rem;
+  border-radius: 0.3rem;
+}
+
+.date-name {
+  text-transform: uppercase;
+  display: block;
+  font-size: 0.7rem;
+}
+
+.date-number {
+  display: block;
+  font-size: 1.7rem;
+}
+
+.day-title {
+  grid-column: last;
+  align-self: end;
+  color: var(--blue);
+  font: 700 1.3rem/1 google sans, roboto, sans-serif;
+  padding-bottom: 0.2rem;
+}
+
+.day-number {
+  display: inline-flex;
+  grid-column: last;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: var(--size);
+  font-size: 0.6rem;
+  --size: 1rem;
+  width: var(--size);
+  height: var(--size);
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  line-height: var(--size);
+}
+
+.divider {
+  grid-column: central / span 2;
+}
+
+.time {
+  align-self: start;
+  margin: 0;
+  grid-column: 1;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-align: right;
+  display: flex;
+  height: var(--row-min-height);
+  align-items: center;
+}
+
+.am-pm {
+  font-weight: lighter;
+}
+
+.time-line {
+  grid-column: central;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--lightlightgrey);
+  }
+}
+
+.time-line-content {
+  position: relative;
+  height: var(--row-min-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-gap {
+  height: 1rem;
+}
+
+.icon-bubble {
+  --size: 2rem;
+  background: var(--white);
+  border: 1px solid var(--lessdarkoffwhite);
+  border-radius: var(--size);
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 50%;
+}
+
+.photo {
+  width: 100%;
+}
+
+.item {
+  grid-column: last;
+}
+
+.basic-item-title {
+  height: var(--row-min-height);
+  font-size: 0.8rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
