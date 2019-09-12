@@ -50,9 +50,9 @@
   grid-template-columns: 1fr;
   margin-bottom: 5rem;
 
-  @media (min-width: 720px) {
-    grid-template-columns: repeat(2, calc(50% - 2.5rem));
-    grid-column-gap: 5rem;
+  @media (min-width: 960px) {
+    grid-template-columns: 400px 1fr;
+    grid-column-gap: 2rem;
   }
 }
 
@@ -63,9 +63,7 @@
 }
 
 .factsheet .heading {
-  @media (min-width: 720px) {
-    margin-top: 0;
-  }
+  margin-top: 0;
 }
 
 .description {
@@ -77,22 +75,22 @@
   grid-row-gap: 1rem;
   grid-auto-flow: dense;
 
-  @media (min-width: 720px) {
-    grid-template-columns: repeat(2, calc(50% - 2.5rem));
-    grid-column-gap: 5rem;
+  @media (min-width: 960px) {
+    grid-template-columns: 400px 1fr;
+    grid-column-gap: 2rem;
   }
 }
 
 .description .heading {
   margin: 0;
   font-size: 1.64rem;
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     grid-column: span 2;
   }
 }
 
 .calendar {
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     place-self: center;
     grid-column: 2;
     grid-row: 1 / span 2;
@@ -105,12 +103,15 @@
   background: var(--white);
   padding: 0.3rem var(--side-margin);
   margin-bottom: 4rem;
-  @media (min-width: 720px) {
+  @media (min-width: 960px) {
     box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
 
     grid-column: 2 / span 1;
     margin: 0;
     padding: 0.3rem 1.5rem;
+  }
+  p {
+    max-width: 66ch;
   }
 }
 
@@ -119,7 +120,7 @@
   display: flex;
   flex-direction: row;
   padding: 0.4rem 2rem 0.4rem 0.4rem;
-  border: 1px solid var(--darkoffwhite);
+  border: 1px solid var(--lessdarkoffwhite);
 }
 
 .speaker-avatar {

@@ -5,6 +5,9 @@
 }
 .links {
   white-space: nowrap;
+  & a {
+    margin: 0 0 0 0.2em;
+  }
 }
 .icon {
   position: relative;
@@ -23,9 +26,5 @@
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-  }
-
-  & a {
-    margin: 0 0 0 0.2em;
   }
 }
