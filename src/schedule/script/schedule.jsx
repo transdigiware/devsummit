@@ -17,9 +17,10 @@ import {
   icon as iconClass,
   item as itemClass,
   basicItemTitle as basicItemTitleClass,
+  dot as dotClass,
+  end as endClass,
 } from 'classnames:schedule/style.css';
 import months from './months';
-import coffeeImg from 'asset-url:../assets/coffee.svg';
 
 export default class Schedule extends Component {
   constructor(props) {
@@ -78,9 +79,13 @@ export default class Schedule extends Component {
                   </h2>
                   <div class={timeLineClass}>
                     <div class={timeLineContentClass}>
-                      <div class={iconBubbleClass}>
-                        <img class={iconClass} src={coffeeImg} alt="" />
-                      </div>
+                      {item.icon ? (
+                        <div class={iconBubbleClass}>
+                          <img class={iconClass} src={item.icon} alt="" />
+                        </div>
+                      ) : (
+                        <div class={dotClass}></div>
+                      )}
                     </div>
                   </div>
                   <div class={itemClass}>
@@ -89,6 +94,8 @@ export default class Schedule extends Component {
                 </>
               );
             })}
+
+            <div class={endClass}></div>
           </div>
         ))}
       </section>

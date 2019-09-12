@@ -144,3 +144,32 @@
   align-items: center;
   font-weight: normal;
 }
+
+.dot {
+  --size: 0.5rem;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+  background: var(--lightlightgrey);
+}
+
+.end {
+  grid-column: central;
+  position: relative;
+  height: var(--row-min-height);
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    --size: 0.7rem;
+    --sides: 0.6;
+    border-left: calc(var(--size) * var(--sides)) solid transparent;
+    border-right: calc(var(--size) * var(--sides)) solid transparent;
+    border-bottom: var(--size) solid var(--blue);
+  }
+}
