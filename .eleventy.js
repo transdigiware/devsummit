@@ -189,6 +189,8 @@ module.exports = function(eleventyConfig) {
         speakers: session.data.speakers,
         topics: session.data.topics,
         session: true,
+        // Accessing the templateContent right now throws an error
+        // but it can be accessed once templates are being processed.
         get body() {
           return session.templateContent;
         },
