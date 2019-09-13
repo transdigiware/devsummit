@@ -19,6 +19,11 @@ import {
   basicItemTitle as basicItemTitleClass,
   dot as dotClass,
   end as endClass,
+  avatars as avatarsClass,
+  sessionItem as sessionItemClass,
+  sessionItemTitle as sessionItemTitleClass,
+  topicList as topicListClass,
+  topic as topicClass,
 } from 'classnames:schedule/style.css';
 import months from './months';
 
@@ -82,13 +87,39 @@ export default class Schedule extends Component {
                         <div class={iconBubbleClass}>
                           <img class={iconClass} src={item.icon} alt="" />
                         </div>
+                      ) : item.speakers ? (
+                        <div class={iconBubbleClass}>
+                          <div class={avatarsClass}>
+                            {item.speakers.map(speaker => (
+                              <img src={speaker.avatar} alt={speaker.name} />
+                            ))}
+                          </div>
+                        </div>
                       ) : (
                         <div class={dotClass}></div>
                       )}
                     </div>
                   </div>
                   <div class={itemClass}>
-                    <h3 class={basicItemTitleClass}>{item.title}</h3>
+                    {item.body ? (
+                      <div class={sessionItemClass}>
+                        <h3 class={sessionItemTitleClass}>{item.title}</h3>
+                        <div
+                          dangerouslySetInnerHTML={{ __html: item.body }}
+                        ></div>
+                        {item.topics && (
+                          <ul class={topicListClass}>
+                            {item.topics.map(topic => (
+                              <li>
+                                <div class={topicClass}>{topic}</div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <h3 class={basicItemTitleClass}>{item.title}</h3>
+                    )}
                   </div>
                 </>
               );

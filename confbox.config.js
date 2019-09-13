@@ -50,12 +50,23 @@ module.exports = {
       title: 'Registration & breakfast',
       start: '2019/11/11 09:00',
       end: '2019/11/11 09:30',
-      icon: 'confboxAsset(/schedule/assets/coffee.svg)',
+      icon: '/schedule/assets/coffee.svg',
     },
     {
       title: 'Kick off',
       start: '2019/11/11 09:45',
       end: '2019/11/11 10:00',
+    },
+    {
+      title: 'Registration & breakfast',
+      start: '2019/11/12 09:00',
+      end: '2019/11/12 09:30',
+      icon: '/schedule/assets/coffee.svg',
+    },
+    {
+      title: 'Kick off',
+      start: '2019/11/12 09:45',
+      end: '2019/11/12 10:00',
     },
   ],
 };

@@ -179,21 +179,43 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addCollection('jsSchedule', collection => {
+    const speakers = collection.getFilteredByTag('speakers');
+
     const schedule = [
       ...collection.getFilteredByTag('session').map(session => ({
         start: session.data.start,
         end: session.data.end,
         title: session.data.title,
+        speakers: session.data.speakers,
+        topics: session.data.topics,
         session: true,
+        get body() {
+          return session.templateContent;
+        },
       })),
-      ...extraSchedule,
-    ];
-
-    for (const item of schedule) {
+      ...extraSchedule.map(obj => ({ ...obj })),
+    ].map(item => {
       // Convert dates to timestamps
       item.start = dateStrToTimestamp(item.start);
       item.end = dateStrToTimestamp(item.end);
-    }
+
+      if (item.icon) {
+        item.icon = `confboxAsset(${item.icon})`;
+      }
+
+      if (item.speakers) {
+        item.speakers = item.speakers.map(speakerId => {
+          const speaker = speakers.find(s => s.fileSlug == speakerId);
+          if (!speaker) throw new Error(`Could not find speaker: ${speakerId}`);
+          return {
+            name: speaker.data.name,
+            avatar: `confboxAsset(${speaker.data.avatar})`,
+          };
+        });
+      }
+
+      return item;
+    });
 
     schedule.sort((a, b) => (a.start < b.start ? -1 : 1));
 
