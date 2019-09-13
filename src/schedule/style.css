@@ -4,17 +4,29 @@
 
 .schedule {
   --initial-cell-size: 3.6rem;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  padding: 0 var(--side-margin);
-  margin-left: calc(var(--initial-cell-size) * -1);
+  padding: 2.7rem var(--side-margin);
+
+  @media (min-width: 720px) {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+  }
 }
 
 .day {
   display: grid;
-  grid-template-columns: var(--initial-cell-size) [central] max-content 0.4rem [last] 1fr;
-  --row-min-height: 2.6rem;
+  grid-template-columns: [first] max-content 0.4rem [last] 1fr;
+  max-width: 540px;
+  --row-min-height: 3.5rem;
+
+  @media (min-width: 720px) {
+    margin-right: 6rem;
+    --row-min-height: 2.7rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 .date {
@@ -22,7 +34,7 @@
   text-align: center;
   font-weight: 400;
   line-height: 1;
-  grid-column: central;
+  grid-column: first;
   align-self: end;
   background: var(--blue);
   color: var(--white);
@@ -67,27 +79,11 @@
 }
 
 .divider {
-  grid-column: central / span 2;
-}
-
-.time {
-  align-self: start;
-  margin: 0;
-  grid-column: 1;
-  font-size: 0.7rem;
-  font-weight: normal;
-  display: flex;
-  height: var(--row-min-height);
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.am-pm {
-  font-weight: lighter;
+  grid-column: first / span 2;
 }
 
 .time-line {
-  grid-column: central;
+  grid-column: first;
   position: relative;
 
   &::before {
@@ -103,10 +99,33 @@
 
 .time-line-content {
   position: relative;
-  height: var(--row-min-height);
+  min-height: var(--row-min-height);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+}
+
+.time {
+  line-height: 1;
+  background: var(--offwhite);
+  margin: 0.2rem 0 0;
+  font-size: 0.7rem;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+
+  @media (min-width: 720px) {
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 100%;
+  }
+}
+
+.am-pm {
+  font-weight: lighter;
 }
 
 .day-gap {
@@ -146,6 +165,14 @@
   font-weight: normal;
 }
 
+.basic-item-title-dot-align {
+  margin-top: 1.38rem;
+
+  @media (min-width: 720px) {
+    margin-top: 0.6rem;
+  }
+}
+
 .dot {
   --size: 0.5rem;
   width: var(--size);
@@ -155,7 +182,7 @@
 }
 
 .end {
-  grid-column: central;
+  grid-column: first;
   position: relative;
   height: var(--row-min-height);
 

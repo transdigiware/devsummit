@@ -24,6 +24,7 @@ import {
   sessionItemTitle as sessionItemTitleClass,
   topicList as topicListClass,
   topic as topicClass,
+  basicItemTitleDotAlign as basicItemTitleDotAlignClass,
 } from 'classnames:schedule/style.css';
 import months from './months';
 
@@ -74,13 +75,6 @@ export default class Schedule extends Component {
 
               return (
                 <>
-                  <h2 class={timeClass}>
-                    <time>
-                      {hours % 12}
-                      {minutes ? ':' + minutes : ''}{' '}
-                      <span class={amPmClass}>{hours < 12 ? 'am' : 'pm'}</span>
-                    </time>
-                  </h2>
                   <div class={timeLineClass}>
                     <div class={timeLineContentClass}>
                       {item.icon ? (
@@ -98,6 +92,15 @@ export default class Schedule extends Component {
                       ) : (
                         <div class={dotClass}></div>
                       )}
+                      <h2 class={timeClass}>
+                        <time>
+                          {hours % 12}
+                          {minutes ? ':' + minutes : ''}{' '}
+                          <span class={amPmClass}>
+                            {hours < 12 ? 'am' : 'pm'}
+                          </span>
+                        </time>
+                      </h2>
                     </div>
                   </div>
                   <div class={itemClass}>
@@ -118,7 +121,15 @@ export default class Schedule extends Component {
                         )}
                       </div>
                     ) : (
-                      <h3 class={basicItemTitleClass}>{item.title}</h3>
+                      <h3
+                        class={`${basicItemTitleClass} ${
+                          !item.icon && !item.speakers
+                            ? basicItemTitleDotAlignClass
+                            : ''
+                        }`}
+                      >
+                        {item.title}
+                      </h3>
                     )}
                   </div>
                 </>
