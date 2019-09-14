@@ -179,7 +179,7 @@ module.exports = function(eleventyConfig) {
         buildScheduleData(sessions, speakers),
         utcOffset,
         modCSS.getAllCamelCased('/schedule/style.css'),
-      ).toString(),
+      ),
     );
   });
 

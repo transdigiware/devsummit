@@ -132,5 +132,6 @@ module.exports = function createScheduleHtml(items, utcOffset, classNameMap) {
         `,
       )}
     </section>
-  `;
+  `.toString();
+  // Nunjucks has bugs with String objects, so we to toString to get a primitive.
 };
