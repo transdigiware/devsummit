@@ -2,7 +2,7 @@ import { promises as fsp } from 'fs';
 
 import { terser } from 'rollup-plugin-terser';
 import nodeResolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
 
 import htmlCSSPlugin from './lib/html-css-plugin.js';
 import postCSSBuild from './lib/postcss-build.js';
@@ -39,6 +39,7 @@ export default async function({ watch }) {
     },
     plugins: [
       nodeResolve(),
+      commonjs(),
       {
         resolveFileUrl({ fileName }) {
           return JSON.stringify(confboxConfig.path + fileName);
@@ -51,9 +52,6 @@ export default async function({ watch }) {
       assetPlugin(),
       classnamePlugin('.build-tmp'),
       confboxConfigPlugin(),
-      babel({
-        exclude: 'node_modules/**',
-      }),
       terser({ ecma: 8, module: true }),
       {
         // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where

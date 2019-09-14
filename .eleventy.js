@@ -3,6 +3,7 @@ const fs = require('fs');
 const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
+const createSchedule = require('./src/schedule/script/create-schedule');
 
 const {
   utcOffset,
@@ -20,12 +21,56 @@ function dateStrToTimestamp(dateStr) {
   return result.valueOf() - utcOffset;
 }
 
+function buildScheduleData(sessions, speakers) {
+  const schedule = [
+    ...sessions.map(session => ({
+      start: session.data.start,
+      end: session.data.end,
+      title: session.data.title,
+      speakers: session.data.speakers,
+      topics: session.data.topics,
+      session: true,
+      // Accessing the templateContent right now throws an error
+      // but it can be accessed once templates are being processed.
+      get body() {
+        return session.templateContent;
+      },
+    })),
+    ...extraSchedule.map(obj => ({ ...obj })),
+  ].map(item => {
+    // Convert dates to timestamps
+    item.start = dateStrToTimestamp(item.start);
+    item.end = dateStrToTimestamp(item.end);
+
+    if (item.icon) {
+      item.icon = `confboxAsset(${item.icon})`;
+    }
+
+    if (item.speakers) {
+      item.speakers = item.speakers.map(speakerId => {
+        const speaker = speakers.find(s => s.fileSlug == speakerId);
+        if (!speaker) throw new Error(`Could not find speaker: ${speakerId}`);
+        return {
+          name: speaker.data.name,
+          avatar: `confboxAsset(${speaker.data.avatar})`,
+        };
+      });
+    }
+
+    return item;
+  });
+
+  schedule.sort((a, b) => (a.start < b.start ? -1 : 1));
+
+  return schedule;
+}
+
 class ModularClassName {
   constructor(output) {
     this._output = output;
     this._cache = new Map();
   }
-  getClassName(css, className) {
+  _getData(css) {
     if (!css.startsWith('/')) {
       throw new TypeError('CSS path must be absolute (starts with /)');
     }
@@ -38,13 +83,26 @@ class ModularClassName {
       this._cache.set(css, JSON.parse(json));
     }
 
-    const data = this._cache.get(css);
+    return this._cache.get(css);
+  }
+  getClassName(css, className) {
+    const data = this._getData(css);
 
     if (!(className in data)) {
       throw new TypeError(`Cannot find className "${className}" in ${css}`);
     }
 
     return data[className];
+  }
+  getAllCamelCased(css) {
+    const output = {};
+    const data = this._getData(css);
+
+    for (const [key, val] of Object.entries(data)) {
+      output[key.replace(/-\w/g, match => match[1].toUpperCase())] = val;
+    }
+
+    return output;
   }
 }
 
@@ -115,6 +173,16 @@ module.exports = function(eleventyConfig) {
     return str.toLowerCase().replace(/\s/g, '-');
   });
 
+  eleventyConfig.addShortcode('schedule', (sessions, speakers) => {
+    return new nunjucks.runtime.SafeString(
+      createSchedule(
+        buildScheduleData(sessions, speakers),
+        utcOffset,
+        modCSS.getAllCamelCased('/schedule/style.css'),
+      ).toString(),
+    );
+  });
+
   function confDate(timestamp, format) {
     if (typeof timestamp === 'string') {
       timestamp = new Date(timestamp);
@@ -124,6 +192,7 @@ module.exports = function(eleventyConfig) {
   }
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', confDate);
+
   eleventyConfig.addShortcode('confDateMinutesIfNotZero', timestamp => {
     const string = confDate(timestamp, 'mm');
     if (string === '00') {
@@ -131,6 +200,7 @@ module.exports = function(eleventyConfig) {
     }
     return ':' + string;
   });
+
   eleventyConfig.addShortcode('confDateAmPm', timestamp => {
     const string = confDate(timestamp, 'A');
     return string.replace(/\./g, '');
@@ -179,49 +249,10 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addCollection('jsSchedule', collection => {
-    const speakers = collection.getFilteredByTag('speakers');
-
-    const schedule = [
-      ...collection.getFilteredByTag('session').map(session => ({
-        start: session.data.start,
-        end: session.data.end,
-        title: session.data.title,
-        speakers: session.data.speakers,
-        topics: session.data.topics,
-        session: true,
-        // Accessing the templateContent right now throws an error
-        // but it can be accessed once templates are being processed.
-        get body() {
-          return session.templateContent;
-        },
-      })),
-      ...extraSchedule.map(obj => ({ ...obj })),
-    ].map(item => {
-      // Convert dates to timestamps
-      item.start = dateStrToTimestamp(item.start);
-      item.end = dateStrToTimestamp(item.end);
-
-      if (item.icon) {
-        item.icon = `confboxAsset(${item.icon})`;
-      }
-
-      if (item.speakers) {
-        item.speakers = item.speakers.map(speakerId => {
-          const speaker = speakers.find(s => s.fileSlug == speakerId);
-          if (!speaker) throw new Error(`Could not find speaker: ${speakerId}`);
-          return {
-            name: speaker.data.name,
-            avatar: `confboxAsset(${speaker.data.avatar})`,
-          };
-        });
-      }
-
-      return item;
-    });
-
-    schedule.sort((a, b) => (a.start < b.start ? -1 : 1));
-
-    return schedule;
+    return buildScheduleData(
+      collection.getFilteredByTag('session'),
+      collection.getFilteredByTag('speakers'),
+    );
   });
 
   return config;
