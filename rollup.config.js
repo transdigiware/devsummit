@@ -12,6 +12,7 @@ import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
 import assetPlugin from './lib/asset-plugin';
+import confboxConfigPlugin from './lib/confbox-config-plugin';
 
 const confboxConfig = require('./confbox.config.js');
 
@@ -49,6 +50,7 @@ export default async function({ watch }) {
       htmlCSSPlugin(),
       assetPlugin(),
       classnamePlugin('.build-tmp'),
+      confboxConfigPlugin(),
       babel({
         exclude: 'node_modules/**',
       }),
