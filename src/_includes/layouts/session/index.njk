@@ -1,0 +1,47 @@
+{% extends 'layouts/main/index.njk' %}
+
+{% block content %}
+  {%- set moduleCSS = "/_includes/module.css" -%}
+  {% css page, moduleCSS %}
+  {%- set sessionCSS = "/_includes/layouts/session/style.css" -%}
+  {% css page, sessionCSS %}
+  {%- set css = "/_includes/content.css" -%}
+  {% css page, css %}
+  <div class="{% className moduleCSS, 'root-alt' %} {% className sessionCSS, 'root' %}">
+    <section class="{% className sessionCSS, 'factsheet' %}">
+      <h1 class="{% className moduleCSS, 'heading' %} {% className sessionCSS, 'heading' %}">{{title}}</h1>
+      <ul class="{% className sessionCSS, 'taglist' %}">
+        {% for tag in session_tags -%}
+          <li class="{% className sessionCSS, 'tag' %}">
+            {{tag}}
+          </li>
+        {%- endfor %}
+      </ul>
+
+      <div class="{% className sessionCSS, 'calendar' %}">
+        {% include "calendar-widget/index.njk" %}
+      </div>
+    </section>
+    <section class="{% className sessionCSS, 'description' %}">
+      <h2 class="{% className sessionCSS, 'heading' %}">Description</h2>
+      <div class="{% className sessionCSS, 'text' %}">
+        {{ content | safe }}
+      </div>
+      <ul class="{% className sessionCSS, 'speakerlist' %}">
+        {% for speaker in speakers -%}
+          <li class="{% className sessionCSS, 'speaker' %}">
+            <img src="confboxAsset({% speakerAttr collections, speaker, "avatar" %})" class="{% className sessionCSS, 'speaker-avatar' %}">
+            <div class="{% className sessionCSS, 'speaker-creds' %}">
+              <div class="{% className sessionCSS, 'speaker-name' %}">{% speakerAttr collections,
+                speaker,
+                "name" %}</div>
+              <div class="{% className sessionCSS, 'speaker-title' %}">{% speakerAttr collections,
+                speaker,
+                "title" %}</div>
+            </div>
+          </li>
+        {%- endfor %}
+      </ul>
+    </section>
+  </div>
+{% endblock %}

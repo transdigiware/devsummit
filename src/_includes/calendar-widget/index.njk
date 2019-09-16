@@ -1,0 +1,14 @@
+{%- set css = "/_includes/calendar-widget/style.css" -%}
+{% css page, css %}
+<aside class="{% className css, 'root' %}">
+  <div class="{% className css, 'icon' %}">
+    <span class="{% className css, 'month' %}">{% confDate start, 'MMM' %}</span>
+    <span class="{% className css, 'day' %}">{% confDate start, 'DD' %}</span>
+  </div>
+  <div class="{% className css, 'date-container' %}">
+  <span class="{% className css, 'weekday' %}">{% confDate start, 'dddd' %},&nbsp;</span>
+    <span class="{% className css, 'full-date' %}">{% confDate start, 'MMMM DD' %}</span>
+  </div>
+  <div class="{% className css, 'time' %}">{% confDate start, 'h' %}{% confDateMinutesIfNotZero start %}{% confDateAmPm start %}</div>
+  {% include "add-to-cal/index.njk" %}
+</aside>

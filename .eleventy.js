@@ -58,6 +58,16 @@ module.exports = function(eleventyConfig) {
     return '';
   });
 
+  eleventyConfig.addShortcode('speakerAttr', (collections, speakerId, attr) => {
+    const speaker = collections.speakers.find(speaker =>
+      speaker.inputPath.endsWith(`/${speakerId}.md`),
+    );
+    if (!speaker) {
+      throw Error(`Unknown speaker ${speakerId}`);
+    }
+    return new nunjucks.runtime.SafeString(speaker.data[attr]);
+  });
+
   /** Add some CSS, deduping anything along the way */
   eleventyConfig.addShortcode('css', (page, url) => {
     if (!cssPerPage.has(page.url)) {
@@ -91,10 +101,25 @@ module.exports = function(eleventyConfig) {
     return str.toLowerCase().replace(/\s/g, '-');
   });
 
-  /** Format a date in the timezone of the conference */
-  eleventyConfig.addShortcode('confDate', (timestamp, format) => {
+  function confDate(timestamp, format) {
+    if (typeof timestamp === 'string') {
+      timestamp = new Date(timestamp);
+    }
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
     return date.format(offsetTime, format);
+  }
+  /** Format a date in the timezone of the conference */
+  eleventyConfig.addShortcode('confDate', confDate);
+  eleventyConfig.addShortcode('confDateMinutesIfNotZero', timestamp => {
+    const string = confDate(timestamp, 'mm');
+    if (string === '00') {
+      return '';
+    }
+    return ':' + string;
+  });
+  eleventyConfig.addShortcode('confDateAmPm', timestamp => {
+    const string = confDate(timestamp, 'A');
+    return string.replace(/\./g, '');
   });
 
   /** Get an ISO 8601 version of a date */
