@@ -3,6 +3,7 @@ layout: layouts/content/index.njk
 title: FAQs
 description: Everything you need to know about Chrome Dev Summit.
 ---
+{% block content %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,7 +26,7 @@ description: Everything you need to know about Chrome Dev Summit.
   }
 </script>
 
-{%- set contentCSS = '/_includes/content.css' -%}
+{%- set contentCSS = "/_includes/content.css" -%}
 {% css page, contentCSS %}
 {%- set faqCSS = "/faqs/styles.css" -%}
 {% css page, faqCSS %}
@@ -46,3 +47,4 @@ description: Everything you need to know about Chrome Dev Summit.
     {% endfor %}
   </section>
 {% endfor %}
+{% endblock %}
