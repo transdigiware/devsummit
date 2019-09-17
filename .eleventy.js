@@ -30,6 +30,7 @@ function buildScheduleData(sessions, speakers) {
       speakers: session.data.speakers,
       topics: session.data.topics,
       session: true,
+      fileSlug: session.fileSlug,
       // Accessing the templateContent right now throws an error
       // but it can be accessed once templates are being processed.
       get body() {
@@ -183,6 +184,7 @@ module.exports = function(eleventyConfig) {
         buildScheduleData(sessions, speakers),
         utcOffset,
         modCSS.getAllCamelCased('/schedule/style.css'),
+        confboxPath,
       ),
     );
   });

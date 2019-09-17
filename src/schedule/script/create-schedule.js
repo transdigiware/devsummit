@@ -1,7 +1,12 @@
 const months = require('./months');
 const { html, safe } = require('../../script/escape-html');
 
-module.exports = function createScheduleHtml(items, utcOffset, classNameMap) {
+module.exports = function createScheduleHtml(
+  items,
+  utcOffset,
+  classNameMap,
+  confPath,
+) {
   let currentMonth = '';
   let currentDate = 0;
 
@@ -90,27 +95,32 @@ module.exports = function createScheduleHtml(items, utcOffset, classNameMap) {
                 <div class="${classNameMap['item']}">
                   ${item.body
                     ? html`
-                        <div class="${classNameMap['sessionItem']}">
-                          <h3 class="${classNameMap['sessionItemTitle']}">
-                            ${item.title}
-                          </h3>
-                          <div>${safe(item.body)}</div>
-                          ${item.topics
-                            ? html`
-                                <ul class="${classNameMap['topicList']}">
-                                  ${item.topics.map(
-                                    topic => html`
-                                      <li>
-                                        <div class="${classNameMap['topic']}">
-                                          ${topic}
-                                        </div>
-                                      </li>
-                                    `,
-                                  )}
-                                </ul>
-                              `
-                            : ''}
-                        </div>
+                        <a
+                          class="${classNameMap['sessionLink']}"
+                          href="${confPath}sessions/${item.fileSlug}"
+                        >
+                          <div class="${classNameMap['sessionItem']}">
+                            <h3 class="${classNameMap['sessionItemTitle']}">
+                              ${item.title}
+                            </h3>
+                            <div>${safe(item.body)}</div>
+                            ${item.topics
+                              ? html`
+                                  <ul class="${classNameMap['topicList']}">
+                                    ${item.topics.map(
+                                      topic => html`
+                                        <li>
+                                          <div class="${classNameMap['topic']}">
+                                            ${topic}
+                                          </div>
+                                        </li>
+                                      `,
+                                    )}
+                                  </ul>
+                                `
+                              : ''}
+                          </div>
+                        </a>
                       `
                     : html`
                         <h3
