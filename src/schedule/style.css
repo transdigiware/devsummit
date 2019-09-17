@@ -59,7 +59,7 @@
   align-self: end;
   color: var(--blue);
   font: 700 1.3rem/1 google sans, roboto, sans-serif;
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.35rem;
 }
 
 .day-number {
@@ -221,7 +221,7 @@
   padding: 0.85rem 1.4em;
   position: relative;
   border-radius: 0.4rem;
-  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.08);
+  filter: drop-shadow(5px 5px 16px rgba(0, 0, 0, 0.08));
   color: var(--offblack);
   line-height: 1.33;
 
