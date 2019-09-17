@@ -2,12 +2,9 @@
   background: var(--offwhite);
   padding: 3rem var(--side-margin) 0;
 
-  @media (min-width: 720px) {
+  @media (min-width: 1280px) {
     padding: 8rem var(--side-margin) 2rem;
     min-height: 11rem;
-  }
-
-  @media (min-width: 1280px) {
     display: grid;
     grid-template-columns: 1fr 54%;
     grid-column-gap: 4rem;
@@ -47,17 +44,8 @@
     margin-bottom: 0;
   }
 
-  @media (min-width: 720px) {
-    margin: 0;
-    padding: 0;
-    background: none;
-
-    & :first-child {
-      margin-top: 1.8rem;
-    }
-  }
-
   @media (min-width: 1280px) {
+    margin: 0;
     background: var(--white);
     padding: 1.6rem 1.8rem;
     box-shadow: 0 55px 99px rgba(0, 0, 0, 0.15);

@@ -1,7 +1,6 @@
 .root {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: inline-block;
+  text-align: center;
 }
 .links {
   white-space: nowrap;
@@ -11,7 +10,6 @@
 }
 .icon {
   position: relative;
-  white-space: nowrap;
   --icon-size: 1.5rem;
   padding-left: calc(var(--icon-size) + 0.6em);
   margin-right: 0.5rem;

@@ -24,4 +24,10 @@ description: Everything that's happening at Chrome Dev Summit.
       </div>
     </div>
   </div>
+
+  <div class="{% className css, 'schedule-block' %}">{% schedule collections.session, collections.speakers %}</div>
+  <script>
+    self.schedule = {% json collections.jsSchedule %};
+  </script>
+  <script async src="confboxAsset(/schedule/script/index.js)"></script>
 {% endblock %}

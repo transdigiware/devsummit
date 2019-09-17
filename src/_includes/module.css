@@ -14,7 +14,7 @@
 }
 
 .heading {
-  font: bold 2rem 'Google Sans', sans-serif;
+  font: bold 2rem 'Google Sans', roboto, sans-serif;
   color: var(--grey);
   text-align: center;
   position: relative;
