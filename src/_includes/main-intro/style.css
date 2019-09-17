@@ -66,6 +66,7 @@
   max-width: 530px;
   line-height: 2;
   margin: 2.1em auto;
+  color: var(--black);
 }
 
 .actions {
