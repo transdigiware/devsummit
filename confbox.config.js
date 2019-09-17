@@ -31,9 +31,9 @@ module.exports = {
   twitter: '@ChromiumDev',
   /**
    * Timezone of the conference, in the form [+-]HHMM.
-   * Examples: -0800, +0100, +0530
+   * Examples: -0700, +0100, +0530
    */
-  timezone: '-0800',
+  timezone: '-0700',
   /**
    * Start of conference in the above timezone, in the format: YYYY/MM/DD HH:mm.
    */

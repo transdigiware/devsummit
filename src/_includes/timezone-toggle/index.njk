@@ -1,0 +1,13 @@
+<form style="visibility:hidden">
+  Timezone:
+  <label><input name="timezone" type="radio" checked> <span>Venue time</span></label>
+  <label><input name="timezone" type="radio"> <span>Your time</span></label>
+</form>
+<script>
+  {
+    const form = document.currentScript.previousElementSibling;
+    import('confboxAsset(/_includes/timezone-toggle/script/index.js)').then(
+      ({ enhance }) => enhance(form)
+    );
+  }
+</script>
