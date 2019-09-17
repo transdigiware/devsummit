@@ -47,26 +47,50 @@ module.exports = {
    */
   extraSchedule: [
     {
-      title: 'Registration & breakfast',
-      start: '2019/11/11 09:00',
-      end: '2019/11/11 09:30',
+      title: 'Intro',
+      start: '2019/11/11 09:50',
+      end: '2019/11/11 10:05',
+    },
+    {
+      title: 'Break',
+      start: '2019/11/11 11:35',
+      end: '2019/11/11 12:15',
       icon: '/schedule/assets/coffee.svg',
     },
     {
-      title: 'Kick off',
-      start: '2019/11/11 09:45',
-      end: '2019/11/11 10:00',
+      title: 'Lunch',
+      start: '2019/11/11 13:25',
+      end: '2019/11/11 14:35',
+      icon: '/schedule/assets/food.svg',
     },
     {
-      title: 'Registration & breakfast',
-      start: '2019/11/12 09:00',
-      end: '2019/11/12 09:30',
+      title: 'Break',
+      start: '2019/11/11 15:45',
+      end: '2019/11/11 16:15',
       icon: '/schedule/assets/coffee.svg',
     },
     {
-      title: 'Kick off',
-      start: '2019/11/12 09:45',
+      title: 'Intro',
+      start: '2019/11/12 09:50',
       end: '2019/11/12 10:00',
+    },
+    {
+      title: 'Break',
+      start: '2019/11/12 11:45',
+      end: '2019/11/12 12:15',
+      icon: '/schedule/assets/coffee.svg',
+    },
+    {
+      title: 'Lunch',
+      start: '2019/11/12 13:25',
+      end: '2019/11/12 14:35',
+      icon: '/schedule/assets/food.svg',
+    },
+    {
+      title: 'Break',
+      start: '2019/11/12 15:45',
+      end: '2019/11/12 16:15',
+      icon: '/schedule/assets/coffee.svg',
     },
   ],
 };

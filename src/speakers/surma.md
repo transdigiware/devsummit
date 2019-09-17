@@ -1,7 +1,5 @@
 ---
 name: Surma
-title: Developer Advocate
+title: Google
 avatar: /assets/speakers/surma.jpg
 ---
-
-This could be a bio!

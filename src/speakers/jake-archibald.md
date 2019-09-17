@@ -1,7 +1,5 @@
 ---
 name: Jake Archibald
-title: Developer Advocate
+title: Google
 avatar: /assets/speakers/jake-archibald.jpg
 ---
-
-This could be a bio!

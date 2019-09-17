@@ -270,3 +270,11 @@
   margin-right: 0.4em;
   margin: 0.4em 0.4em 0 0;
 }
+
+.session-link {
+  text-decoration: none;
+
+  &:hover .session-item-title {
+    text-decoration: underline;
+  }
+}
