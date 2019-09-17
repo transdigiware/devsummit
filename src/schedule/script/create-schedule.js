@@ -79,10 +79,10 @@ module.exports = function createScheduleHtml(items, utcOffset, classNameMap) {
                         `}
                     <h2 class="${classNameMap['time']}">
                       <time>
-                        ${hours % 12} ${minutes ? ':' + minutes : ''}
-                        <span class="${classNameMap['amPm']}">
-                          ${hours < 12 ? 'am' : 'pm'}
-                        </span>
+                        ${hours % 12 || 12}${minutes ? ':' + minutes : ''}
+                        <span class="${classNameMap['amPm']}"
+                          >${hours < 12 ? 'am' : 'pm'}</span
+                        >
                       </time>
                     </h2>
                   </div>
@@ -124,6 +124,7 @@ module.exports = function createScheduleHtml(items, utcOffset, classNameMap) {
                         </h3>
                       `}
                 </div>
+                <div class="${classNameMap['rowGap']}"></div>
               `;
             })}
 

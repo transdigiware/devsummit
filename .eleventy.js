@@ -52,7 +52,8 @@ function buildScheduleData(sessions, speakers) {
         if (!speaker) throw new Error(`Could not find speaker: ${speakerId}`);
         return {
           name: speaker.data.name,
-          avatar: `confboxAsset(${speaker.data.avatar})`,
+          avatar: `confboxAsset(${speaker.data.avatar ||
+            '/assets/speakers/default.svg'})`,
         };
       });
     }
@@ -130,15 +131,18 @@ module.exports = function(eleventyConfig) {
     return '';
   });
 
-  eleventyConfig.addShortcode('speakerAttr', (collections, speakerId, attr) => {
-    const speaker = collections.speakers.find(speaker =>
-      speaker.inputPath.endsWith(`/${speakerId}.md`),
-    );
-    if (!speaker) {
-      throw Error(`Unknown speaker ${speakerId}`);
-    }
-    return new nunjucks.runtime.SafeString(speaker.data[attr]);
-  });
+  eleventyConfig.addShortcode(
+    'speakerAttr',
+    (collections, speakerId, attr, fallback) => {
+      const speaker = collections.speakers.find(speaker =>
+        speaker.inputPath.endsWith(`/${speakerId}.md`),
+      );
+      if (!speaker) {
+        throw Error(`Unknown speaker ${speakerId}`);
+      }
+      return new nunjucks.runtime.SafeString(speaker.data[attr] || fallback);
+    },
+  );
 
   /** Add some CSS, deduping anything along the way */
   eleventyConfig.addShortcode('css', (page, url) => {

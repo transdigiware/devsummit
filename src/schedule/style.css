@@ -82,7 +82,8 @@
   grid-column: first / span 2;
 }
 
-.time-line {
+.time-line,
+.row-gap {
   grid-column: first;
   position: relative;
 
@@ -95,6 +96,10 @@
     width: 1px;
     background: var(--lightlightgrey);
   }
+}
+
+.row-gap {
+  height: 1.8rem;
 }
 
 .time-line-content {
