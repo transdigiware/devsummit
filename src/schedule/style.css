@@ -1,3 +1,19 @@
+.tz-switch {
+  margin: 0 auto;
+  width: max-content;
+  text-align: center;
+
+  @media (min-width: 480px) {
+    margin-right: 0;
+    text-align: right;
+  }
+}
+
+.tz-switch-title {
+  font-weight: bold;
+  margin: 0.3em;
+}
+
 .schedule-block {
   background: var(--offwhite);
 }
@@ -112,15 +128,16 @@
 }
 
 .time {
+  font-size: 1rem;
   line-height: 1;
   background: var(--offwhite);
   margin: 0.2rem 0 0;
-  font-size: 0.7rem;
   font-weight: normal;
   text-align: center;
   white-space: nowrap;
 
   @media (min-width: 720px) {
+    font-size: 0.7rem;
     margin-top: 0;
     position: absolute;
     top: 50%;
@@ -163,15 +180,19 @@
 }
 
 .basic-item-title {
-  font-size: 0.7rem;
+  font-size: 1rem;
   margin: 0.6rem 0 0;
   display: flex;
   align-items: center;
   font-weight: normal;
+
+  @media (min-width: 720px) {
+    font-size: 0.7rem;
+  }
 }
 
 .basic-item-title-dot-align {
-  margin-top: 1.38rem;
+  margin-top: 1.08rem;
 
   @media (min-width: 720px) {
     margin-top: 0.6rem;
@@ -221,7 +242,6 @@
 }
 
 .session-item {
-  font-size: 0.7rem;
   background: var(--white);
   padding: 0.85rem 1.4em;
   position: relative;
@@ -229,6 +249,10 @@
   filter: drop-shadow(5px 5px 16px rgba(0, 0, 0, 0.08));
   color: var(--offblack);
   line-height: 1.33;
+
+  @media (min-width: 720px) {
+    font-size: 0.7rem;
+  }
 
   &::before {
     content: '';
@@ -262,13 +286,17 @@
 }
 
 .topic {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   border: 1px solid var(--lessdarkoffwhite);
   padding: 0.3em 0.8em;
   background: var(--offwhite);
   border-radius: 100px;
   margin-right: 0.4em;
   margin: 0.4em 0.4em 0 0;
+
+  @media (min-width: 720px) {
+    font-size: 0.6rem;
+  }
 }
 
 .session-link {

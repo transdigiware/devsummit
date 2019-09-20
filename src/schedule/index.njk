@@ -21,11 +21,14 @@ description: Everything that's happening at Chrome Dev Summit.
       <div class="{% className pageCSS, 'boxed-content' %}">
         <p>Need copy! We will <strong>update this page</strong> with 2019 event speakers as we get closer to the event.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="{% className css, 'tz-switch' %}">
+          <div class="{% className css, 'tz-switch-title' %}">Schedule timezone</div>
+          {% include 'timezone-toggle/index.njk' %}
+        </div>
       </div>
     </div>
   </div>
 
-  {% include 'timezone-toggle/index.njk' %}
   <div class="{% className css, 'schedule-block' %}">
     <script>
       // Avoid visible date switch:

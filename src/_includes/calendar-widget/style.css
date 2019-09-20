@@ -80,3 +80,7 @@
   width: var(--icon-size);
   height: var(--icon-size);
 }
+
+.tz-switcher {
+  margin-bottom: 1rem;
+}
