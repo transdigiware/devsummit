@@ -4,6 +4,7 @@ const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
 const createSchedule = require('./src/schedule/script/create-schedule');
+const createCalendarWidget = require('./src/_includes/calendar-widget/script/index.js');
 
 const {
   utcOffset,
@@ -189,6 +190,16 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  eleventyConfig.addShortcode('calendarWidget', timestamp => {
+    return new nunjucks.runtime.SafeString(
+      createCalendarWidget(
+        timestamp,
+        utcOffset,
+        modCSS.getAllCamelCased('/_includes/calendar-widget/style.css'),
+      ),
+    );
+  });
+
   function confDate(timestamp, format) {
     if (typeof timestamp === 'string') {
       timestamp = new Date(timestamp);
@@ -198,19 +209,6 @@ module.exports = function(eleventyConfig) {
   }
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', confDate);
-
-  eleventyConfig.addShortcode('confDateMinutesIfNotZero', timestamp => {
-    const string = confDate(timestamp, 'mm');
-    if (string === '00') {
-      return '';
-    }
-    return ':' + string;
-  });
-
-  eleventyConfig.addShortcode('confDateAmPm', timestamp => {
-    const string = confDate(timestamp, 'A');
-    return string.replace(/\./g, '');
-  });
 
   /** Dump JSON data in a way that's safe to be output in HTML */
   eleventyConfig.addShortcode('json', obj => {

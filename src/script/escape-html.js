@@ -34,7 +34,10 @@ function html(parts, ...subs) {
       }
 
       const processedSub = sub
-        .map(s => (safeStrs.has(s) ? s.toString() : escape(s.toString())))
+        .map(s => {
+          if (!s) return 'undefined';
+          return safeStrs.has(s) ? s.toString() : escape(s.toString());
+        })
         .join('');
 
       return result + processedSub + part;
