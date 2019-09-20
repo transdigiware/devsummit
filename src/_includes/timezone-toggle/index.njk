@@ -1,5 +1,7 @@
-<form style="visibility:hidden">
-  Timezone:
+{%- set css = "/_includes/timezone-toggle/style.css" -%}
+{% css page, css %}
+
+<form class="{% className css, 'root' %}">
   <label><input name="timezone" type="radio" checked> <span>Venue time</span></label>
   <label><input name="timezone" type="radio"> <span>Your time</span></label>
 </form>

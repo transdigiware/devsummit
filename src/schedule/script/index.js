@@ -4,26 +4,19 @@ import { utcOffset as venueOffset, path } from 'confbox-config:';
 import {
   onChange,
   get as getTimezoneOption,
+  localOffset,
 } from '../../_includes/timezone-toggle/script/option';
 
-const localOffset = new Date().getTimezoneOffset() * 60 * 1000 * -1;
-
-console.log(localOffset);
-console.log(venueOffset);
+const el = document.querySelector('.' + styles.scheduleBlock);
 
 function render() {
   const offset = getTimezoneOption() === 'venue' ? venueOffset : localOffset;
-
-  document.querySelector('.' + styles.scheduleBlock).innerHTML = createSchedule(
-    self.schedule,
-    offset,
-    styles,
-    path,
-  );
+  el.innerHTML = createSchedule(self.schedule, offset, styles, path);
 }
 
 onChange(render);
 
 if (getTimezoneOption() !== 'venue') {
   render();
+  el.style.visibility = 'visible';
 }

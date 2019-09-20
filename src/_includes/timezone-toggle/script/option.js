@@ -18,6 +18,8 @@ export function onChange(func) {
   eventTarget.addEventListener(eventName, func);
 }
 
+export const localOffset = new Date().getTimezoneOffset() * 60 * 1000 * -1;
+
 window.addEventListener('storage', () => {
   set(localStorage.timezoneOption);
 });

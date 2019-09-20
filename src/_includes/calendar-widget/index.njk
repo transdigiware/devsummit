@@ -2,7 +2,23 @@
 {% css page, css %}
 
 <aside class="{% className css, 'root' %}">
-  {% calendarWidget start %}
+  <div class="{% className css, 'calendar' %}" data-timestamp="{% timestamp start %}">
+    <script>
+      // Avoid visible date switch:
+      if (localStorage.timezoneOption !== 'venue') {
+        document.currentScript.parentNode.style.visibility = 'hidden';
+      }
+    </script>
+    {% calendarWidget start %}
+  </div>
+  <script>
+    {
+      const el = document.currentScript.previousElementSibling;
+      import('confboxAsset(/_includes/calendar-widget/script/index.js)').then(
+        ({ enhance }) => enhance(el)
+      );
+    }
+  </script>
   {% include "add-to-cal/index.njk" %}
   {% include "timezone-toggle/index.njk" %}
 </aside>
