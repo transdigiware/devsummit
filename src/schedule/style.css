@@ -289,6 +289,12 @@
   }
 }
 
+.meta {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  align-items: center;
+}
+
 .topic {
   font-size: 0.9rem;
   border: 1px solid var(--lessdarkoffwhite);
