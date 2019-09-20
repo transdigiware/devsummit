@@ -16,7 +16,7 @@
   <div class="{% className moduleCSS, 'root-alt' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug title %}</h1>
     <section class="{% className css, 'content-area' %}">
-      {{ content | safe }}
+      {% block innerContent %}{{ content | safe }}{% endblock %}
     </section>
   </div>
 {% endblock %}
