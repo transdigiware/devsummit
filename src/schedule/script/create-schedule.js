@@ -1,4 +1,4 @@
-const months = require('./months');
+const { monthsShort } = require('../../script/date');
 const { html, safe } = require('../../script/escape-html');
 
 module.exports = function createScheduleHtml(
@@ -34,7 +34,9 @@ module.exports = function createScheduleHtml(
         ({ date, month, items }, dayNum) => html`
           <div class="${classNameMap['day']}">
             <h1 class="${classNameMap['date']}">
-              <span class="${classNameMap['dateName']}">${months[month]}</span>
+              <span class="${classNameMap['dateName']}"
+                >${monthsShort[month]}</span
+              >
               <span class="${classNameMap['dateNumber']}">${date}</span>
             </h1>
             <div class="${classNameMap['dayTitle']}">

@@ -1,6 +1,6 @@
 ---
 layout: layouts/session/index.njk
-title: HTML isn't done! (LAPIs)
+title: HTML isn't done!
 topics:
   - Features
 speakers:

@@ -4,6 +4,7 @@ const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
 const createSchedule = require('./src/schedule/script/create-schedule');
+const createCalendarWidget = require('./src/_includes/calendar-widget/script/create-widget.js');
 
 const {
   utcOffset,
@@ -189,28 +190,31 @@ module.exports = function(eleventyConfig) {
     );
   });
 
-  function confDate(timestamp, format) {
+  eleventyConfig.addShortcode('calendarWidget', date => {
+    return new nunjucks.runtime.SafeString(
+      createCalendarWidget(
+        dateStrToTimestamp(date),
+        utcOffset,
+        modCSS.getAllCamelCased('/_includes/calendar-widget/style.css'),
+      ),
+    );
+  });
+
+  /** Format a date in the timezone of the conference */
+  eleventyConfig.addShortcode('confDate', (timestamp, format) => {
     if (typeof timestamp === 'string') {
-      timestamp = new Date(timestamp);
+      timestamp = dateStrToTimestamp(timestamp);
     }
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
     return date.format(offsetTime, format);
-  }
-  /** Format a date in the timezone of the conference */
-  eleventyConfig.addShortcode('confDate', confDate);
-
-  eleventyConfig.addShortcode('confDateMinutesIfNotZero', timestamp => {
-    const string = confDate(timestamp, 'mm');
-    if (string === '00') {
-      return '';
-    }
-    return ':' + string;
   });
 
-  eleventyConfig.addShortcode('confDateAmPm', timestamp => {
-    const string = confDate(timestamp, 'A');
-    return string.replace(/\./g, '');
-  });
+  /** Turn a local date string into a timestamp */
+  eleventyConfig.addShortcode(
+    'timestamp',
+    // Have to cast to string else Nunjucks shits the bed.
+    dateStr => dateStrToTimestamp(dateStr) + '',
+  );
 
   /** Dump JSON data in a way that's safe to be output in HTML */
   eleventyConfig.addShortcode('json', obj => {
