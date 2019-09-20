@@ -181,7 +181,7 @@
 
 .basic-item-title {
   font-size: 1rem;
-  margin: 0.6rem 0 0;
+  margin: 0.2rem 0 0;
   display: flex;
   align-items: center;
   font-weight: normal;
@@ -259,13 +259,17 @@
     width: 0;
     height: 0;
     position: absolute;
-    top: 1.4em;
+    top: 0.9em;
     right: 100%;
     --size: 0.45rem;
     --sides: 0.6;
     border-top: calc(var(--size) * var(--sides)) solid transparent;
     border-bottom: calc(var(--size) * var(--sides)) solid transparent;
     border-right: var(--size) solid var(--white);
+
+    @media (min-width: 720px) {
+      top: 1.4em;
+    }
   }
 }
 
