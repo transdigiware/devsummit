@@ -1,3 +1,6 @@
+---
+layout: '/layouts/session/wrapper'
+---
 {% extends 'layouts/main/index.njk' %}
 
 {% block content %}
@@ -19,6 +22,7 @@
       </ul>
 
       <div class="{% className sessionCSS, 'calendar' %}">
+        {% set icslink = "cal.ics" %}
         {% include "calendar-widget/index.njk" %}
       </div>
     </section>
