@@ -7,11 +7,14 @@ module.exports = class iCal {
     };
   }
 
-  render({ conf }) {
-    return icalGenerator({
-      name: conf.conferenceName,
-      start: conf.start,
-      end: conf.end,
-    });
+  render({ conf, collections }) {
+    return icalGenerator(
+      conf.conferenceName,
+      collections.session.map(session => ({
+        name: `${session.data.title} - ${conf.conferenceName}`,
+        start: session.data.start,
+        end: session.data.end,
+      })),
+    );
   }
 };
