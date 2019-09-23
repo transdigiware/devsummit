@@ -8,10 +8,12 @@ module.exports = function createCalendarWidget(
 ) {
   const date = new Date(timestamp + utcOffset);
   const minutes = date.getUTCMinutes();
+  const hours = date.getUTCHours();
+
   const formattedTime =
-    (date.getUTCHours() % 12 || 12) +
+    (hours % 12 || 12) +
     (minutes ? ':' + minutes : '') +
-    (minutes >= 12 ? 'pm' : 'am');
+    (hours >= 12 ? 'pm' : 'am');
 
   return html`
     <div class="${classNameMap.icon}">
