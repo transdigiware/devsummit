@@ -2,6 +2,7 @@ const fsp = require('fs').promises;
 const path = require('path');
 
 const icalGenerator = require('../../../utils/ical-generator');
+const { dateStrToTimestamp } = require('../../../utils/date-helper.js');
 
 module.exports = class {
   async render(data) {
@@ -11,8 +12,8 @@ module.exports = class {
     const ics = icalGenerator(name, [
       {
         name,
-        start: data.start,
-        end: data.end,
+        start: dateStrToTimestamp(data.start, data.conf.utcOffset),
+        end: dateStrToTimestamp(data.end, data.conf.utcOffset),
       },
     ]);
     const dir = path.join(process.cwd(), path.dirname(data.page.outputPath));

@@ -1,4 +1,5 @@
-icalGenerator = require('./utils/ical-generator');
+const icalGenerator = require('./utils/ical-generator');
+const { dateStrToTimestamp } = require('./utils/date-helper.js');
 
 module.exports = class iCal {
   data() {
@@ -12,8 +13,8 @@ module.exports = class iCal {
       conf.conferenceName,
       collections.session.map(session => ({
         name: `${session.data.title} - ${conf.conferenceName}`,
-        start: session.data.start,
-        end: session.data.end,
+        start: dateStrToTimestamp(session.data.start, conf.utcOffset),
+        end: dateStrToTimestamp(session.data.end, conf.utcOffset),
       })),
     );
   }
