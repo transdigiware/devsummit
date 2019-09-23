@@ -2,7 +2,7 @@
 const eventTarget = new MessageChannel().port1;
 const eventName = 'timezone-change';
 
-let timezoneOption = localStorage.timezoneOption;
+let timezoneOption = localStorage.timezoneOption || 'venue';
 
 export function get() {
   return timezoneOption;
