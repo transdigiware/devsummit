@@ -13,6 +13,7 @@ import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
 import assetPlugin from './lib/asset-plugin';
 import confboxConfigPlugin from './lib/confbox-config-plugin';
+import copy from './lib/copy';
 
 const confboxConfig = require('./confbox.config.js');
 
@@ -47,22 +48,32 @@ export default async function({ watch }) {
       },
       buildStartSequencePlugin(),
       eleventyPlugin(),
-      globInputPlugin('.build-tmp/**/*.{html,ics}'),
+      globInputPlugin('.build-tmp/**/*.html'),
       htmlCSSPlugin(),
       assetPlugin(),
       classnamePlugin('.build-tmp'),
       confboxConfigPlugin(),
       terser({ ecma: 8, module: true }),
-      {
-        // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
-        // Firebase hosting will look for the 404 page.
-        async writeBundle(bundle) {
-          const notFound = Object.values(bundle).find(entry =>
-            entry.fileName.endsWith('404.html'),
-          );
-          await fsp.writeFile('build/404.html', notFound.code);
+      copy({
+        '.build-tmp/**/*.ics': {
+          prefix: '.build-tmp/',
+          dest: '.',
         },
-      },
+        '.build-tmp/404.html': {
+          prefix: '.build-tmp/',
+          dest: '../',
+        },
+      }),
+      // {
+      //   // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
+      //   // Firebase hosting will look for the 404 page.
+      //   async writeBundle(bundle) {
+      //     const notFound = Object.values(bundle).find(entry =>
+      //       entry.fileName.endsWith('404.html'),
+      //     );
+      //     await fsp.writeFile('build/404.html', notFound.code);
+      //   },
+      // },
     ],
   };
 }

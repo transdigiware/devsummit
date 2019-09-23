@@ -88,34 +88,7 @@
   }
 }
 
-<<<<<<< head .calicon,
-.callink {
-  font-size: 0.75rem;
-  padding: 0.9em 0;
-  display: block;
-  position: relative;
-  white-space: nowrap;
-}
-.calicon {
-  @media (min-width: 720px) {
-    --icon-size: 1.5rem;
-    padding-left: calc(var(--icon-size) + 0.6em);
-
-    &::before {
-      content: '';
-      background: url('confboxAsset(assets/calendar.svg)') no-repeat;
-      background-size: contain;
-      width: var(--icon-size);
-      height: var(--icon-size);
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-    }
-  }
-}
-
-=======>>>>>>>master .get-updates {
+.get-updates {
   font-size: 0.75rem;
   padding: 0.9em 0;
   display: block;
