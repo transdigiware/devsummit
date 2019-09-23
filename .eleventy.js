@@ -30,6 +30,7 @@ function buildScheduleData(sessions, speakers) {
       title: session.data.title,
       speakers: session.data.speakers,
       topics: session.data.topics,
+      avatar: session.data.avatar,
       session: true,
       fileSlug: session.fileSlug,
       body: session.data.description,
@@ -40,8 +41,9 @@ function buildScheduleData(sessions, speakers) {
     item.start = dateStrToTimestamp(item.start);
     item.end = dateStrToTimestamp(item.end);
 
-    if (item.icon) {
-      item.icon = `confboxAsset(${item.icon})`;
+    // Wrap URLs in confboxAsset
+    for (const key of ['icon', 'avatar']) {
+      if (item[key]) item[key] = `confboxAsset(${item[key]})`;
     }
 
     if (item.speakers) {
