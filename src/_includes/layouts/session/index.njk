@@ -22,7 +22,7 @@ layout: '/layouts/session/wrapper'
       </ul>
 
       <div class="{% className sessionCSS, 'calendar' %}">
-        {% set icslink = "cal.ics" %}
+        {% set icslink = "session/" + page.fileSlug + "/cal.ics" %}
         {% include "calendar-widget/index.njk" %}
       </div>
     </section>
