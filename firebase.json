@@ -20,6 +20,15 @@
             "value": "max-age=31536000"
           }
         ]
+      },
+      {
+        "source": "**/*.ics",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/calendar"
+          }
+        ]
       }
     ],
     "rewrites": [

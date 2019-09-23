@@ -2,7 +2,7 @@ module.exports = {
   /**
    * Origin of the conference, for creating absolute URLs.
    */
-  origin: 'https://developer.chrome.com',
+  origin: 'https://ical--cds2019.netlify.com',
   /**
    * Path of the site. / if it's top-level.
    */
@@ -29,6 +29,10 @@ module.exports = {
    * Conference Twitter account
    */
   twitter: '@ChromiumDev',
+  /**
+   * The name of the conference
+   */
+  conferenceName: 'Chrome Dev Summit 2019',
   /**
    * Timezone of the conference, in the form [+-]HHMM.
    * Examples: -0700, +0100, +0530

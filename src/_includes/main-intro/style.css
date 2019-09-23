@@ -70,12 +70,13 @@
 }
 
 .actions {
+  font-size: 0.75rem;
   @media (min-width: 720px) {
     margin: 3.2rem 0 4rem;
     display: grid;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
-    align-items: start;
+    align-items: center;
     grid-gap: 1.6em;
   }
 }

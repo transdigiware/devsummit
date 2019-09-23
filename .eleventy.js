@@ -5,22 +5,13 @@ const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
 const createSchedule = require('./src/schedule/script/create-schedule');
 const createCalendarWidget = require('./src/_includes/calendar-widget/script/create-widget.js');
+const { dateStrToTimestamp } = require('./src/utils/date-helper.js');
 
 const {
   utcOffset,
   path: confboxPath,
   extraSchedule,
 } = require('./lib/confbox-config');
-
-function dateStrToTimestamp(dateStr) {
-  const result = date.parse(dateStr, 'YYYY/MM/DD HH:mm', true);
-  if (isNaN(result)) {
-    throw new TypeError(
-      `Invalid date. Must be in the format YYYY/MM/DD HH:mm'. Found: ${dateStr}`,
-    );
-  }
-  return result.valueOf() - utcOffset;
-}
 
 function buildScheduleData(sessions, speakers) {
   const schedule = [
@@ -38,8 +29,8 @@ function buildScheduleData(sessions, speakers) {
     ...extraSchedule.map(obj => ({ ...obj })),
   ].map(item => {
     // Convert dates to timestamps
-    item.start = dateStrToTimestamp(item.start);
-    item.end = dateStrToTimestamp(item.end);
+    item.start = dateStrToTimestamp(item.start, utcOffset);
+    item.end = dateStrToTimestamp(item.end, utcOffset);
 
     // Wrap URLs in confboxAsset
     for (const key of ['icon', 'avatar']) {
@@ -191,7 +182,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode('calendarWidget', date => {
     return new nunjucks.runtime.SafeString(
       createCalendarWidget(
-        dateStrToTimestamp(date),
+        dateStrToTimestamp(date, utcOffset),
         utcOffset,
         modCSS.getAllCamelCased('/_includes/calendar-widget/style.css'),
       ),
@@ -201,7 +192,7 @@ module.exports = function(eleventyConfig) {
   /** Format a date in the timezone of the conference */
   eleventyConfig.addShortcode('confDate', (timestamp, format) => {
     if (typeof timestamp === 'string') {
-      timestamp = dateStrToTimestamp(timestamp);
+      timestamp = dateStrToTimestamp(timestamp, utcOffset);
     }
     const offsetTime = new Date(timestamp.valueOf() + utcOffset);
     return date.format(offsetTime, format);
@@ -211,7 +202,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode(
     'timestamp',
     // Have to cast to string else Nunjucks shits the bed.
-    dateStr => dateStrToTimestamp(dateStr) + '',
+    dateStr => dateStrToTimestamp(dateStr, utcOffset) + '',
   );
 
   /** Dump JSON data in a way that's safe to be output in HTML */
