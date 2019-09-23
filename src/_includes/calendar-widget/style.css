@@ -1,0 +1,86 @@
+.root {
+  background: var(--white);
+  color: var(--darkgrey);
+  border-radius: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.13);
+  @media (min-width: 720px) {
+    box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
+    padding: 3rem;
+  }
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-family: 'Google Sans';
+  background: var(--blue);
+  border-radius: 0.9rem;
+  width: 5.8rem;
+  height: 5.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--white);
+}
+
+.day,
+.month {
+  display: block;
+  line-height: 1em;
+  text-align: center;
+}
+.day {
+  font-size: 3.8rem;
+  font-weight: bold;
+}
+
+.month {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+}
+
+.date-container {
+  margin-top: 1rem;
+  font-size: 1.14rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weekday {
+  font-weight: bold;
+}
+.full-date {
+}
+.time {
+  --icon-size: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  margin-bottom: 3rem;
+}
+.time:before {
+  content: '';
+  display: inline-block;
+  margin-right: 0.2em;
+  background: url('confboxAsset(assets/clock.svg)');
+  background-size: contain;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.tz-switcher {
+  margin-bottom: 1rem;
+}

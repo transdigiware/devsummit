@@ -1,0 +1,23 @@
+{%- set css = "/_includes/timezone-toggle/style.css" -%}
+{% css page, css %}
+
+<section>
+  <form class="{% className css, 'root' %}">
+    <label>
+      <input name="timezone" type="radio" class="{% className css, 'radio' %}" checked>
+      <span class="{% className css, 'label' %}">Venue time (UTC<span class="js-zone"></span>)</span>
+    </label>
+    <label>
+      <input name="timezone" type="radio" class="{% className css, 'radio' %}">
+      <span class="{% className css, 'label' %}">Your time (UTC<span class="js-zone"></span>)</span>
+    </label>
+  </form>
+  <script>
+    {
+      const form = document.currentScript.previousElementSibling;
+      import('confboxAsset(/_includes/timezone-toggle/script/index.js)').then(
+        ({ enhance }) => enhance(form)
+      );
+    }
+  </script>
+</section>
