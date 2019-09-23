@@ -17,7 +17,4 @@ module.exports = class {
     await fsp.writeFile(path.join(dir, 'cal.ics'), ics, 'utf-8');
     return data.content;
   }
-  data() {
-    return {};
-  }
 };
