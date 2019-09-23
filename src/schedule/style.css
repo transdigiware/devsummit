@@ -188,6 +188,7 @@
 
   @media (min-width: 720px) {
     font-size: 0.7rem;
+    margin-top: 0.6rem;
   }
 }
 
@@ -287,6 +288,12 @@
   & > li {
     display: block;
   }
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  align-items: center;
 }
 
 .topic {
