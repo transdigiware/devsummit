@@ -33,7 +33,7 @@ description: Everything that's happening at Chrome Dev Summit.
   <div class="{% className css, 'schedule-block' %}">
     <script>
       // Avoid visible date switch:
-      if (localStorage.timezoneOption !== 'venue') {
+      if (localStorage.timezoneOption === 'local') {
         document.currentScript.parentNode.style.visibility = 'hidden';
       }
     </script>

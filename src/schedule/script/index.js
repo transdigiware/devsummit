@@ -16,7 +16,7 @@ function render() {
 
 onChange(render);
 
-if (getTimezoneOption() !== 'venue') {
+if (getTimezoneOption() === 'local') {
   render();
   el.style.visibility = 'visible';
 }

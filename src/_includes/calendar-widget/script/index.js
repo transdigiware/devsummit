@@ -14,7 +14,7 @@ function render(el) {
 }
 
 export function enhance(el) {
-  if (getTimezoneOption() !== 'venue') {
+  if (getTimezoneOption() === 'local') {
     el.style.visibility = 'visible';
     render(el);
   }
