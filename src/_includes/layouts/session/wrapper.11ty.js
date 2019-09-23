@@ -5,6 +5,8 @@ const icalGenerator = require('../../../utils/ical-generator');
 
 module.exports = class {
   async render(data) {
+    // This function doesn't actually change the content at all.
+    // It just uses the render hook to also write out an .ics file.
     const ics = icalGenerator({
       name: `${data.title} - ${data.conf.conferenceName}`,
       start: data.start,

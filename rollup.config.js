@@ -56,24 +56,14 @@ export default async function({ watch }) {
       terser({ ecma: 8, module: true }),
       copy({
         '.build-tmp/**/*.ics': {
-          prefix: '.build-tmp/',
+          stripPrefix: '.build-tmp/',
           dest: '.',
         },
         '.build-tmp/404.html': {
-          prefix: '.build-tmp/',
+          stripPrefix: '.build-tmp/',
           dest: '../',
         },
       }),
-      // {
-      //   // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
-      //   // Firebase hosting will look for the 404 page.
-      //   async writeBundle(bundle) {
-      //     const notFound = Object.values(bundle).find(entry =>
-      //       entry.fileName.endsWith('404.html'),
-      //     );
-      //     await fsp.writeFile('build/404.html', notFound.code);
-      //   },
-      // },
     ],
   };
 }
