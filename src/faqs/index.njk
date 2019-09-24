@@ -3,6 +3,7 @@ title: FAQs
 description: Everything you need to know about Chrome Dev Summit.
 ---
 {% extends 'layouts/content/index.njk' %}
+
 {% from 'squiggle-banner/index.njk' import squiggleBanner %}
 
 {% block content %}
@@ -32,18 +33,27 @@ description: Everything you need to know about Chrome Dev Summit.
       ]
     }
   </script>
+
+  {%- set contentCSS = "/_includes/content.css" -%}
+  {% css page, contentCSS %}
+  {%- set faqCSS = "/faqs/styles.css" -%}
+  {% css page, faqCSS %}
   {% for section in collections.faqs %}
-    <h1 id="{% idify section.title %}">{{ section.title }}</h1>
-    <em>{{ section.question }}</em>
-    <p>{{ section.answer | safe }}<p>
-    {% for faq in section.items %}
-      <section>
-        {% if (faq.data.title) and (faq.data.title != section.title) %}<h2 id="{% idify faq.data.title %}">{{ faq.data.title }}</h2>{% endif %}
-        <section>
-          {{ faq.templateContent | safe }}
-        </section>
-      </section>
-    {% endfor %}
+    <section class="{% className faqCSS, 'category' %}">
+      <h1 id="{% idify section.title %}" class="{% className faqCSS, 'category-heading' %}">{{ section.title }}</h1>
+      <div class="{% className faqCSS, 'category-meta' %}">
+        <em>{{ section.question }}</em>
+        <p>{{ section.answer | safe }}<p>
+      </div>
+      <div class="{% className contentCSS, 'box' %} {% className faqCSS, 'section' %}">
+        {% for faq in section.items %}
+          {% if (faq.data.title) and (faq.data.title != section.title) %}<h2 id="{% idify faq.data.title %}" class="{% className faqCSS, 'section-heading' %}">{{ faq.data.title }}</h2>{% endif %}
+          <div>
+            {{ faq.templateContent | safe }}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
   {% endfor %}
 {% endblock %}
 

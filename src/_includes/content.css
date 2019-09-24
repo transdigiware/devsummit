@@ -1,4 +1,11 @@
 .content-area {
+  color: var(--offblack);
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--darkgrey);
+  }
   h1,
   h2,
   h3,
@@ -7,4 +14,36 @@
   p {
     max-width: 60ch;
   }
+}
+
+.box {
+  margin: 0 calc(-1 * var(--side-margin));
+  border-radius: 0.74rem;
+  background: var(--white);
+  padding: 0.3rem var(--side-margin);
+  @media (min-width: 720px) {
+    box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
+    margin: 0;
+    padding: 0.3rem 1.5rem;
+  }
+}
+
+:root {
+  /* Hide squiggle by default. Page's CSS can overwrite this value */
+  --squiggle-display: none;
+}
+
+.squiggles {
+  display: var(--squiggle-display);
+  flex-grow: 1;
+  @media (min-width: 1020px) {
+    background: var(--squiggle-url) no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  grid-column-gap: 4rem;
 }
