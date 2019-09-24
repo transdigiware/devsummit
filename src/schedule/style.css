@@ -22,26 +22,21 @@
   --initial-cell-size: 3.6rem;
   padding: 2.7rem var(--side-margin);
 
-  @media (min-width: 720px) {
-    display: flex;
-    flex-flow: row wrap;
+  @media (min-width: 450px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     align-items: flex-start;
+    grid-gap: 6rem;
   }
 }
 
 .day {
   display: grid;
   grid-template-columns: [first] max-content 0.4rem [last] 1fr;
-  max-width: 540px;
   --row-min-height: 3.5rem;
 
   @media (min-width: 720px) {
-    margin-right: 6rem;
     --row-min-height: 2.7rem;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 }
 
@@ -275,11 +270,16 @@
       top: 1.4em;
     }
   }
+
+  & p {
+    max-width: 48ch;
+  }
 }
 
 .session-item-title {
   font-size: inherit;
   margin: 0;
+  max-width: 48ch;
 }
 
 .topic-list {
@@ -287,6 +287,11 @@
   padding: 0;
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: 1rem;
+
+  @media (min-width: 450px) {
+    margin-bottom: 0;
+  }
 
   & > li {
     display: block;
@@ -294,9 +299,11 @@
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  align-items: center;
+  @media (min-width: 450px) {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+  }
 }
 
 .topic {
