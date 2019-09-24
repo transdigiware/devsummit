@@ -146,7 +146,6 @@ module.exports = function(eleventyConfig) {
     if (set.has(url)) return '';
     set.add(url);
 
-    console.log('emitting', url, 'on', page.url);
     return new nunjucks.runtime.SafeString(
       `<style>confboxInline(confboxAsset(${url}))</style>`,
     );
