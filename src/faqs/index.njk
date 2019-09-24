@@ -38,7 +38,7 @@ description: Everything you need to know about Chrome Dev Summit.
   {% css page, contentCSS %}
   {%- set faqCSS = "/faqs/styles.css" -%}
   {% css page, faqCSS %}
-.section-heading.section-heading  {% for section in collections.faqs %}
+  {% for section in collections.faqs %}
     <section class="{% className faqCSS, 'category' %}">
       <h1 id="{% idify section.title %}" class="{% className faqCSS, 'category-heading' %}">{{ section.title }}</h1>
       <div class="{% className faqCSS, 'category-meta' %}">
