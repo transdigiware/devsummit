@@ -29,10 +29,6 @@
       color: var(--lightgrey);
     }
   }
-
-  @media (min-width: 720px) {
-    margin: 12rem 0;
-  }
 }
 
 .slug-dash {
