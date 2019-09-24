@@ -21,3 +21,8 @@
   font-weight: bold;
   font-size: 1.14rem;
 }
+
+:root {
+  --squiggle-display: block;
+  --squiggle-url: url('confboxAsset(/assets/squiggles/2.svg)');
+}

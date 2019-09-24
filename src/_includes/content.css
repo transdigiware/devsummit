@@ -27,3 +27,26 @@
     padding: 0.3rem 1.5rem;
   }
 }
+
+:root {
+  /* Hide squiggle by default. Page's CSS can overwrite this value */
+  --squiggle-display: none;
+}
+
+.squiggles {
+  display: var(--squiggle-display);
+  flex-grow: 1;
+  height: 200px;
+  margin-left: 2rem;
+  @media (min-width: 720px) {
+    background: var(--squiggle-url) no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+}
