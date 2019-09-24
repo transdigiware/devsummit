@@ -20,8 +20,7 @@ description: Everything that's happening at Chrome Dev Summit.
     </div>
     <div>
       <div class="{% className pageCSS, 'boxed-content' %}">
-        <p>Need copy! We will <strong>update this page</strong> with 2019 event speakers as we get closer to the event.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Every session is available through Livestream during the event, and available after the event on the Chrome Developers YouTube Channel.</p>
         <div class="{% className css, 'tz-switch' %}">
           <div class="{% className css, 'tz-switch-title' %}">Schedule timezone</div>
           {% include 'timezone-toggle/index.njk' %}
@@ -43,6 +42,49 @@ description: Everything that's happening at Chrome Dev Summit.
     self.schedule = {% json collections.jsSchedule %};
   </script>
   <script type="module" async src="confboxAsset(/schedule/script/index.js)"></script>
+
+  <section class="{% className moduleCSS, 'root' %} {% className css, 'overflow' %}">
+    <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug "Overflow" %}</h1>
+    <p>There’s a ton happening off the main stage, find it all here.</p>
+
+    <div class="{% className css, 'split-boxes' %}">
+      <div>
+        <div class="{% className css, 'content-box' %}">
+          <h2>Lightning talks</h2>
+          <p>
+            The schedule has breaks for lunch, snacks, and drinks. But if you're watching the livestream, it might not be
+            lunch/snack/drinktime wherever you are.
+          </p>
+          <p>
+            To cater for this, we're going to fill the breaks with livestream-exclusive lightning talks – compact presentations
+            about various parts of the web platform.
+          </p>
+          <p>
+            If you're planning to attend in person, you're not missing out. All lightning talks will be available later on the
+            <a href="https://www.youtube.com/user/ChromeDevelopers" rel="noopener noreferrer" target="_blank">Chrome Developers YouTube channel</a>.
+          </p>
+        </div>
+        <div class="{% className css, 'content-box' %}">
+          <h2>After party</h2>
+          <p>If you're attending, you're also invited to the after party. This is a great opportunity to meet folks and chat about the web.</p>
+        </div>
+      </div>
+      <div>
+        <div class="{% className css, 'content-box' %}">
+          <h2>Codelabs</h2>
+          <p>Folks at the venue will be able to take part in guided tutorials that involve a paractical application of web platform features.</p>
+        </div>
+        <div class="{% className css, 'content-box' %}">
+          <h2>Office hours</h2>
+          <p>Office hours are your chance to meet one-on-one with Chrome experts to ask all your technical questions.</p>
+        </div>
+        <div class="{% className css, 'content-box' %}">
+          <h2>Sandbox</h2>
+          <p>The sandbox is a dedicated space to explore, learn, and play with our latest products and platforms via interactive demos, physical installations, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   {% from 'squiggle-banner/index.njk' import squiggleBanner %}
   {{ squiggleBanner(page, '--red', grayTop=true) }}

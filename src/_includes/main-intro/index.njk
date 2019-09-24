@@ -1,5 +1,7 @@
 {%- set css = "/_includes/main-intro/style.css" -%}
 {% css page, css %}
+{%- set utilsCSS = "/_includes/utils.css" -%}
+{% css page, utilsCSS %}
 
 <div class="{% className css, 'root' %}">
   <div class="{% className css, 'conf-detail' %}">
@@ -17,6 +19,7 @@
       <p>{{conf.teaser}}</p>
     </div>
     <div class="{% className css, 'actions' %}">
+      <a href="https://events.withgoogle.com/chrome-dev-summit-2019/registrations/new/" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" rel="noopener noreferrer" target="_blank" class="{% className css, 'get-updates' %}">Get Updates</a>
       {% set icslink="fullevent.ics" %}
       {% include "add-to-cal/index.njk" %}

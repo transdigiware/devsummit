@@ -12,7 +12,7 @@ module.exports = {
    */
   conferenceName: 'Chrome Dev Summit 2019',
   teaser:
-    'Join us at our annual developer conference for two days of conversations, demos and office hours with the Chrome team, as we work with the community to build the future of the Web.',
+    "Join the Chrome team for our two-day summit to learn about the latest techniques for building for the modern Web, get an early insight into what we're working on, and to share your thoughts on how we can move the platform forward, together.",
   /**
    * Data of the conference venue.
    */
@@ -56,19 +56,19 @@ module.exports = {
       end: '2019/11/11 10:05',
     },
     {
-      title: 'Break',
+      title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/11 11:35',
       end: '2019/11/11 12:15',
       icon: '/schedule/assets/coffee.svg',
     },
     {
-      title: 'Lunch',
+      title: 'Lunch & livestream exclusive lightning talks',
       start: '2019/11/11 13:25',
       end: '2019/11/11 14:35',
       icon: '/schedule/assets/food.svg',
     },
     {
-      title: 'Break',
+      title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/11 15:45',
       end: '2019/11/11 16:15',
       icon: '/schedule/assets/coffee.svg',
@@ -79,19 +79,19 @@ module.exports = {
       end: '2019/11/12 10:00',
     },
     {
-      title: 'Break',
+      title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/12 11:45',
       end: '2019/11/12 12:15',
       icon: '/schedule/assets/coffee.svg',
     },
     {
-      title: 'Lunch',
+      title: 'Lunch & livestream exclusive lightning talks',
       start: '2019/11/12 13:25',
       end: '2019/11/12 14:35',
       icon: '/schedule/assets/food.svg',
     },
     {
-      title: 'Break',
+      title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/12 15:45',
       end: '2019/11/12 16:15',
       icon: '/schedule/assets/coffee.svg',
