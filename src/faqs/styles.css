@@ -1,5 +1,5 @@
 .category {
-  @media (min-width: 720px) {
+  @media (min-width: 1020px) {
     display: grid;
     grid-template-columns: 40% 1fr;
     grid-column-gap: 4rem;
@@ -15,9 +15,7 @@
   grid-column: 1 / span 2;
 }
 
-/* Forgive me, father */
-.section-heading.section-heading.section-heading {
-  color: var(--blue);
+.section-heading {
   font-weight: bold;
   font-size: 1.14rem;
 }
@@ -25,4 +23,8 @@
 :root {
   --squiggle-display: block;
   --squiggle-url: url('confboxAsset(/assets/squiggles/2.svg)');
+}
+
+.section h3 {
+  font-size: 0.8em;
 }
