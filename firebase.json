@@ -34,7 +34,7 @@
     "rewrites": [
       {
         "source": "**/*.js",
-        "destination": "/nuke-sw.js"
+        "destination": "/devsummit/nuke-sw.js"
       }
     ]
   }
