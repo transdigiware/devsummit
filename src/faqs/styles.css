@@ -1,7 +1,18 @@
 .category {
+  @media (min-width: 720px) {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-column-gap: 4rem;
+    margin-bottom: 6rem;
+  }
 }
+
+.category-meta {
+}
+
 .category-heading {
   color: var(--darkgrey);
+  grid-column: 1 / span 2;
 }
 
 /* Forgive me, father */
