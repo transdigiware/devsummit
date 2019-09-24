@@ -1,34 +1,14 @@
 {%- set css = "/_includes/main-intro/style.css" -%}
 {% css page, css %}
-{%- set utilsCSS = "/_includes/utils.css" -%}
-{% css page, utilsCSS %}
 
 <div class="{% className css, 'root' %}">
-  <div aria-hidden="true" class="{% className css, 'dino-crossing' %}">
-    <svg viewBox="0 0 2 5" class="{% className css, 'sign' %}">
-      <clipPath id="sign-clip-path">
-        <use href="#sign-path" transform="translate(1, 1) scale(0.9) translate(-1, -1)" />
-      </clipPath>
-      <path id="sign-path" class="{% className css, 'sign-path' %}" d="M 1,5 V2 L0,1 L1,0 L2,1 L1,2"/>
-      <path clip-path="url(#sign-clip-path)" class="{% className css, 'crossing-path' %}" d="M0,1.36 H2 M0,1.6 H2"/>
-      <use class="{% className css, 'sign-dino-outline' %}" width="0.9" height="0.9" x="0.56" y="0.57" href="#dino"/>
-      <use class="{% className css, 'sign-dino' %}" width="0.9" height="0.9" x="0.56" y="0.57" href="#dino"/>
-    </svg>
-    <div class="{% className css, 'dinos' %}">
-      {% for i in range(0, 15) -%}
-        {% if i === 0 %}
-          <svg id="dino" class="{% className css, 'baby-dino' %}" viewBox="0 0 495 534"><path d="M216 0H25m166 64h-26V38h26zM25 0v25H0v115h127v25H51v26h101v50H89v64h25v-38h26v76h25v38h26v25h25v102h-25v26h50v-77h26v-25h25v25h26v26h25v25h-25v26h50V432h26v-26h25v-25h26v-25h25v-26h25V191h-25v50h-25v26h-26v25h-51v-25h-25v-26h-38v-25h-38v-25h-26V25h-25V0"/></svg>
-        {% else %}
-          <svg class="{% className css, 'baby-dino' %}" viewBox="0 0 495 534"><use href="#dino"/></svg>
-        {% endif %}
-      {%- endfor %}
-    </div>
-  </div>
   <div class="{% className css, 'conf-detail' %}">
     <p>
       <span class="{% className css, 'date' %}">
         <span class="{% className css, 'month' %}">{% confDate conf.start, 'MMMM' %}</span>
-        <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
+        <span class="{% className css, 'no-wrap' %}">
+          <time datetime="{% isoDate conf.start %}">{% confDate conf.start, 'DD' %}</time>-<time datetime="{% isoDate conf.end %}">{% confDate conf.end, 'DD' %}</time>
+        </span>
       </span>
       <a href="{{conf.venue.mapsLink}}" rel="noopener noreferrer" target="_blank" class="{% className css, 'location-main' %}">{{conf.venue.name}}</a>
       <span class="{% className css, 'location-sub' %}">{{conf.venue.city}}, {{conf.venue.region}}</span>
@@ -37,8 +17,10 @@
       <p>{{conf.teaser}}</p>
     </div>
     <div class="{% className css, 'actions' %}">
-      <a href="https://events.withgoogle.com/chrome-dev-summit-2019/registrations/new/" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" rel="noopener noreferrer" target="_blank" class="{% className css, 'get-updates' %}">Get Updates</a>
+      {% set icslink="fullevent.ics" %}
+      {% include "add-to-cal/index.njk" %}
     </div>
   </div>
+  <div class="{% className css, 'squiggles' %}"></div>
 </div>

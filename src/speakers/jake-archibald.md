@@ -1,0 +1,5 @@
+---
+name: Jake Archibald
+title: Google
+avatar: /assets/speakers/jake-archibald.jpg
+---

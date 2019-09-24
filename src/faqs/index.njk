@@ -4,48 +4,54 @@ description: Everything you need to know about Chrome Dev Summit.
 ---
 {% extends 'layouts/content/index.njk' %}
 
-{% block innerContent %}
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {% for section in collections.faqs %}
-      {
-        "@type": "Question",
-        "name": "{{section.question}}",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "{{section.answer}} <a href=\"{{conf.origin}}{{conf.path}}faqs/#{% idify section.title %}\">Read more.</a>"
-        }
-      }
-      {% if not loop.last %}
-      ,
-      {% endif %}
-      {% endfor %}
-    ]
-  }
-</script>
+{% from 'squiggle-banner/index.njk' import squiggleBanner %}
 
-{%- set contentCSS = "/_includes/content.css" -%}
-{% css page, contentCSS %}
-{%- set faqCSS = "/faqs/styles.css" -%}
-{% css page, faqCSS %}
-
-{% for section in collections.faqs %}
-  <h1 id="{% idify section.title %}" class="{% className faqCSS, 'category-heading' %}">{{ section.title }}</h1>
-  <em>{{ section.question }}</em>
-  <p>{{ section.answer | safe }}<p>
-    <section class="{% className contentCSS, 'box' %}">
-    {% for faq in section.items %}
-      {% if (faq.data.title) and (faq.data.title != section.title) %}<h2 id="{% idify faq.data.title %}" class="{% className faqCSS, 'section-heading' %}">{{ faq.data.title }}</h2>{% endif %}
-      <section>
-        {{ faq.templateContent | safe }}
-      </section>
-      {% if not loop.last %}
-        <hr>
-      {% endif %}
-    {% endfor %}
-  </section>
-{% endfor %}
+{% block content %}
+  {{ super() }}
+  {{ squiggleBanner(page, '--green') }}
 {% endblock %}
+
+{% block innerContent %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for section in collections.faqs %}
+        {
+          "@type": "Question",
+          "name": "{{section.question}}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{section.answer}} <a href=\"{{conf.origin}}{{conf.path}}faqs/#{% idify section.title %}\">Read more.</a>"
+          }
+        }
+        {% if not loop.last %}
+        ,
+        {% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+
+  {%- set contentCSS = "/_includes/content.css" -%}
+  {% css page, contentCSS %}
+  {%- set faqCSS = "/faqs/styles.css" -%}
+  {% css page, faqCSS %}
+  {% for section in collections.faqs %}
+    <section class="{% className faqCSS, 'category' %}">
+      <h1 id="{% idify section.title %}" class="{% className faqCSS, 'category-heading' %}">{{ section.title }}</h1>
+      <em>{{ section.question }}</em>
+      <p>{{ section.answer | safe }}<p>
+      <section class="{% className contentCSS, 'box' %}">
+        {% for faq in section.items %}
+          {% if (faq.data.title) and (faq.data.title != section.title) %}<h2 id="{% idify faq.data.title %}" class="{% className faqCSS, 'section-heading' %}">{{ faq.data.title }}</h2>{% endif %}
+          <section>
+            {{ faq.templateContent | safe }}
+          </section>
+        {% endfor %}
+      </section>
+    </section>
+  {% endfor %}
+{% endblock %}
+

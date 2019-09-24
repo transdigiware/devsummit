@@ -1,0 +1,13 @@
+{%- set css = "/_includes/add-to-cal/style.css" -%}
+{% css page,
+css %}
+<div class="{% className css, 'root' %}">
+  <span class="{% className css, 'icon' %}">
+    Add to:
+  </span>
+  <span class="{% className css, 'links' %}">
+    <a href="https://calendar.google.com/calendar/r?cid={{conf.webcalOrigin}}{{conf.path}}{{icslink}}" target="_blank" rel="noopener noreferrer">Google</a>
+    <a href="{{conf.webcalOrigin}}{{conf.path}}{{icslink}}">Apple</a>
+    <a href="{{conf.webcalOrigin}}{{conf.path}}{{icslink}}">Outlook</a>
+  </span>
+</div>

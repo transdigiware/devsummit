@@ -1,0 +1,24 @@
+{%- set css = "/_includes/calendar-widget/style.css" -%}
+{% css page, css %}
+
+<aside class="{% className css, 'root' %}">
+  <div class="{% className css, 'calendar' %}" data-timestamp="{% timestamp start %}">
+    <script>
+      // Avoid visible date switch:
+      if (localStorage.timezoneOption === 'local') {
+        document.currentScript.parentNode.style.visibility = 'hidden';
+      }
+    </script>
+    {% calendarWidget start %}
+  </div>
+  <script>
+    {
+      const el = document.currentScript.previousElementSibling;
+      import('confboxAsset(/_includes/calendar-widget/script/index.js)').then(
+        ({ enhance }) => enhance(el)
+      );
+    }
+  </script>
+  <div class="{% className css, 'tz-switcher' %}">{% include "timezone-toggle/index.njk" %}</div>
+  {% include "add-to-cal/index.njk" %}
+</aside>

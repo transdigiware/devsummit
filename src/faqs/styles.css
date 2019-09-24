@@ -1,8 +1,11 @@
+.category {
+}
 .category-heading {
   color: var(--darkgrey);
 }
 
-.section-heading {
+/* Forgive me, father */
+.section-heading.section-heading.section-heading {
   color: var(--blue);
   font-weight: bold;
   font-size: 1.14rem;
