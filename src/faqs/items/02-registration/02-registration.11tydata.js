@@ -1,7 +1,6 @@
 module.exports = {
-  sectionTitle: 'Registration',
-  sectionQuestion:
-    'How can I register for Chrome Dev Summit 2019 and how much does it cost?',
+  sectionTitle: 'Registration Details',
+  sectionQuestion: 'How can I register for Chrome Dev Summit 2019?',
   sectionAnswer:
-    'Tickets to Chrome Dev Summit are offered at no charge, but you must submit an application to register and admissions are invite-only.',
+    'You must submit an application to register. Please register for an invitation by October 11.',
 };

@@ -1,6 +1,6 @@
 module.exports = {
-  sectionTitle: 'General',
-  sectionQuestion: 'What is Chrome Dev Summit 2019?',
+  sectionTitle: 'Accessibility',
+  sectionQuestion: 'Is the venue accessible?',
   sectionAnswer:
-    'Chrome Dev Summit is an annual conference where developers can learn about the latest tools and updates coming to the Google Chrome browser.',
+    'Google strives to make events open and accessible to everyone, regardless of disability or special needs.',
 };
