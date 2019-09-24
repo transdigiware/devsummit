@@ -43,4 +43,7 @@ description: Everything that's happening at Chrome Dev Summit.
     self.schedule = {% json collections.jsSchedule %};
   </script>
   <script type="module" async src="confboxAsset(/schedule/script/index.js)"></script>
+
+  {% from 'squiggle-banner/index.njk' import squiggleBanner %}
+  {{ squiggleBanner(page, '--red', grayTop=true) }}
 {% endblock %}

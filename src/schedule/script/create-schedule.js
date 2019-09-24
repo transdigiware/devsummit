@@ -94,7 +94,9 @@ module.exports = function createScheduleHtml(
                         `}
                     <h2 class="${classNameMap.time}">
                       <time>
-                        ${hours % 12 || 12}${minutes ? ':' + minutes : ''}
+                        ${hours % 12 || 12}${minutes
+                          ? ':' + minutes.toString().padStart(2, '0')
+                          : ''}
                         <span class="${classNameMap.amPm}"
                           >${hours < 12 ? 'am' : 'pm'}</span
                         >

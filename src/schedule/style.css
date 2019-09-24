@@ -1,6 +1,6 @@
 .tz-switch {
   margin: 0 auto;
-  width: max-content;
+  max-width: max-content;
   text-align: center;
 
   @media (min-width: 480px) {

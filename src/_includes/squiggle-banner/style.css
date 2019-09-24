@@ -1,0 +1,39 @@
+.root {
+  position: relative;
+  z-index: 1;
+  background: url('confboxAsset(/assets/squiggles/banner.svg)') no-repeat center
+    center;
+  height: 7.2rem;
+  background-size: 1920px;
+  --corner-size: 14px;
+
+  margin-top: calc(var(--corner-size) * -1);
+  margin-bottom: calc(var(--corner-size) * -1);
+
+  @media (min-width: 1920px) {
+    background-size: cover;
+  }
+}
+
+.top,
+.bottom {
+  height: var(--corner-size);
+  background: var(--white);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.top {
+  top: 0;
+  border-radius: 0 0 var(--corner-size) var(--corner-size);
+}
+
+.bottom {
+  bottom: 0;
+  border-radius: var(--corner-size) var(--corner-size) 0 0;
+}
+
+.gray {
+  background: var(--offwhite);
+}

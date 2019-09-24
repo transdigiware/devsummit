@@ -12,8 +12,8 @@ module.exports = function createCalendarWidget(
 
   const formattedTime =
     (hours % 12 || 12) +
-    (minutes ? ':' + minutes : '') +
-    (hours >= 12 ? 'pm' : 'am');
+    (minutes ? ':' + minutes.toString().padStart(2, '0') : '') +
+    (hours < 12 ? 'am' : 'pm');
 
   return html`
     <div class="${classNameMap.icon}">

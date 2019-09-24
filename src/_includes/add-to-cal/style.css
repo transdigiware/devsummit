@@ -1,10 +1,6 @@
 .root {
   display: inline-block;
   text-align: center;
-  font-size: inherit;
-}
-.root * {
-  font-size: inherit;
 }
 .links {
   white-space: nowrap;
