@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server.js",
-    "build": "npm run clean && rollup -c",
+    "build": "npm run clean && rollup -c && del .build-tmp",
     "watch": "npm run clean && rollup -c --watch",
     "clean": "del build .build-tmp",
     "deploy": "npm run build && firebase deploy",
