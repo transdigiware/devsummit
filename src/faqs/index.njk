@@ -42,7 +42,7 @@ description: Everything you need to know about Chrome Dev Summit.
     <section class="{% className faqCSS, 'category' %}">
       <h1 id="{% idify section.title %}" class="{% className faqCSS, 'category-heading' %}">{{ section.title }}</h1>
       <aside class="{% className faqCSS, 'category-meta' %}">
-        <em>{{ section.question }}</em>
+        <blockquote>{{ section.question }}</blockquote>
         <p>{{ section.answer | safe }}<p>
       </aside>
       <div class="{% className contentCSS, 'box' %} {% className faqCSS, 'section' %}">
