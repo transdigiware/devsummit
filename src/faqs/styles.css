@@ -8,6 +8,12 @@
 }
 
 .category-meta {
+  & > blockquote {
+    border-left: 0.25rem solid var(--blue);
+    margin: 0;
+    padding-left: 1rem;
+    font-weight: 500;
+  }
 }
 
 .category-heading {
