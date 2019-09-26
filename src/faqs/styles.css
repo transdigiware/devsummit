@@ -18,6 +18,23 @@
 .section-heading {
   font-weight: bold;
   font-size: 1.14rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.75;
+
+  & + .markdown > p:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.markdown {
+  & p,
+  & li {
+    font-size: 0.9em;
+  }
+
+  & ul > li {
+    margin-bottom: 1rem;
+  }
 }
 
 :root {
@@ -27,4 +44,10 @@
 
 .section h3 {
   font-size: 0.8em;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--darkoffwhite);
+  margin: 2rem 0;
 }
