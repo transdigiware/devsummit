@@ -27,7 +27,8 @@
   background: #fff;
   overflow: hidden;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.13);
+  border: 1px solid var(--lessdarkoffwhite);
   padding: 0 1.6rem;
   margin: 2rem 0;
   font-size: 0.8rem;

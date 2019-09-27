@@ -245,7 +245,8 @@
   padding: 0.85rem 1.4em;
   position: relative;
   border-radius: 0.4rem;
-  filter: drop-shadow(5px 5px 16px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--lessdarkoffwhite);
+  filter: drop-shadow(5px 10px 16px rgba(0, 0, 0, 0.1));
   color: var(--offblack);
   line-height: 1.33;
 
@@ -348,6 +349,7 @@
   line-height: 1.7;
   margin: 0 calc(var(--side-margin) * -1) 2.3rem;
   padding: 1.5rem var(--side-margin);
+  border: 1px solid var(--lessdarkoffwhite);
 
   @media (min-width: 720px) {
     margin-left: 0;

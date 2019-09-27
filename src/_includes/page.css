@@ -30,6 +30,7 @@
   padding: 2rem var(--side-margin);
   margin-top: 3rem;
   background: var(--white);
+  border: 1px solid var(--lessdarkoffwhite);
 
   p {
     max-width: 60ch;
