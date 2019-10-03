@@ -147,3 +147,75 @@
 .direction-list {
   margin-bottom: 2.5em;
 }
+
+.floor-list {
+  counter-reset: floor-item;
+  margin-bottom: 2rem;
+
+  @media (min-width: 370px) {
+    column-count: 2;
+  }
+
+  @media (min-width: 1020px) {
+    column-count: 1;
+  }
+
+  @media (min-width: 1050px) {
+    column-count: 2;
+  }
+
+  & > li {
+    counter-increment: floor-item;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: max-content 1fr;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+    break-inside: avoid;
+
+    &::before {
+      content: counter(floor-item);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      --size: 1.7rem;
+      border-radius: var(--size);
+      width: var(--size);
+      height: var(--size);
+      background: var(--bg);
+      color: var(--white);
+      font-size: 0.85rem;
+    }
+
+    & > :first-child {
+      margin-top: 0.25rem;
+    }
+  }
+
+  & .clear-counter {
+    &::before {
+      background: var(--white);
+      border: 1px solid var(--darkgrey);
+      color: var(--black);
+    }
+  }
+}
+
+.activity-list {
+  & > li {
+    margin-bottom: 0.5em;
+  }
+}
+
+.floor-plans {
+  & > * {
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 450px) {
+    display: grid;
+    grid-template-columns: 1fr 0.809fr;
+    grid-gap: 1rem;
+  }
+}

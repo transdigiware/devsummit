@@ -60,6 +60,49 @@ description: Yerba Buena Center for the Arts
   {% from 'squiggle-banner/index.njk' import squiggleBanner %}
   {{ squiggleBanner(page, '--blue') }}
 
+  <section class="{% className moduleCSS, 'root' %}">
+    <h1 class="{% className moduleCSS, 'heading' %}">Wayfinding</h1>
+    <div class="{% className css, 'cols' %}">
+      <ol class="{% className css, 'unlist' %} {% className css, 'floor-list' %}">
+        <li style="--bg: var(--red)"><span>Registration</span></li>
+        <li style="--bg: var(--red)"><span>Swag</span></li>
+        <li style="--bg: var(--orange)"><span>General Session</span></li>
+        <li style="--bg: var(--green)"><span>Meals</span></li>
+        <li style="--bg: var(--blue)">
+          <ul class="{% className css, 'unlist' %} {% className css, 'activity-list' %}">
+            <li>Forum</li>
+            <li>Demos</li>
+            <li>Office hours</li>
+            <li>Review Clinics</li>
+            <li>F/B</li>
+            <li>Social Hour</li>
+          </ul>
+        </li>
+        <li style="--bg: var(--orange)">
+          <ul class="{% className css, 'unlist' %} {% className css, 'activity-list' %}">
+            <li>Grand Lobby</li>
+            <li>Introvert Lounge</li>
+            <li>Reception</li>
+          </ul>
+        </li>
+        <li style="--bg: var(--blue)"><span>General Session Overflow</span></li>
+        <li style="--bg: var(--green)"><span>Certification Lounge</span></li>
+        <li style="--bg: var(--red)"><span>#AskChrome</span></li>
+        <li style="--bg: var(--orange)"><span>Multifaith and Contemplation Room</span></li>
+        <li class="{% className css, 'clear-counter' %}"><span>Restrooms</span></li>
+        <li style="--bg: var(--orange)"><span>Mothers Room</span></li>
+      </ol>
+      <div class="{% className css, 'floor-plans' %}">
+        <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: .4712">
+          <img src="confboxAsset(/venue/assets/floor-art.png)" alt="Art center floor plan" class="{% className utilsCSS, 'media-fill' %}">
+        </div>
+        <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: .3816">
+          <img src="confboxAsset(/venue/assets/floor-theatre.png)" alt="Theatre floor plan" class="{% className utilsCSS, 'media-fill' %}">
+        </div>
+      </div>
+    </div>
+  </section>
+
   {% include 'faq/index.njk' %}
   {{ squiggleBanner(page, '--red', grayTop=true) }}
 {% endblock %}
