@@ -60,7 +60,7 @@ description: Yerba Buena Center for the Arts
   {% from 'squiggle-banner/index.njk' import squiggleBanner %}
   {{ squiggleBanner(page, '--blue') }}
 
-  <section class="{% className moduleCSS, 'root' %}">
+  <section class="{% className moduleCSS, 'root' %} {% className css, 'wayfinding' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">Wayfinding</h1>
     <div class="{% className css, 'cols' %}">
       <ol class="{% className css, 'unlist' %} {% className css, 'floor-list' %}">
@@ -102,6 +102,30 @@ description: Yerba Buena Center for the Arts
       </div>
     </div>
   </section>
+
+  {%- set contentCSS = "/_includes/content.css" -%}
+  {% css page, contentCSS %}
+  <div class="{% className moduleCSS, 'root' %} {% className moduleCSS, 'root-alt' %} {% className css, 'additional-info' %}">
+    <section class="{% className contentCSS, 'category' %}">
+      <h1 class="{% className contentCSS, 'category-heading' %}">Additional Information</h1>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="{% className contentCSS, 'box' %} {% className contentCSS, 'section' %}">
+        <h2 class="{% className contentCSS, 'section-heading' %}">What To Expect</h2>
+        <p>Over the two days, Chrome product engineering teams and the Chrome community gather  to envision and build the future of the Web. Both in-person and livestream attendees will hear about platform updates, quick and free wins, architectural guidance, developer tooling, case-studies, and opportunities for increased reach and engagement with Chrome and Google at large.</p>
+        <hr class="{% className contentCSS, 'divider' %}">
+        <h2 class="{% className contentCSS, 'section-heading' %}">Engaging Sessions in the YBCA Theatre</h2>
+        <p>Learn directly from the Chrome product engineering teams about the latest innovations and updates through deep technical sessions, demos, and fun interactive experiences. Day 1 sessions will focus on innovations for the modern Web. Day 2 sessions show Chrome’s vision and investment in the future of the Web.</p>
+        <hr class="{% className contentCSS, 'divider' %}">
+        <h2 class="{% className contentCSS, 'section-heading' %}">Hands-on Learning in the Forum</h2>
+        <p>Actively explore the latest Chrome tools and technologies via interactive demos, hands-on learning, and one-on-one office hours with Chrome experts. Chrome staff will also be on hand to lend guidance and tips on your specific projects.</p>
+        <hr class="{% className contentCSS, 'divider' %}">
+        <h2 class="{% className contentCSS, 'section-heading' %}">Community Partners </h2>
+        <p>As always, we’ll also have representatives from our browser friends joining us to talk about their vision for their respective products and discuss how we’re working together to move the Web forward and make it easier for developers to build on.</p>
+      </div>
+    </section>
+  </div>
 
   {% include 'faq/index.njk' %}
   {{ squiggleBanner(page, '--red', grayTop=true) }}

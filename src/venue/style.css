@@ -148,6 +148,17 @@
   margin-bottom: 2.5em;
 }
 
+.wayfinding {
+  --corner-size: 14px;
+  background: var(--white);
+  position: relative;
+
+  @media (min-width: 480px) {
+    margin-bottom: calc(var(--corner-size) * -1);
+    border-radius: 0 0 var(--corner-size) var(--corner-size);
+  }
+}
+
 .floor-list {
   counter-reset: floor-item;
   margin-bottom: 2rem;
@@ -217,5 +228,15 @@
     display: grid;
     grid-template-columns: 1fr 0.809fr;
     grid-gap: 1rem;
+  }
+}
+
+.additional-info {
+  @media (min-width: 720px) {
+    padding-bottom: 8rem;
+  }
+
+  @media (min-width: 1020px) {
+    padding-bottom: 1px;
   }
 }
