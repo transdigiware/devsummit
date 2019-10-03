@@ -245,7 +245,7 @@
   padding: 0.85rem 1.4em;
   position: relative;
   border-radius: 0.4rem;
-  filter: drop-shadow(5px 5px 16px rgba(0, 0, 0, 0.08));
+  box-shadow: 0 55px 99px -2rem var(--black-a50);
   color: var(--offblack);
   line-height: 1.33;
 

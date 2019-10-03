@@ -33,7 +33,7 @@
   background: var(--link-color);
   border-radius: 1000px;
   padding: 0.9em 1.5em;
-  box-shadow: 0 3px 16px var(--blue-a25);
+  box-shadow: 0 9px 8px -7px var(--blue-a50);
 
   &:hover {
     color: var(--lightblue);
