@@ -277,9 +277,8 @@
 }
 
 .session-item-title {
-  font-size: inherit;
   margin: 0;
-  max-width: 48ch;
+  max-width: 37ch;
 }
 
 .topic-list {
