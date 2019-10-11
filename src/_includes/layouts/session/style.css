@@ -9,6 +9,7 @@
 .heading {
   text-align: initial;
   text-transform: none;
+  white-space: normal;
 }
 .heading:before {
   display: none;
