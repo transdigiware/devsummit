@@ -23,7 +23,7 @@
 }
 
 .icon {
-  font-family: 'Google Sans', roboto, sans-serif;
+  font-family: google sans, roboto, sans-serif;
   background: var(--blue);
   border-radius: 0.9rem;
   width: 5.8rem;
@@ -76,7 +76,7 @@
   content: '';
   display: inline-block;
   margin-right: 0.2em;
-  background: url('confboxAsset(assets/clock.svg)');
+  background: url('confboxAsset(/assets/clock-icon.svg)');
   background-size: contain;
   width: var(--icon-size);
   height: var(--icon-size);
