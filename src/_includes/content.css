@@ -21,8 +21,12 @@
   border-radius: 0.74rem;
   background: var(--white);
   padding: 0.3rem var(--side-margin);
+  border-top: 1px solid var(--lessdarkoffwhite);
+  border-bottom: 1px solid var(--lessdarkoffwhite);
+
   @media (min-width: 720px) {
     box-shadow: 0 55px 99px rgba(0, 0, 0, 0.13);
+    border: 1px solid var(--lessdarkoffwhite);
     margin: 0;
     padding: 0.3rem 1.5rem;
   }
