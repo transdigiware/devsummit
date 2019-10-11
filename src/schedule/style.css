@@ -32,8 +32,12 @@
 
 .day {
   display: grid;
-  grid-template-columns: [first] max-content 0.4rem [last] 1fr;
+  grid-template-columns: 1fr;
   --row-min-height: 3.5rem;
+
+  @media (min-width: 320px) {
+    grid-template-columns: [first] max-content 0.4rem [last] 1fr;
+  }
 
   @media (min-width: 720px) {
     --row-min-height: 2.7rem;
@@ -45,13 +49,16 @@
   text-align: center;
   font-weight: 400;
   line-height: 1;
-  grid-column: first;
   align-self: end;
   background: var(--blue);
   color: var(--white);
   margin: 0;
   padding: 0.6rem 1rem 0.35rem;
   border-radius: 0.3rem;
+
+  @media (min-width: 320px) {
+    grid-column: first;
+  }
 }
 
 .date-name {
@@ -66,11 +73,17 @@
 }
 
 .day-title {
-  grid-column: last;
   align-self: end;
   color: var(--blue);
   font: 700 1.3rem/1 google sans, roboto, sans-serif;
-  padding-bottom: 0.35rem;
+  padding: 0.5rem 0;
+  text-align: center;
+
+  @media (min-width: 320px) {
+    grid-column: last;
+    text-align: left;
+    padding: 0.35rem 0;
+  }
 }
 
 .day-number {
@@ -79,14 +92,19 @@
   background: var(--blue);
   color: var(--white);
   border-radius: var(--size);
-  font-size: 0.6rem;
-  --size: 1rem;
+  font-size: 0.8rem;
+  --size: 1.5rem;
   width: var(--size);
   height: var(--size);
   justify-content: center;
   align-items: center;
   vertical-align: middle;
   line-height: var(--size);
+
+  @media (min-width: 320px) {
+    --size: 1rem;
+    font-size: 0.6rem;
+  }
 }
 
 .divider {
@@ -95,8 +113,11 @@
 
 .time-line,
 .row-gap {
-  grid-column: first;
   position: relative;
+
+  @media (min-width: 320px) {
+    grid-column: first;
+  }
 
   &::before {
     position: absolute;
@@ -150,7 +171,7 @@
 }
 
 .icon-bubble {
-  --size: 2rem;
+  --size: 4rem;
   background: var(--white);
   border: 1px solid var(--offwhite);
   border-radius: var(--size);
@@ -160,6 +181,10 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  @media (min-width: 320px) {
+    --size: 2rem;
+  }
 }
 
 .icon-border {
@@ -175,16 +200,28 @@
 }
 
 .item {
-  grid-column: last;
+  @media (min-width: 320px) {
+    grid-column: last;
+  }
 }
 
 .basic-item-title {
-  font-size: 1rem;
-  margin: 0.5rem 0 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  font-size: 1rem;
+  text-align: center;
   font-weight: normal;
   line-height: 1.3;
+
+  margin: 0;
+
+  @media (min-width: 320px) {
+    margin: 0.5rem 0 0;
+    justify-content: initial;
+    text-align: left;
+  }
 
   @media (min-width: 720px) {
     font-size: 0.7rem;
@@ -193,7 +230,11 @@
 }
 
 .basic-item-title-dot-align {
-  margin-top: 1.42rem;
+  margin-top: 0;
+
+  @media (min-width: 320px) {
+    margin-top: 1.42rem;
+  }
 
   @media (min-width: 720px) {
     margin-top: 0.8rem;
@@ -201,7 +242,7 @@
 }
 
 .dot {
-  --size: 0.5rem;
+  --size: 10px;
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
@@ -209,9 +250,12 @@
 }
 
 .end {
-  grid-column: first;
   position: relative;
   height: var(--row-min-height);
+
+  @media (min-width: 320px) {
+    grid-column: first;
+  }
 
   &::after {
     content: '';
@@ -245,16 +289,23 @@
 
 .session-item {
   background: var(--white);
-  padding: 0.85rem 1.4em;
+  padding: 1.4em;
   position: relative;
   border-radius: 0.4rem;
   border: 1px solid var(--lessdarkoffwhite);
   filter: drop-shadow(5px 10px 16px rgba(0, 0, 0, 0.1));
   color: var(--offblack);
   line-height: 1.33;
+  margin-top: 0.5rem;
+
+  @media (min-width: 320px) {
+    padding: 0.85rem 1.4em;
+    margin-top: 0.25rem;
+  }
 
   @media (min-width: 720px) {
     font-size: 0.7rem;
+    margin-top: 0.35rem;
   }
 
   /* min column size * 2 + gap + left/right padding 4.6rem * 2 */
@@ -272,16 +323,27 @@
     width: 0;
     height: 0;
     position: absolute;
-    top: 0.9em;
-    right: 100%;
+
     --size: 0.45rem;
     --sides: 0.6;
-    border-top: calc(var(--size) * var(--sides)) solid transparent;
-    border-bottom: calc(var(--size) * var(--sides)) solid transparent;
-    border-right: var(--size) solid var(--white);
+
+    right: calc(50% - var(--size) / 2);
+    top: calc(var(--size) * -1);
+    border-left: calc(var(--size) * var(--sides)) solid transparent;
+    border-right: calc(var(--size) * var(--sides)) solid transparent;
+    border-bottom: var(--size) solid var(--white);
 
     @media (min-width: 720px) {
       top: 1.4em;
+    }
+
+    @media (min-width: 320px) {
+      top: 0.9em;
+      right: 100%;
+
+      border-top: calc(var(--size) * var(--sides)) solid transparent;
+      border-bottom: calc(var(--size) * var(--sides)) solid transparent;
+      border-right: var(--size) solid var(--white);
     }
   }
 
