@@ -5,8 +5,8 @@ topics:
   - Performance
 speakers:
   - surma
-start: 2019/11/11 15:10
-end: 2019/11/11 15:45
+start: 2019/11/11 15:35
+end: 2019/11/11 16:05
 description: How can we make sure our experience is great for everyone? What do we need to change in our web development process to be more accommodating to hyper-constrained devices? The answer is architecture…
 ---
 

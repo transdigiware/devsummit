@@ -6,8 +6,8 @@ topics:
 speakers:
   - addy-osmani
   - nate-schloss
-start: 2019/11/11 14:35
-end: 2019/11/11 15:10
+start: 2019/11/11 15:00
+end: 2019/11/11 15:30
 description: Today, developers often build components and routes for a single baseline. However, the environment conditions users are in are often much more nuanced…
 ---
 

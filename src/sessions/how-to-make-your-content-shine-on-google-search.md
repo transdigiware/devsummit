@@ -5,8 +5,8 @@ topics:
   - SEO
 speakers:
   - martin-splitt
-start: 2019/11/12 16:50
-end: 2019/11/12 17:55
+start: 2019/11/12 17:15
+end: 2019/11/12 17:45
 description: In this session, we'll peek under the hood of Googlebot and talk about the implementation best practices, patterns, and available tools and debugging…
 ---
 

@@ -5,8 +5,8 @@ topics:
   - Features
 speakers:
   - sam-richard
-start: 2019/11/11 17:25
-end: 2019/11/11 18:00
+start: 2019/11/11 17:55
+end: 2019/11/11 18:25
 description: The web today is an incredibly powerful platform, but there's still a gap between what web apps can do and the capabilities of native apps. web needs access to more powerful APIs…
 ---
 

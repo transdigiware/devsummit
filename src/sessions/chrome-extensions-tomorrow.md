@@ -5,8 +5,8 @@ topics:
   - Extensions
 speakers:
   - simeon-vincent
-start: 2019/11/12 16:15
-end: 2019/11/12 16:50
+start: 2019/11/12 16:40
+end: 2019/11/12 17:10
 description: Chrome's extensions platform is undergoing a sea change. Nearly 6 years after the current manifest version was introduced, we are revving it again…
 ---
 

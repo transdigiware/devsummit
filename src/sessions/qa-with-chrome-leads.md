@@ -10,8 +10,8 @@ speakers:
   - rick-byers
   - alex-russell
   - jon-krafcik
-start: 2019/11/12 14:35
-end: 2019/11/12 15:10
+start: 2019/11/12 15:00
+end: 2019/11/12 15:30
 description: The leads of the Chrome team answer your questions…
 avatar: /schedule/assets/panel.jpg
 ---
