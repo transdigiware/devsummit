@@ -173,6 +173,7 @@ module.exports = function(eleventyConfig) {
       createSchedule(
         buildScheduleData(sessions, speakers),
         utcOffset,
+        utcOffset,
         modCSS.getAllCamelCased('/schedule/style.css'),
         confboxPath,
       ),

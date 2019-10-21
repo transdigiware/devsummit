@@ -3,6 +3,7 @@ const { html } = require('../../script/escape-html');
 
 module.exports = function createScheduleHtml(
   items,
+  venueOffset,
   utcOffset,
   classNameMap,
   confPath,
@@ -10,6 +11,7 @@ module.exports = function createScheduleHtml(
   let currentMonth = '';
   let currentDate = 0;
 
+  const isVenueOffset = venueOffset === utcOffset;
   const days = [];
   let day;
 
@@ -39,11 +41,14 @@ module.exports = function createScheduleHtml(
               >
               <span class="${classNameMap.dateNumber}">${date}</span>
             </h1>
-            <div class="${classNameMap.dayTitle}">
-              Day
-              <span class="${classNameMap.dayNumber}">${dayNum + 1}</span>
-            </div>
-
+            ${!isVenueOffset
+              ? ''
+              : html`
+                  <div class="${classNameMap.dayTitle}">
+                    Day
+                    <span class="${classNameMap.dayNumber}">${dayNum + 1}</span>
+                  </div>
+                `}
             <div
               class="${`${classNameMap.timeLine} ${classNameMap.dayGap}`}"
             ></div>

@@ -11,7 +11,13 @@ const el = document.querySelector('.' + styles.scheduleBlock);
 
 function render() {
   const offset = getTimezoneOption() === 'venue' ? venueOffset : localOffset;
-  el.innerHTML = createSchedule(self.schedule, offset, styles, path);
+  el.innerHTML = createSchedule(
+    self.schedule,
+    venueOffset,
+    offset,
+    styles,
+    path,
+  );
 }
 
 onChange(render);
