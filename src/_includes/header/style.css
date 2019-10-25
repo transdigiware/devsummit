@@ -140,6 +140,7 @@
     line-height: normal;
     font-size: 0.8em;
     margin: 0.5em 0.55em;
+    padding: 1em 0;
 
     @media (min-width: 320px) {
       margin: 0.5em 0.7em;
