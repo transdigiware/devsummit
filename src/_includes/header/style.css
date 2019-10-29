@@ -33,7 +33,7 @@
 }
 
 .title {
-  margin: 4.6em 0;
+  margin: 4.6em 0 3.8em;
   text-decoration: none;
   display: block;
 
@@ -128,7 +128,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 4em 0;
+  margin: 3.2em 0;
 
   @media (min-width: 720px) {
     margin: 0;
@@ -140,6 +140,7 @@
     line-height: normal;
     font-size: 0.8em;
     margin: 0.5em 0.55em;
+    padding: 1em 0;
 
     @media (min-width: 320px) {
       margin: 0.5em 0.7em;
