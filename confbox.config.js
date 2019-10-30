@@ -65,8 +65,8 @@ module.exports = {
     },
     {
       title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/11 15:45',
-      end: '2019/11/11 16:15',
+      start: '2019/11/11 16:05',
+      end: '2019/11/11 16:40',
       icon: '/schedule/assets/coffee.svg',
     },
     {
@@ -88,8 +88,8 @@ module.exports = {
     },
     {
       title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/12 15:45',
-      end: '2019/11/12 16:15',
+      start: '2019/11/12 16:05',
+      end: '2019/11/12 16:35',
       icon: '/schedule/assets/coffee.svg',
     },
   ],
