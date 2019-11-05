@@ -193,5 +193,9 @@
     &:not(:first-of-type) {
       margin-top: 1rem;
     }
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--grey);
+    }
   }
 }

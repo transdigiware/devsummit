@@ -107,6 +107,7 @@ html {
   line-height: 2;
   font-weight: 300;
   font-size: 14px;
+  background: var(--white);
   color: var(--black);
 
   @media (min-width: 320px) {
@@ -124,6 +125,7 @@ strong {
 
 body {
   margin: 0;
+  background: var(--white);
 }
 
 a {
@@ -132,6 +134,10 @@ a {
   &:hover {
     color: var(--link-hover-color);
     text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    font-weight: normal;
   }
 }
 

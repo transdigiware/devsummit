@@ -26,4 +26,25 @@
 
   --twitter: #38a1f3;
   --youtube: #ff0000;
+
+  @media (prefers-color-scheme: dark) {
+    --blue: hsl(214 40% 55%);
+    --lightblue: hsl(213 57% 10%);
+    --darkblue: hsl(214 70% 59%);
+    --red: hsl(4 50% 40%);
+
+    --white: hsl(200 10% 10%);
+    --offwhite: hsl(200 10% 13%);
+    --lessdarkoffwhite: hsl(200 10% 16%);
+    --lesslessdarkoffwhite: hsl(200 10% 20%);
+    --darkoffwhite: hsl(200 10% 25%);
+    --lightlightgrey: hsl(200 10% 40%);
+    --lightgrey: hsl(200 10% 50%);
+    --midgrey: hsl(200 10% 60%);
+    --grey: hsl(200 10% 70%);
+    --darkgrey: hsl(200 10% 75%);
+    --offblack: hsl(200 10% 80%);
+    --black: hsl(200 10% 90%);
+    --black-a50: hsla(0 0% 0% / 90%);
+  }
 }

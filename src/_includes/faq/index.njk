@@ -15,7 +15,7 @@
         <section class="{% className css, 'faq' %}">
           <h1 class="{% className css, 'faq-heading' %}">{{ faq.question }}</h1>
           <section class="{% className css, 'faq-content' %}">
-            <p>{{ faq.answer }} <a href="{{conf.path}}faqs/#{% idify faq.title %}">Read more</a>.</p>
+            <p>{{ faq.answer }} <a href="{{conf.path}}faqs/#{% idify faq.title %}">Read more</a></p>
           </section>
         </section>  
       {% endfor %}

@@ -24,7 +24,7 @@
 }
 
 .faq {
-  background: #fff;
+  background: var(--white);
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: var(--hueless-shadow);

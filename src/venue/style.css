@@ -28,6 +28,11 @@
     right: 0;
     bottom: 0;
   }
+
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1) contrast(0.8);
+    background-color: hsl(217 10% 89%);
+  }
 }
 
 .header-content {
@@ -116,6 +121,11 @@
 
 .street-map {
   border: 1px solid var(--darkoffwhite);
+
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1) contrast(0.7);
+    border-color: var(--black);
+  }
 }
 
 .address-h {
@@ -228,6 +238,10 @@
     display: grid;
     grid-template-columns: 1fr 0.809fr;
     grid-gap: 1rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1) contrast(0.8);
   }
 }
 
