@@ -442,6 +442,12 @@
     margin-top: 0;
   }
 
+  & h3 {
+    font: 700 1rem Google Sans, roboto, sans-serif;
+    color: var(--darkgrey);
+    margin-top: 0;
+  }
+
   & p {
     max-width: 60ch;
   }
