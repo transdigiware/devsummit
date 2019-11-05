@@ -46,10 +46,22 @@ module.exports = {
    * Additional schedule items. These are merged with the content in /sessions/.
    */
   extraSchedule: [
+    // Day 1
+    {
+      title: 'Registration & breakfast',
+      start: '2019/11/11 08:00',
+      end: '2019/11/11 09:50',
+      icon: '/schedule/assets/food.svg',
+    },
+    {
+      title: 'Main stage opens',
+      start: '2019/11/11 09:30',
+      end: '2019/11/11 09:50',
+    },
     {
       title: 'Intro',
       start: '2019/11/11 09:50',
-      end: '2019/11/11 10:05',
+      end: '2019/11/11 10:00',
     },
     {
       title: 'Break & livestream exclusive lightning talks',
@@ -68,6 +80,29 @@ module.exports = {
       start: '2019/11/11 16:05',
       end: '2019/11/11 16:40',
       icon: '/schedule/assets/coffee.svg',
+    },
+    {
+      title: 'Social hour',
+      start: '2019/11/11 18:25',
+      end: '2019/11/11 20:25',
+      icon: '/schedule/assets/coffee.svg',
+    },
+    {
+      title: 'Day 1 complete!',
+      start: '2019/11/11 20:25',
+      end: '2019/11/11 20:30',
+    },
+    // Day 2
+    {
+      title: 'Registration & breakfast',
+      start: '2019/11/12 08:00',
+      end: '2019/11/12 09:50',
+      icon: '/schedule/assets/food.svg',
+    },
+    {
+      title: 'Main stage opens',
+      start: '2019/11/12 09:30',
+      end: '2019/11/12 09:50',
     },
     {
       title: 'Intro',
@@ -91,6 +126,11 @@ module.exports = {
       start: '2019/11/12 16:05',
       end: '2019/11/12 16:35',
       icon: '/schedule/assets/coffee.svg',
+    },
+    {
+      title: `It's over 😢`,
+      start: '2019/11/12 17:45',
+      end: '2019/11/12 17:50',
     },
   ],
 };
