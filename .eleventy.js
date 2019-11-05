@@ -131,7 +131,7 @@ module.exports = function(eleventyConfig) {
       if (!speaker) {
         throw Error(`Unknown speaker ${speakerId}`);
       }
-      return new nunjucks.runtime.SafeString(speaker.data[attr] || fallback);
+      return speaker.data[attr] || fallback;
     },
   );
 
