@@ -1,8 +1,9 @@
 .root {
   color: var(--offblack);
-  padding-top: 10rem;
+  padding-top: 3rem;
 
   @media (min-width: 960px) {
+    padding-top: 10rem;
     padding-bottom: 8rem;
   }
 }
@@ -96,7 +97,8 @@
   }
 }
 
-.calendar {
+.calendar,
+.youtube-embed {
   @media (min-width: 960px) {
     place-self: center;
     grid-column: 2;

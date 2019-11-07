@@ -13,18 +13,28 @@ layout: '/layouts/session/wrapper'
   <div class="{% className moduleCSS, 'root-alt' %} {% className sessionCSS, 'root' %}">
     <section class="{% className sessionCSS, 'factsheet' %}">
       <h1 class="{% className moduleCSS, 'heading' %} {% className sessionCSS, 'heading' %}">{{title}}</h1>
-      <ul class="{% className sessionCSS, 'taglist' %}">
-        {% for tag in topics -%}
-          <li class="{% className sessionCSS, 'tag' %}">
-            {{tag}}
-          </li>
-        {%- endfor %}
-      </ul>
+      {% if topics.length %}
+        <ul class="{% className sessionCSS, 'taglist' %}">
+          {% for tag in topics -%}
+            <li class="{% className sessionCSS, 'tag' %}">
+              {{tag}}
+            </li>
+          {%- endfor %}
+        </ul>
+      {% endif %}
 
-      <div class="{% className sessionCSS, 'calendar' %}">
-        {% set icslink = "session/" + page.fileSlug + "/cal.ics" %}
-        {% include "calendar-widget/index.njk" %}
-      </div>
+      {% if youtubeId %}
+        {%- set utilsCSS = "/_includes/utils.css" -%}
+        {% css page, utilsCSS %}
+        <div class="{% className utilsCSS, 'aspect-ratio' %} {% className sessionCSS, 'youtube-embed' %}" style="--aspect-ratio: calc(16/9)">
+          <iframe class="{% className utilsCSS, 'media-fill' %}" src="https://www.youtube.com/embed/{{youtubeId}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      {% else %}
+        <div class="{% className sessionCSS, 'calendar' %}">
+          {% set icslink = "session/" + page.fileSlug + "/cal.ics" %}
+          {% include "calendar-widget/index.njk" %}
+        </div>
+      {% endif %}
     </section>
     <section class="{% className sessionCSS, 'description' %}">
       <h2 class="{% className sessionCSS, 'heading' %}">Description</h2>
