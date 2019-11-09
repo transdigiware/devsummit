@@ -6,6 +6,7 @@ speakers:
   - dion-almaer
   - jon-krafcik
   - parisa-tabriz
+  - guillermo-rauch
 start: 2019/11/11 10:00
 end: 2019/11/11 11:00
 description: Celebrating every aspect of the web's diversity - the technologies, the tools and the people, and talk about how we're working together to elevate the web…
