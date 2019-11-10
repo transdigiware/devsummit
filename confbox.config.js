@@ -54,7 +54,7 @@ module.exports = {
       icon: '/schedule/assets/food.svg',
     },
     {
-      title: 'Main stage opens',
+      title: 'Main stage open',
       start: '2019/11/11 09:30',
       end: '2019/11/11 09:50',
     },
@@ -68,18 +68,21 @@ module.exports = {
       start: '2019/11/11 11:35',
       end: '2019/11/11 12:15',
       icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
     },
     {
       title: 'Lunch & livestream exclusive lightning talks',
       start: '2019/11/11 13:25',
       end: '2019/11/11 14:35',
       icon: '/schedule/assets/food.svg',
+      livestreamed: true,
     },
     {
       title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/11 16:05',
       end: '2019/11/11 16:40',
       icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
     },
     {
       title: 'Social hour',
@@ -90,7 +93,7 @@ module.exports = {
     {
       title: 'Day 1 complete!',
       start: '2019/11/11 20:25',
-      end: '2019/11/11 20:30',
+      end: '2019/11/11 20:26',
     },
     // Day 2
     {
@@ -100,7 +103,7 @@ module.exports = {
       icon: '/schedule/assets/food.svg',
     },
     {
-      title: 'Main stage opens',
+      title: 'Main stage open',
       start: '2019/11/12 09:30',
       end: '2019/11/12 09:50',
     },
@@ -114,23 +117,26 @@ module.exports = {
       start: '2019/11/12 11:45',
       end: '2019/11/12 12:15',
       icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
     },
     {
       title: 'Lunch & livestream exclusive lightning talks',
       start: '2019/11/12 13:25',
       end: '2019/11/12 14:35',
       icon: '/schedule/assets/food.svg',
+      livestreamed: true,
     },
     {
       title: 'Break & livestream exclusive lightning talks',
       start: '2019/11/12 16:05',
       end: '2019/11/12 16:35',
       icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
     },
     {
       title: `It's over 😢`,
       start: '2019/11/12 17:45',
-      end: '2019/11/12 17:50',
+      end: '2019/11/12 17:46',
     },
   ],
 };

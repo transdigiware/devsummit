@@ -21,5 +21,15 @@
     <a href="{{conf.path}}remote/">Remote</a>
     <a href="{{conf.path}}faqs/">FAQs</a>
   </div>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqEfT0jfgRNIGqibWxBe8X1Dt0a2FcHdituhRhG1tNGL1sBQ/viewform" rel="noopener noreferrer" target="_blank" class="{% className css, 'get-updates' %}">Get Updates</a>
+  {% if page.url !== '/' %}
+    <a href="{{conf.path}}" style="display:none" class="{% className css, 'register' %}">Live Stream</a>
+    <script>
+      const now = Number(new URL(location).searchParams.get('now')) || Date.now();
+      const start = {{ conf.start }} - (1000 * 60 * 60 * 2);
+      const end = {{ conf.end }};
+      if (now > start && now < end) {
+        document.currentScript.previousElementSibling.style.display = '';
+      }
+    </script>
+  {% endif %}
 </div>

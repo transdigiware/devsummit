@@ -13,19 +13,27 @@ const {
   extraSchedule,
 } = require('./lib/confbox-config');
 
-function buildScheduleData(sessions, speakers) {
+function buildScheduleData(sessions, speakers, { basic = false } = {}) {
   const schedule = [
-    ...sessions.map(session => ({
-      start: session.data.start,
-      end: session.data.end,
-      title: session.data.title,
-      speakers: session.data.speakers,
-      topics: session.data.topics,
-      avatar: session.data.avatar,
-      session: true,
-      fileSlug: session.fileSlug,
-      body: session.data.description,
-    })),
+    ...sessions.map(session => {
+      const obj = {
+        start: session.data.start,
+        end: session.data.end,
+        title: session.data.title,
+        speakers: session.data.speakers,
+        session: true,
+        livestreamed: true,
+        fileSlug: session.fileSlug,
+      };
+
+      if (!basic) {
+        obj.topics = session.data.topics;
+        obj.avatar = session.data.avatar;
+        obj.body = session.data.description;
+      }
+
+      return obj;
+    }),
     ...extraSchedule.map(obj => ({ ...obj })),
   ].map(item => {
     // Convert dates to timestamps
@@ -45,6 +53,8 @@ function buildScheduleData(sessions, speakers) {
           name: speaker.data.name,
           avatar: `confboxAsset(${speaker.data.avatar ||
             '/assets/speakers/default.svg'})`,
+          title: speaker.data.title,
+          link: speaker.data.link,
         };
       });
     }
@@ -252,6 +262,14 @@ module.exports = function(eleventyConfig) {
     return buildScheduleData(
       collection.getFilteredByTag('session'),
       collection.getFilteredByTag('speakers'),
+    );
+  });
+
+  eleventyConfig.addCollection('jsScheduleBasic', collection => {
+    return buildScheduleData(
+      collection.getFilteredByTag('session'),
+      collection.getFilteredByTag('speakers'),
+      { basic: true },
     );
   });
 

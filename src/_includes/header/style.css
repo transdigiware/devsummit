@@ -85,48 +85,49 @@
   }
 }
 
-.get-updates {
+.register {
   grid-area: 1 / reg;
   position: absolute;
   left: 50%;
   top: 100%;
   transform: translate(-50%, -50%);
 
-  font-size: 0.7rem;
-  background: var(--white);
-  border-radius: 1000px;
-  padding: 0.9em 0;
-  white-space: nowrap;
-
-  box-shadow: var(--hueless-shadow);
-  border: 1px solid var(--lessdarkoffwhite);
+  font-size: 0.75em;
+  line-height: normal;
   text-decoration: none;
-  line-height: 1;
-  padding: 0.6em 1.3em;
+  color: var(--lightblue);
+  background: var(--link-color);
+  border-radius: 1000px;
+  padding: 0.6em 1.2em;
+  box-shadow: var(--blue-shadow);
+
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-gap: 0.7em;
+  grid-auto-flow: column;
   align-items: center;
-  width: max-content;
+  grid-gap: 0.5rem;
+
+  --icon-size: 1.7em;
+
+  &::before {
+    content: '';
+    background: url('confboxAsset(/assets/small-youtube-icon.svg)') no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  &:hover {
+    color: var(--lightblue);
+    text-decoration: underline;
+  }
 
   @media (min-width: 720px) {
     position: relative;
     transform: none;
     left: 0;
     top: 0;
-  }
-
-  &::before {
-    content: '';
-    --size: 1.8em;
-    width: var(--size);
-    height: var(--size);
-    background: url('confboxAsset(/assets/notify-icon.svg)') no-repeat;
-    background-size: contain;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--offwhite);
   }
 }
 
