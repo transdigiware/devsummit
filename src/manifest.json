@@ -9,6 +9,16 @@
     {
       "src": "confboxAsset(/assets/pwa.png)",
       "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "confboxAsset(/assets/pwa-large.png)",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    },
+    {
+      "src": "confboxAsset(/assets/pwa.png)",
+      "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
