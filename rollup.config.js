@@ -13,6 +13,7 @@ import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
 import assetPlugin from './lib/asset-plugin';
 import confboxConfigPlugin from './lib/confbox-config-plugin';
+import swPlugin from './lib/sw-plugin';
 import copy from './lib/copy';
 
 const confboxConfig = require('./confbox.config.js');
@@ -26,6 +27,7 @@ export default async function({ watch }) {
   return {
     input: {
       'nuke-sw': 'src/nuke-sw.js',
+      sw: 'src/sw.js',
     },
     output: {
       dir: 'build' + confboxConfig.path,
@@ -60,6 +62,7 @@ export default async function({ watch }) {
           dest: '.',
         },
       }),
+      swPlugin(),
       {
         // This is a dirty hack to copy /devsummit/404.html to /404.html, which is where
         // Firebase hosting will look for the 404 page.

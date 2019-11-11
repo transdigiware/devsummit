@@ -118,7 +118,7 @@ module.exports = function createScheduleHtml(
                           <h3 class="${classNameMap.sessionItemTitle}">
                             <a
                               class="${classNameMap.sessionLink}"
-                              href="${confPath}sessions/${item.fileSlug}"
+                              href="${confPath}sessions/${item.fileSlug}/"
                               >${item.title}</a
                             >
                           </h3>
@@ -139,7 +139,7 @@ module.exports = function createScheduleHtml(
                                   </ul>
                                 `
                               : ''}
-                            <a href="${confPath}sessions/${item.fileSlug}"
+                            <a href="${confPath}sessions/${item.fileSlug}/"
                               >Read more</a
                             >
                           </div>

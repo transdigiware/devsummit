@@ -1,0 +1,20 @@
+{
+  "name": "Chrome Dev Summit 2019",
+  "short_name": "CDS 2019",
+  "start_url": "/devsummit/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#f8f9fa",
+  "icons": [
+    {
+      "src": "confboxAsset(/assets/chromelogo.png)",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "confboxAsset(/assets/chromelogo-large.png)",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ]
+}

@@ -106,7 +106,7 @@ function updateOnNow(item, now) {
     <h1 class="${styles.nowTitle}">
       ${item.session
         ? html`
-            <a href="${path}sessions/${item.fileSlug}">${item.title}</a>
+            <a href="${path}sessions/${item.fileSlug}/">${item.title}</a>
           `
         : item.title}
     </h1>
@@ -162,7 +162,7 @@ function updateOnNext(item) {
       <h1 class="${styles.nextTitle}">
         ${item.session
           ? html`
-              <a href="${path}sessions/${item.fileSlug}">${item.title}</a>
+              <a href="${path}sessions/${item.fileSlug}/">${item.title}</a>
             `
           : item.title}
       </h1>

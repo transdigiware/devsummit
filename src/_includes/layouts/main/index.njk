@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="confboxAsset(/assets/chromelogo.png)">
+    <link rel="manifest" href="confboxAsset(/manifest.json)">
     <link rel="preload" as="font" crossorigin href="confboxAsset(/assets/google-sans/regular/latin.woff2)">
     <link rel="preload" as="font" crossorigin href="confboxAsset(/assets/google-sans/bold/latin.woff2)">
     {% css page, mainCss %}
@@ -54,5 +55,6 @@
     ga('create', 'UA-41980257-1', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
+  <script type="module" src="confboxAsset(/_includes/layouts/main/offline.js)"></script>
   </body>
 </html>
