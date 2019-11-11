@@ -6,6 +6,7 @@ topics:
 speakers:
   - pj-mclachlan
   - sam-thorogood
+  - mukund-laddha
 start: 2019/11/11 17:20
 end: 2019/11/11 17:50
 description: This talk is for designers of enterprise & consumer web apps who want to understand the options for installed web experiences from browsers and the Play Store…
