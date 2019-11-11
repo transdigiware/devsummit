@@ -7,14 +7,16 @@
   "theme_color": "#f8f9fa",
   "icons": [
     {
-      "src": "confboxAsset(/assets/chromelogo.png)",
+      "src": "confboxAsset(/assets/pwa.png)",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
-      "src": "confboxAsset(/assets/chromelogo-large.png)",
+      "src": "confboxAsset(/assets/pwa-large.png)",
       "type": "image/png",
-      "sizes": "1024x1024"
+      "sizes": "1024x1024",
+      "purpose": "maskable"
     }
   ]
 }
