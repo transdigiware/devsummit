@@ -21,7 +21,7 @@
     <a href="{{conf.path}}remote/">Remote</a>
     <a href="{{conf.path}}faqs/">FAQs</a>
   </div>
-  {% if page.url !== '/' %}
+  {% if page.url !== '/' and page.url !== '/schedule/' %}
     <a href="{{conf.path}}" style="display:none" class="{% className css, 'register' %}">Live Stream</a>
     <script>
       const now = Number(new URL(location).searchParams.get('now')) || Date.now();
