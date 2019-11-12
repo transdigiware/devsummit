@@ -195,7 +195,7 @@ function update() {
   const now = getNow();
   const day2LivestreamSwitchover = 1573560000000;
   const youtubeId =
-    now > day2LivestreamSwitchover ? 'kkuzdrd4lxc' : 'gUteNZ0IvrE';
+    now > day2LivestreamSwitchover ? '7ohLjc9-FT4' : 'gUteNZ0IvrE';
 
   livestreamEl.innerHTML = html`
     <iframe
