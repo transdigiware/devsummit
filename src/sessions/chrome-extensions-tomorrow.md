@@ -8,6 +8,7 @@ speakers:
 start: 2019/11/12 16:40
 end: 2019/11/12 17:10
 description: Chrome's extensions platform is undergoing a sea change. Nearly 6 years after the current manifest version was introduced, we are revving it again…
+youtubeId: 7-ALJiZCI6w
 ---
 
 Chrome's extensions platform is undergoing a sea change. Nearly 6 years after the current manifest version was introduced, we are revving it again. Manifest V3 rethinks several of the basics about how extensions work in order to make extensions more secure, performant, and privacy preserving.
