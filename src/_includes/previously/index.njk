@@ -6,16 +6,15 @@
 
 {%
   set images = [
-    {url: "BE8A5681", alt: "Chrome Dev Summit 2018 lobby in the dark"},
-    {url: "BE8A6532", alt: "Chrome Dev Summit 2018 lobby in the light"},
-    {url: "CDSP18-056", alt: "Robert Nyman outside the sign-up tent"},
-    {url: "CDSP18-214", alt: "Attendee with baby"},
-    {url: "CDSP18-256", alt: "Google Developers certification stand"},
-    {url: "CDSP18-109", alt: "Speakers on stage"},
-    {url: "BE8A4369", alt: "Audience applauding"},
-    {url: "CDSP18-076", alt: "Stickers"},
-    {url: "BE8A4245", alt: "That moment where Jake dropped a cake"},
-    {url: "BE8A6854", alt: "Demos in the lobby"}
+    {url: "1", alt: "Chrome Dev Summit 2019 sandbox area"},
+    {url: "2", alt: "Audience"},
+    {url: "3", alt: "Outside the venue"},
+    {url: "4", alt: "The MCs"},
+    {url: "5", alt: "Attendee filming the event on their phone"},
+    {url: "6", alt: "Attendees chatting"},
+    {url: "7", alt: "Attendees laughing"},
+    {url: "8", alt: "Attendees watching"},
+    {url: "9", alt: "Code labs"}
   ]
 %}
 
@@ -23,11 +22,8 @@
   <img
     decoding="async"
     alt="{{ image.alt }}"
-    data-src="confboxAsset(/_includes/previously/assets/{{ image.url }}_1x.jpg)"
-    data-srcset="
-      confboxAsset(/_includes/previously/assets/{{ image.url }}_3x.jpg) 3x,
-      confboxAsset(/_includes/previously/assets/{{ image.url }}_2x.jpg) 2x
-    "
+    loading="lazy"
+    src="confboxAsset(/_includes/previously/assets/{{ image.url }}.jpg)"
   >
 {% endmacro %}
 
@@ -59,5 +55,4 @@
       {{ imageTag(images[8]) }}
     </div>
   </div>
-  <script async src="confboxAsset(/_includes/previously/script.js)"></script>
 </section>
