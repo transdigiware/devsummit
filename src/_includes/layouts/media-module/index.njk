@@ -3,7 +3,7 @@
 {%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
 {% css page, mediaCSS %}
 
-<section class="{% block moduleClass %}{% className moduleCSS, 'root' %}{% endblock %} {% className mediaCSS, 'root' %}">
+<section class="{% block moduleClass %}{% className moduleCSS, 'root' %}{% endblock %} {% block mediaRootClass %}{% className mediaCSS, 'root' %}{% endblock %}">
   {% block before %}{% endblock %}
   <div class="{% className mediaCSS, 'main' %}">
     {% block main %}{% endblock %}

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="confboxAsset(/assets/chromelogo.png)">
+    <link rel="icon" href="confboxAsset(/assets/site-logo-no-shadow.png)">
     <link rel="manifest" href="confboxAsset(/manifest.json)">
     <link rel="preload" as="font" crossorigin href="confboxAsset(/assets/google-sans/regular/latin.woff2)">
     <link rel="preload" as="font" crossorigin href="confboxAsset(/assets/google-sans/bold/latin.woff2)">
@@ -37,24 +37,34 @@
       <meta name="twitter:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
       <meta property="og:image" content="{{conf.origin}}confboxAsset({{metaImage}})">
     {% else %}
-      <meta name="twitter:image" content="{{conf.origin}}confboxAsset(/assets/social-share.jpg)">
-      <meta property="og:image" content="{{conf.origin}}confboxAsset(/assets/social-share.jpg)">
+      <meta name="twitter:image" content="{{conf.origin}}confboxAsset(/assets/social-share.png)">
+      <meta property="og:image" content="{{conf.origin}}confboxAsset(/assets/social-share.png)">
     {% endif %}
 
     {% if conf.twitter %}
       <meta name="twitter:site" content="{{conf.twitter}}">
     {% endif %}
+    <!-- Analytics -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-41980257-1', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview');
+      document.documentElement.addEventListener('click', (event) => {
+        const a = event.target.closest('a');
+        if (!a || new URL(a.href).origin === location.origin) return;
+        ga('send', 'event', {
+          eventCategory: 'Outbound Link',
+          eventAction: 'click',
+          eventLabel: a.href,
+          transport: 'beacon',
+        });
+      }, true);
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
   </head>
   <body>
     {% include 'header/index.njk' %}
     {% block content %}{{ content | safe }}{% endblock %}
     {% include 'footer/index.njk' %}
-    <!-- Analytics -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-41980257-1', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
   <script type="module" src="confboxAsset(/_includes/layouts/main/offline.js)"></script>
   </body>
 </html>

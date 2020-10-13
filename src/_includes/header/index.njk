@@ -1,35 +1,27 @@
 {% set utilsCSS = "/_includes/utils.css" %}
-{% css page, utilsCSS %}
+{% css page,
+utilsCSS %}
 {% set css = "/_includes/header/style.css" %}
-{% css page, css %}
+{% css page,
+css %}
 
 <div class="{% className css, 'root' %}">
   <a class="{% className css, 'title' %}" href="{{conf.path}}">
     <div class="{% className css, 'logo-container' %}">
       <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: 1">
-        <img class="{% className utilsCSS, 'media-fill' %}" src="confboxAsset(/assets/chromelogo.svg)" alt="Chrome">
+        <img class="{% className utilsCSS, 'media-fill' %}" src="confboxAsset(/assets/site-logo.png)" alt="">
       </div>
     </div>
     <div class="{% className css, 'title-text' %}">
-      <div class="{% className css, 'title-main' %}">dev summit</div>
-      <time class="{% className css, 'title-year' %}">{% confDate conf.start, 'YYYY' %}</time>
+      <div class="{% className css, 'title-main' %}">Chrome</div>
+      <div class="{% className css, 'title-sub' %}">Dev Summit</div>
+      <time class="{% className css, 'title-year' %}">{% confDate conf.start,
+        'YYYY' %}</time>
     </div>
   </a>
   <div class="{% className css, 'extra-links' %}">
-    <a href="{{conf.path}}schedule/">Schedule</a>
-    <a href="{{conf.path}}venue/">Venue</a>
-    <a href="{{conf.path}}remote/">Remote</a>
     <a href="{{conf.path}}faqs/">FAQs</a>
+    <a href="{{conf.path}}community-guidelines/">Guidelines</a>
   </div>
-  {% if page.url !== '/' and page.url !== '/schedule/' %}
-    <a href="{{conf.path}}" style="display:none" class="{% className css, 'register' %}">Live Stream</a>
-    <script>
-      const now = Number(new URL(location).searchParams.get('now')) || Date.now();
-      const start = {{ conf.start }} - (1000 * 60 * 60 * 2);
-      const end = {{ conf.end }};
-      if (now > start && now < end) {
-        document.currentScript.previousElementSibling.style.display = '';
-      }
-    </script>
-  {% endif %}
+  <a href="{{conf.registerLink}}" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
 </div>
