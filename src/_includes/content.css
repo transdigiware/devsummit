@@ -74,7 +74,7 @@
 .category {
   @media (min-width: 1020px) {
     display: grid;
-    grid-template-columns: 40% max-content;
+    grid-template-columns: 40% 1fr;
     grid-column-gap: 4rem;
     margin-bottom: 6rem;
   }
