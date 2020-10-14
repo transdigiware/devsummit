@@ -48,16 +48,18 @@
     <script>
       window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
       ga('create', 'UA-41980257-1', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview');
-      document.documentElement.addEventListener('click', (event) => {
-        const a = event.target.closest('a');
-        if (!a || new URL(a.href).origin === location.origin) return;
-        ga('send', 'event', {
-          eventCategory: 'Outbound Link',
-          eventAction: 'click',
-          eventLabel: a.href,
-          transport: 'beacon',
-        });
-      }, true);
+      for (const eventName of ['click', 'auxclick', 'contextmenu']) {
+        document.documentElement.addEventListener(eventName, (event) => {
+          const a = event.target.closest('a');
+          if (!a || new URL(a.href).origin === location.origin) return;
+          ga('send', 'event', {
+            eventCategory: 'Outbound Link',
+            eventAction: 'click',
+            eventLabel: a.href,
+            transport: 'beacon',
+          });
+        }, true);
+      }
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
   </head>
