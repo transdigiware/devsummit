@@ -6,7 +6,7 @@
 <section class="{% className moduleCSS, 'root' %} {% className css, 'root' %}">
   <div class="{% className moduleCSS, 'heading-split' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">FAQ</h1>
-    <a href="{{conf.path}}faqs/" class="{% className moduleCSS, 'heading-link' %}">All {{ collections.faq.length }} frequently asked questions</a>
+    <a href="{{conf.path}}faqs/" class="{% className moduleCSS, 'heading-link' %}">All frequently asked questions</a>
   </div>
 
   <div class="{% className css, 'faq-container' %}">
@@ -17,7 +17,7 @@
           <section class="{% className css, 'faq-content' %}">
             <p>{{ faq.answer }} <a href="{{conf.path}}faqs/#{% idify faq.title %}">Read more</a></p>
           </section>
-        </section>  
+        </section>
       {% endfor %}
     </div>
   </div>
