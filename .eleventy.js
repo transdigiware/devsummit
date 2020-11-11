@@ -3,7 +3,8 @@ const fs = require('fs');
 const date = require('date-and-time');
 const nunjucks = require('nunjucks');
 const { dirname, basename } = require('path');
-//const createSchedule = require('./src/schedule/script/create-schedule');
+const createSchedule = require('./src/schedule/script/create-schedule');
+const createWorkshops = require('./src/schedule/script/create-workshops');
 const createCalendarWidget = require('./src/_includes/calendar-widget/script/create-widget.js');
 const { dateStrToTimestamp } = require('./src/utils/date-helper.js');
 
@@ -29,6 +30,7 @@ function buildScheduleData(sessions, speakers, { basic = false } = {}) {
       if (!basic) {
         obj.topics = session.data.topics;
         obj.avatar = session.data.avatar;
+        obj.avatarAlt = session.data.avatarAlt || '';
         obj.body = session.data.description;
       }
 
@@ -53,6 +55,7 @@ function buildScheduleData(sessions, speakers, { basic = false } = {}) {
           name: speaker.data.name,
           avatar: `confboxAsset(${speaker.data.avatar ||
             '/assets/speakers/default.svg'})`,
+          avatarAlt: speaker.data.avatarAlt,
           title: speaker.data.title,
           link: speaker.data.link,
         };
@@ -65,6 +68,29 @@ function buildScheduleData(sessions, speakers, { basic = false } = {}) {
   schedule.sort((a, b) => (a.start < b.start ? -1 : 1));
 
   return schedule;
+}
+
+function buildWorkshopData(sessions, speakers) {
+  return sessions
+    .map(session => ({
+      start: dateStrToTimestamp(session.data.start, utcOffset),
+      end: dateStrToTimestamp(session.data.end, utcOffset),
+      title: session.data.title,
+      speakers:
+        session.data.speakers &&
+        session.data.speakers.map(speakerId => {
+          const speaker = speakers.find(s => s.fileSlug == speakerId);
+          if (!speaker) throw new Error(`Could not find speaker: ${speakerId}`);
+          return {
+            name: speaker.data.name,
+            avatar: `confboxAsset(${speaker.data.avatar ||
+              '/assets/speakers/default.svg'})`,
+            title: speaker.data.title,
+            link: speaker.data.link,
+          };
+        }),
+    }))
+    .sort((a, b) => (a.start < b.start ? -1 : 1));
 }
 
 class ModularClassName {
@@ -190,6 +216,16 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  eleventyConfig.addShortcode('workshops', (sessions, speakers) => {
+    return new nunjucks.runtime.SafeString(
+      createWorkshops(
+        buildWorkshopData(sessions, speakers),
+        utcOffset,
+        modCSS.getAllCamelCased('/schedule/style.css'),
+      ),
+    );
+  });
+
   eleventyConfig.addShortcode('calendarWidget', date => {
     return new nunjucks.runtime.SafeString(
       createCalendarWidget(
@@ -270,6 +306,13 @@ module.exports = function(eleventyConfig) {
       collection.getFilteredByTag('session'),
       collection.getFilteredByTag('speakers'),
       { basic: true },
+    );
+  });
+
+  eleventyConfig.addCollection('jsWorkshops', collection => {
+    return buildWorkshopData(
+      collection.getFilteredByTag('workshop'),
+      collection.getFilteredByTag('speakers'),
     );
   });
 

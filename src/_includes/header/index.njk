@@ -20,8 +20,13 @@ css %}
     </div>
   </a>
   <div class="{% className css, 'extra-links' %}">
+    <a href="{{conf.path}}schedule/">Schedule</a>
+    <a href="{{conf.path}}schedule/#office-hours">Office Hours</a>
+    <a href="{{conf.path}}schedule/#workshops">Workshops</a>
     <a href="{{conf.path}}faqs/">FAQs</a>
     <a href="{{conf.path}}community-guidelines/">Guidelines</a>
   </div>
+  {% from 'squiggle-banner/index.njk' import squiggleBottom %}
+  {{ squiggleBottom(page, gray=false) }}
   <a href="{{conf.registerLink}}" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
 </div>

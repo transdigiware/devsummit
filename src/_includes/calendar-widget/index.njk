@@ -5,7 +5,7 @@
   <div class="{% className css, 'calendar' %}" data-timestamp="{% timestamp start %}">
     <script>
       // Avoid visible date switch:
-      if (localStorage.timezoneOption === 'local') {
+      if (localStorage.timezoneOption !== 'venue') {
         document.currentScript.parentNode.style.visibility = 'hidden';
       }
     </script>

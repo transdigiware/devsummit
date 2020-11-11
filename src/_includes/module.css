@@ -3,6 +3,7 @@
   --vertical-padding: 2.4rem;
   background-color: var(--white);
   padding: var(--vertical-padding) var(--side-margin);
+  position: relative;
 
   @media (min-width: 1280px) {
     --vertical-padding: 4.5rem;

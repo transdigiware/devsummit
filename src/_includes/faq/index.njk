@@ -4,6 +4,9 @@
 {% css page, css %}
 
 <section class="{% className moduleCSS, 'root' %} {% className css, 'root' %}">
+  {% from 'squiggle-banner/index.njk' import squiggleTop %}
+  {{ squiggleTop(page, gray=true) }}
+
   <div class="{% className moduleCSS, 'heading-split' %}">
     <h1 class="{% className moduleCSS, 'heading' %}">FAQ</h1>
     <a href="{{conf.path}}faqs/" class="{% className moduleCSS, 'heading-link' %}">All frequently asked questions</a>

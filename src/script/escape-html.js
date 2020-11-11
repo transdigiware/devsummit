@@ -25,20 +25,32 @@ module.exports.safe = safe;
 
 function html(parts, ...subs) {
   return safe(
-    parts.reduce((result, part, i) => {
-      let sub = subs[i - 1];
+    parts
+      .map((part, i) => {
+        if (i === 0) return part;
+        let sub = subs[i - 1];
 
-      // Normalise to array to handle mapping through arrays
-      if (!Array.isArray(sub)) {
-        sub = [sub];
-      }
+        // Normalise to array to handle mapping through arrays
+        if (!Array.isArray(sub)) {
+          sub = [sub];
+        }
 
-      const processedSub = sub
-        .map(s => (safeStrs.has(s) ? s.toString() : escape(s.toString())))
-        .join('');
+        const processedSub = sub
+          .map(sub => {
+            if (sub === undefined) return 'undefined';
+            if (sub === null) return 'null';
+            if (safeStrs.has(sub)) return sub.toString();
+            return escape(
+              sub.toString
+                ? sub.toString()
+                : Object.prototype.toString.call(sub),
+            );
+          })
+          .join('');
 
-      return result + processedSub + part;
-    }),
+        return processedSub + part;
+      })
+      .join(''),
   );
 }
 

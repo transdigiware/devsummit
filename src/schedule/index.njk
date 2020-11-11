@@ -1,0 +1,98 @@
+---
+title: Schedule
+description: Everything that's happening at Chrome Dev Summit.
+---
+
+{% extends 'layouts/main/index.njk' %}
+
+{% block content %}
+  {%- set moduleCSS = "/_includes/module.css" -%}
+  {% css page, moduleCSS %}
+  {%- set pageCSS = "/_includes/page.css" -%}
+  {% css page, pageCSS %}
+  {%- set css = "/schedule/style.css" -%}
+  {% css page, css %}
+
+  <div class="{% className pageCSS, 'header' %}">
+    <div>
+      <h1 id="sessions" class="{% className moduleCSS, 'heading' %} {% className pageCSS, 'heading' %}">{% headingSlug "Schedule" %}</h1>
+      {% set icslink="fullevent.ics" %}
+      <div class="{% className pageCSS, 'heading-extra' %}">{% include 'add-to-cal/index.njk' %}</div>
+    </div>
+    <div>
+      <div class="{% className pageCSS, 'boxed-content' %}">
+        <p>
+          All sessions will be streamed live during the event, and will be available after the event on the
+          <a href="https://www.youtube.com/user/ChromeDevelopers" rel="noopener noreferrer" target="_blank">Chrome Developers YouTube channel</a>.
+        </p>
+        <div class="{% className css, 'tz-switch' %}">
+          <div class="{% className css, 'tz-switch-title' %}">Schedule timezone</div>
+          {% include 'timezone-toggle/index.njk' %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="{% className css, 'schedule-block' %}">
+    <script>
+      // Avoid visible date switch:
+      if (localStorage.timezoneOption !== 'venue') {
+        document.currentScript.parentNode.style.visibility = 'hidden';
+      }
+    </script>
+    {% schedule collections.session, collections.speakers %}
+  </div>
+  <script>
+    self.schedule = {% json collections.jsSchedule %};
+  </script>
+
+  <section class="{% className moduleCSS, 'root' %} {% className css, 'overflow' %}">
+    <h1 class="{% className moduleCSS, 'heading' %}">{% headingSlug "Overflow" %}</h1>
+    <p>There’s more to the event than the main schedule! Find it all here.</p>
+
+    <div class="{% className css, 'split-boxes' %}">
+      <div>
+        <div class="{% className css, 'content-box' %}">
+          <div id="workshops" class="{% className css, 'split-heading' %}">
+            <h2>Workshops</h2>
+            <a href="https://events.withgoogle.com/chrome-dev-summit-2020/registrations/new/" target="_blank" rel="noopener noreferrer">Request an invite</a>
+          </div>
+          <p>We’ll be running limited capacity workshops with leading experts from the community. These workshops will take place over two days (in two parts) before the event dates, on 7 & 8 December, 2020. Request an invite now to be considered for these sessions.</p>
+          <div class="{% className css, 'workshops-tz-switch' %}">{% include 'timezone-toggle/index.njk' %}</div>
+          <div class="workshops-block">
+            <script>
+              // Avoid visible date switch:
+              if (localStorage.timezoneOption !== 'venue') {
+                document.currentScript.parentNode.style.visibility = 'hidden';
+              }
+            </script>
+            {% workshops collections.workshop, collections.speakers %}
+          </div>
+        </div>
+        <script>
+          self.workshops = {% json collections.jsWorkshops %};
+        </script>
+        <script type="module" async src="confboxAsset(/schedule/script/index.js)"></script>
+      </div>
+      <div>
+        <div class="{% className css, 'content-box' %}">
+          <div id="office-hours">
+            <div id="office-hours" class="{% className css, 'split-heading' %}">
+              <h2>Office Hours</h2>
+              <a href="https://events.withgoogle.com/chrome-dev-summit-2020/registrations/new/" target="_blank" rel="noopener noreferrer">Request an invite</a>
+            </div>
+            <p>Over the two days, we’ll have Google engineers, product managers and developer advocates from various areas of expertise available for private office hours with developers.</p>
+            <p>Whether you’re an individual developer or a team working for a company, request an invite for an office hour slot. Slots will be allocated on first come, first serve basis and will be conducted in Pacific Time hours only.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'subscribe-promo/index.njk' %}
+  {% from 'squiggle-banner/index.njk' import squiggleBanner %}
+  {{ squiggleBanner(page, '--red') }}
+
+  <link rel="stylesheet" media="print" href="confboxAsset(/schedule/print.css)">
+
+{% endblock %}

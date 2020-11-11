@@ -39,14 +39,18 @@ layout: '/layouts/session/wrapper'
       {% endif %}
     </section>
     <section class="{% className sessionCSS, 'description' %}">
-      <h2 class="{% className sessionCSS, 'heading' %}">Description</h2>
+      <h2 class="{% className sessionCSS, 'heading' %}">Session Information</h2>
       <div class="{% className sessionCSS, 'text' %}">
         {{ content | safe }}
       </div>
       <ul class="{% className speakerCSS, 'speakerlist' %}">
         {% for speaker in speakers -%}
           <li class="{% className speakerCSS, 'speaker' %}">
-            <img src="confboxAsset({% speakerAttr collections, speaker, "avatar", "/assets/speakers/default.svg" %})" class="{% className speakerCSS, 'speaker-avatar' %}" alt="">
+            <img
+              src="confboxAsset({% speakerAttr collections, speaker, "avatar", "/assets/speakers/default.svg" %})"
+              class="{% className speakerCSS, 'speaker-avatar' %}"
+              alt="{% speakerAttr collections, speaker, "avatarAlt", "" %}"
+            >
             <div class="{% className speakerCSS, 'speaker-creds' %}">
               <div class="{% className speakerCSS, 'speaker-name' %}">
                 {% set link %}{% speakerAttr collections, speaker, "link", "" %}{% endset %}
@@ -58,9 +62,7 @@ layout: '/layouts/session/wrapper'
                   {% speakerAttr collections, speaker, "name" %}
                 {% endif %}
               </div>
-              <div class="{% className speakerCSS, 'speaker-title' %}">{% speakerAttr collections,
-                speaker,
-                "title" %}</div>
+              <div class="{% className speakerCSS, 'speaker-title' %}">{% speakerAttr collections, speaker, "title" %}</div>
             </div>
           </li>
         {%- endfor %}
@@ -68,7 +70,7 @@ layout: '/layouts/session/wrapper'
     </section>
   </div>
 
-  {% include 'notify-promo/index.njk' %}
+  {% include 'subscribe-promo/index.njk' %}
   {% from 'squiggle-banner/index.njk' import squiggleBanner %}
   {{ squiggleBanner(page, '--red') }}
 {% endblock %}

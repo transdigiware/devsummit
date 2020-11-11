@@ -14,6 +14,7 @@ module.exports = class {
         name,
         start: dateStrToTimestamp(data.start, data.conf.utcOffset),
         end: dateStrToTimestamp(data.end, data.conf.utcOffset),
+        location: data.conf.origin + data.conf.path,
       },
     ]);
     const dir = path.join(process.cwd(), path.dirname(data.page.outputPath));

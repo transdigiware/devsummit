@@ -1,39 +1,66 @@
 .root {
   position: relative;
-  z-index: 1;
-  background: url('confboxAsset(/assets/squiggles/banner.svg)') no-repeat center
-    center;
   height: 7.2rem;
-  background-size: 1920px;
-  --corner-size: 14px;
-
-  margin-top: calc(var(--corner-size) * -1);
-  margin-bottom: calc(var(--corner-size) * -1);
-
-  @media (min-width: 1920px) {
-    background-size: cover;
-  }
 }
 
 .top,
-.bottom {
-  height: var(--corner-size);
-  background: var(--white);
+.bottom,
+.border-squiggle-bottom,
+.border-squiggle-top {
+  height: 20px;
   position: absolute;
   left: 0;
   right: 0;
 }
 
-.top {
+.top,
+.border-squiggle-bottom {
   top: 0;
-  border-radius: 0 0 var(--corner-size) var(--corner-size);
+  background: url('confboxAsset(/assets/squiggles/tear-top-white.svg)') repeat-x
+    top;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url('confboxAsset(/assets/squiggles/tear-top-black.svg)');
+  }
+
+  &.gray {
+    background: url('confboxAsset(/assets/squiggles/tear-top-offwhite.svg)')
+      repeat-x top;
+    @media (prefers-color-scheme: dark) {
+      background-image: url('confboxAsset(/assets/squiggles/tear-top-offblack.svg)');
+    }
+  }
 }
 
-.bottom {
-  bottom: 0;
-  border-radius: var(--corner-size) var(--corner-size) 0 0;
+.bottom,
+.border-squiggle-top {
+  bottom: -1px;
+  background: url('confboxAsset(/assets/squiggles/tear-bottom-white.svg)')
+    repeat-x bottom;
+  @media (prefers-color-scheme: dark) {
+    background-image: url('confboxAsset(/assets/squiggles/tear-bottom-black.svg)');
+  }
+
+  &.gray {
+    background: url('confboxAsset(/assets/squiggles/tear-bottom-offwhite.svg)')
+      repeat-x bottom;
+    @media (prefers-color-scheme: dark) {
+      background-image: url('confboxAsset(/assets/squiggles/tear-bottom-offblack.svg)');
+    }
+  }
 }
 
-.gray {
-  background: var(--offwhite);
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.border-squiggle-bottom {
+  top: 100%;
+}
+
+.border-squiggle-top {
+  bottom: 100%;
 }

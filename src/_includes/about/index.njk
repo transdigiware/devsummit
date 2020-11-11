@@ -1,21 +1,20 @@
 {%- set moduleCSS = "/_includes/module.css" -%}
-{% css page,
-moduleCSS %}
+{% css page, moduleCSS %}
 {%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
-{% css page,
-mediaCSS %}
+{% css page, mediaCSS %}
 {%- set aboutCSS = "/_includes/about/style.css" -%}
-{% css page,
-aboutCSS %}
+{% css page, aboutCSS %}
 
 <section class="{% className moduleCSS, 'root' %} {% className mediaCSS, 'root' %} {% className aboutCSS, 'root' %}">
+  {% from 'squiggle-banner/index.njk' import squiggleTop %}
+  {{ squiggleTop(page, gray=false) }}
   <div class="{% className mediaCSS, 'media' %} {% className aboutCSS, 'media' %}">
     {%- set utilsCSS = "/_includes/utils.css" -%}
-    {% css page,
-    utilsCSS %}
+    {% css page, utilsCSS %}
     <div class="{% className utilsCSS, 'aspect-ratio' %} {% className aboutCSS, 'livestream' %}" style="--aspect-ratio: calc(16/9)">
       <iframe class="{% className utilsCSS, 'media-fill' %}" src="https://www.youtube.com/embed/7Kfh-Mem1b8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
     </div>
+    <a href="https://www.youtube.com/channel/UCnUYZLuoy1rq1aVMwx4aTzw?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="{% className aboutCSS, 'subscribe' %}">Subscribe</a>
   </div>
   <div class="{% className mediaCSS, 'main' %}">
     <h1 id="livestream" class="{% className moduleCSS, 'heading' %}">{% headingSlug "About" %}</h1>

@@ -2,7 +2,23 @@
   {%- set css = "/_includes/squiggle-banner/style.css" -%}
   {% css page, css %}
   <div class="{% className css, 'root' %}" style="background-color: var({{colorName}})">
+    <picture>
+      <source type="image/avif" srcset="confboxAsset(/assets/squiggles/banner.avif)">
+      <img class="{% className css, 'banner-img' %}" alt="" src="confboxAsset(/assets/squiggles/banner.png)">
+    </picture>
     <div class="{% className css, 'top' %}{% if grayTop %} {% className css, 'gray' %}{% endif %}"></div>
     <div class="{% className css, 'bottom' %}{% if grayBottom %} {% className css, 'gray' %}{% endif %}"></div>
   </div>
+{% endmacro %}
+
+{% macro squiggleBottom (page, gray=false) %}
+  {%- set css = "/_includes/squiggle-banner/style.css" -%}
+  {% css page, css %}
+  <div class="{% className css, 'border-squiggle-bottom' %}{% if gray %} {% className css, 'gray' %}{% endif %}"></div>
+{% endmacro %}
+
+{% macro squiggleTop (page, gray=false) %}
+  {%- set css = "/_includes/squiggle-banner/style.css" -%}
+  {% css page, css %}
+  <div class="{% className css, 'border-squiggle-top' %}{% if gray %} {% className css, 'gray' %}{% endif %}"></div>
 {% endmacro %}

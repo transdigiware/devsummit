@@ -13,8 +13,43 @@
 .media {
   align-self: start;
   margin-bottom: 1.8rem;
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 1.3rem;
 
   @media (min-width: 1024px) {
     margin-bottom: 0;
+  }
+}
+
+.subscribe {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  padding: 0.4em 2.2em;
+  border-radius: 1000px;
+
+  @media (min-width: 520px) {
+    font-size: 0.9rem;
+    padding: 0.7em 2.4em;
+  }
+
+  &:hover {
+    color: var(--white);
+    text-decoration: underline;
+  }
+
+  background: var(--red);
+  box-shadow: 0 3px 16px var(--red-a25);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--black);
+
+    &:hover {
+      color: var(--black);
+    }
   }
 }

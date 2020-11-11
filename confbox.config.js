@@ -41,99 +41,31 @@ module.exports = {
    * Additional schedule items. These are merged with the content in /sessions/.
    */
   extraSchedule: [
-    /*
-    // Day 1
-    {
-      title: 'Registration & breakfast',
-      start: '2019/11/11 08:00',
-      end: '2019/11/11 09:50',
-      icon: '/schedule/assets/food.svg',
-    },
-    {
-      title: 'Main stage open',
-      start: '2019/11/11 09:30',
-      end: '2019/11/11 09:50',
-    },
-    {
-      title: 'Intro',
-      start: '2019/11/11 09:50',
-      end: '2019/11/11 10:00',
-    },
-    {
-      title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/11 11:35',
-      end: '2019/11/11 12:15',
+    // breaks
+    ...[
+      // day, start time, end time
+      ['09', '10:25', '10:30'],
+      ['09', '11:10', '11:15'],
+      ['09', '11:35', '11:40'],
+      ['10', '10:10', '10:15'],
+      ['10', '10:55', '11:00'],
+      ['10', '11:20', '11:25'],
+    ].map(([day, startTime, endTime]) => ({
+      title: 'Interlude',
+      start: `2020/12/${day} ${startTime}`,
+      end: `2020/12/${day} ${endTime}`,
       icon: '/schedule/assets/coffee.svg',
       livestreamed: true,
-    },
-    {
-      title: 'Lunch & livestream exclusive lightning talks',
-      start: '2019/11/11 13:25',
-      end: '2019/11/11 14:35',
-      icon: '/schedule/assets/food.svg',
-      livestreamed: true,
-    },
-    {
-      title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/11 16:05',
-      end: '2019/11/11 16:40',
-      icon: '/schedule/assets/coffee.svg',
-      livestreamed: true,
-    },
-    {
-      title: 'Social hour',
-      start: '2019/11/11 18:25',
-      end: '2019/11/11 20:25',
-      icon: '/schedule/assets/coffee.svg',
-    },
+    })),
     {
       title: 'Day 1 complete!',
-      start: '2019/11/11 20:25',
-      end: '2019/11/11 20:26',
-    },
-    // Day 2
-    {
-      title: 'Registration & breakfast',
-      start: '2019/11/12 08:00',
-      end: '2019/11/12 09:50',
-      icon: '/schedule/assets/food.svg',
-    },
-    {
-      title: 'Main stage open',
-      start: '2019/11/12 09:30',
-      end: '2019/11/12 09:50',
-    },
-    {
-      title: 'Intro',
-      start: '2019/11/12 09:50',
-      end: '2019/11/12 10:00',
-    },
-    {
-      title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/12 11:45',
-      end: '2019/11/12 12:15',
-      icon: '/schedule/assets/coffee.svg',
-      livestreamed: true,
-    },
-    {
-      title: 'Lunch & livestream exclusive lightning talks',
-      start: '2019/11/12 13:25',
-      end: '2019/11/12 14:35',
-      icon: '/schedule/assets/food.svg',
-      livestreamed: true,
-    },
-    {
-      title: 'Break & livestream exclusive lightning talks',
-      start: '2019/11/12 16:05',
-      end: '2019/11/12 16:35',
-      icon: '/schedule/assets/coffee.svg',
-      livestreamed: true,
+      start: '2020/12/09 12:30',
+      end: '2020/12/09 12:31',
     },
     {
       title: `It's over 😢`,
-      start: '2019/11/12 17:45',
-      end: '2019/11/12 17:46',
+      start: '2020/12/10 12:00',
+      end: '2020/12/10 12:01',
     },
-  */
   ],
 };

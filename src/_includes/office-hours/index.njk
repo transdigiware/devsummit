@@ -1,5 +1,5 @@
-{%- set cssBlah = "/_includes/office-hours/style.css" -%}
-{% css page, cssBlah %}
+{%- set officeCSS = "/_includes/office-hours/style.css" -%}
+{% css page, officeCSS %}
 {%- set moduleCSS = "/_includes/module.css" -%}
 {% css page, moduleCSS %}
 {%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
@@ -11,15 +11,14 @@
   <div class="{% className mediaCSS, 'main' %} {% className contentCSS, 'content-area' %}">
     <h1 id="livestream" class="{% className moduleCSS, 'heading' %}">{% headingSlug "Hours" %}</h1>
     <p>
-      So what if we can’t meet in person? We’ll be there to run private, virtual Office Hours
-      and limited capacity Workshops across topics such as Performance, Web Vitals,
-      Trust & Safety, PWA, CSS, UX & Design. You name it.
+      So what if we can’t meet in person? We’ll be there to run private, virtual Office Hours across topics
+      such as <strong>Performance, Web Vitals, PWA, CSS, UX & Design</strong>. You name it.
     </p>
     <p>
-      While we iron out some logistical creases, remember to
+      Make sure to
       <a href="{{conf.registerLink}}" rel="noopener noreferrer" target="_blank">Request an Invite</a>
       so you don’t miss out!
     </p>
   </div>
-  <div class="{% className mediaCSS, 'media-decorative' %} {% className cssBlah, 'decoration' %}"></div>
+  <div class="{% className mediaCSS, 'media-decorative' %} {% className officeCSS, 'decoration' %}"></div>
 </section>

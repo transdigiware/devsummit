@@ -14,12 +14,14 @@ module.exports = function(calendarName, events) {
     PRODID:-//hacksw/handcal//NONSGML v1.0//EN
     X-WR-CALNAME:${calendarName}
     ${events
-      .map(({ start, end, name }, idx) => {
+      .map(({ name, start, end, location }, idx) => {
         const dtstart = timestampToCalDate(start);
         const dtend = timestampToCalDate(end);
         return unindent(`
           BEGIN:VEVENT
           DTSTAMP:${timestampToCalDate(0)}
+          LOCATION:${location}
+          URL;VALUE=URI:${location}
           DTSTART:${dtstart}
           DTEND:${dtend}
           SUMMARY:${name}

@@ -9,10 +9,10 @@ addEventListener('install', event => {
     (async () => {
       const toCache = new Set([
         ...files.filter(f => /\.(svg|js)$/.test(f)),
-        //...files.filter(f => f.startsWith('/devsummit/assets/speakers/')),
-        //...files.filter(f => f.startsWith('/devsummit/sessions/')),
+        ...files.filter(f => f.startsWith('/devsummit/assets/speakers/')),
+        ...files.filter(f => f.startsWith('/devsummit/sessions/')),
         '/devsummit/',
-        //'/devsummit/schedule/',
+        '/devsummit/schedule/',
         '/devsummit/offline/',
       ]);
       const cache = await caches.open(cacheName);
@@ -42,6 +42,9 @@ addEventListener('activate', event => {
 
 addEventListener('fetch', event => {
   if (!urls.has(event.request.url)) return;
+  const url = new URL(event.request.url);
+  if (url.searchParams.get('bypass-sw') === '1') return;
+
   event.respondWith(
     (async () => {
       const cachedResponse = await caches.match(event.request);

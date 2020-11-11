@@ -1,5 +1,4 @@
-.root,
-.root-alt {
+.root {
   @media (min-width: 1024px) {
     display: grid;
     grid-template-columns: [main] 1fr [media] 54%;
@@ -10,7 +9,10 @@
 
 .root-alt {
   @media (min-width: 1024px) {
+    display: grid;
     grid-template-columns: [media] 1fr [main] 54%;
+    grid-column-gap: 4rem;
+    align-items: center;
   }
 }
 

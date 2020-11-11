@@ -6,6 +6,8 @@ moduleCSS %}
 promoCSS %}
 
 <section class="{% className moduleCSS, 'root' %} {% className promoCSS, 'root' %}">
+  {% from 'squiggle-banner/index.njk' import squiggleTop %}
+  {{ squiggleTop(page, gray=false) }}
   <div class="{% className promoCSS, 'icon' %}">
     <img src="confboxAsset('/assets/youtube-icon.svg')" alt="YouTube">
   </div>
