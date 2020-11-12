@@ -33,7 +33,7 @@ layout: '/layouts/session/wrapper'
         </div>
       {% else %}
         <div class="{% className sessionCSS, 'calendar' %}">
-          {% set icslink = "session/" + page.fileSlug + "/cal.ics" %}
+          {% set icslink = "sessions/" + page.fileSlug + "/cal.ics" %}
           {% include "calendar-widget/index.njk" %}
         </div>
       {% endif %}
