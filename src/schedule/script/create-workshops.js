@@ -21,7 +21,7 @@ module.exports = function createWorkshopHtml(items, utcOffset, classNameMap) {
                 <img
                   class="${classNameMap.workshopAvatar}"
                   src="${item.speakers[0].avatar}"
-                  alt=""
+                  alt="${item.speakers[0].avatarAlt || ''}"
                   decoding="async"
                   loading="lazy"
                 />
