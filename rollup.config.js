@@ -50,7 +50,7 @@ export default async function({ watch }) {
       },
       buildStartSequencePlugin(),
       eleventyPlugin(),
-      globInputPlugin('.build-tmp/**/*.html'),
+      globInputPlugin('.build-tmp/**/*.html', '.build-tmp/manifest.json'),
       htmlCSSPlugin(),
       assetPlugin(),
       classnamePlugin('.build-tmp'),
