@@ -16,6 +16,8 @@ module.exports = {
   /** Link for registration */
   registerLink:
     'https://events.withgoogle.com/chrome-dev-summit-2020/registrations/new/details/',
+  /** Link for updates */
+  updatesLink: 'https://web.dev/newsletter/',
   /**
    * Data of the conference venue.
    */

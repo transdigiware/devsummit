@@ -20,10 +20,12 @@ utilsCSS %}
       <span target="_blank" class="{% className css, 'location-main' %}">Virtual conference</span>
       <span class="{% className css, 'location-sub' %}">Wherever You Are</span>
     </p>
+    <div class="{% className css, 'about' %}">
+      <p>Invite requests for our limited capacity activities are now closed, but all sessions will be open to everyone. Get updates related to CDS 2020 as well as the latest news and techniques for web development straight to your inbox.</p>
+    </div>
     <div class="{% className css, 'actions' %}">
       <div class="{% className css, 'register-outer' %}">
-        <a href="{{conf.registerLink}}" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Request an invite</a>
-        (requires Google sign in)
+        <a href="{{conf.updatesLink}}" rel="noopener noreferrer" target="_blank" class="{% className utilsCSS, 'register' %} {% className css, 'register' %}">Get updates</a>
       </div>
       {% set icslink = "fullevent.ics?2020" %}
       {% include "add-to-cal/index.njk" %}
