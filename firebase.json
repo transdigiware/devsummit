@@ -37,17 +37,6 @@
         "destination": "/devsummit/nuke-sw.js"
       }
     ],
-    "redirects": [
-      {
-        "source": "/devsummit/sessions/the-main-thread-is-a-bad-place-to-run-your-code/",
-        "destination": "/devsummit/sessions/the-main-thread-is-overworked-and-underpaid/",
-        "type": 301
-      },
-      {
-        "source": "/devsummit/sessions/the-main-thread-is-a-bad-place-to-run-your-code",
-        "destination": "/devsummit/sessions/the-main-thread-is-overworked-and-underpaid/",
-        "type": 301
-      }
-    ]
+    "redirects": []
   }
 }
