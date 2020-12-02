@@ -38,7 +38,7 @@ export default async function({ watch }) {
       clearScreen: false,
       // Avoid watching intermediate files, else watch gets stuck in a loop.
       // 11ty source files are watched by eleventyPlugin.
-      exclude: '.build-tmp/**/*.html',
+      exclude: ['.build-tmp/**/*.html', '.build-tmp/manifest.json'],
     },
     plugins: [
       nodeResolve(),

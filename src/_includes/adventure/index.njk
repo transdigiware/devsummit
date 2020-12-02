@@ -1,0 +1,42 @@
+{%- set moduleCSS = "/_includes/module.css" -%}
+{% css page, moduleCSS %}
+{%- set mediaCSS = "/_includes/layouts/media-module/style.css" -%}
+{% css page, mediaCSS %}
+{%- set contentCSS = "/_includes/content.css" -%}
+{% css page, contentCSS %}
+{%- set adventureCSS = "/_includes/adventure/style.css" -%}
+{% css page, adventureCSS %}
+
+<section class="{% className moduleCSS, 'root-alt' %} {% className mediaCSS, 'root' %} {% className adventureCSS, 'root' %}">
+  <div class="{% className mediaCSS, 'media' %}">
+    {%- set utilsCSS = "/_includes/utils.css" -%}
+    {% css page, utilsCSS %}
+    <div class="{% className utilsCSS, 'aspect-ratio' %}" style="--aspect-ratio: calc(16/9)">
+      <video class="{% className utilsCSS, 'media-fill' %}" src="confboxAsset(/assets/adventure.mp4)" playsinline controls autoplay loop muted></video>
+    </div>
+  </div>
+  <div class="{% className mediaCSS, 'main' %} {% className contentCSS, 'content-area' %}">
+    <div class="{% className adventureCSS, 'heading' %}">
+      <div class="{% className adventureCSS, 'date-coming' %}">Coming <span class="date">December 9<sup>th</sup></span></div>
+      <h1>A <span class="{% className adventureCSS, 'code' %}">new <span class="{% className adventureCSS, 'code-word' %}">Adventure</span><span class="{% className adventureCSS, 'code-bracket' %}">()</span></span> awaits you!</h1>
+    </div>
+    <p>
+      To keep the spirit of Chrome Dev Summit alive and stay connected, we’ve created <strong>CDS Adventure</strong>
+      – an experimental virtual conference experience for you to explore.
+    </p>
+    <p>
+      <strong>Enter the virtual world and…</strong>
+    </p>
+    <ul>
+      <li>interact with other developers and Googlers</li>
+      <li>discover demos, complete codelabs, or unlock virtual swag</li>
+      <li>…of course, find a few surprises</li>
+    </ul>
+    <p>Stay up to date on all things CDS as well as the latest news and techniques for web development.</p>
+    <p>
+      <a href="{{ conf.updatesLink }}" target="_blank" rel="noopener noreferrer" class="{% className adventureCSS, 'updates-btn' %}">
+        Get notified
+      </a>
+    </p>
+  </div>
+</section>
