@@ -5,7 +5,7 @@ speakers:
   - ingvar-stepanyan
 start: 2020/12/10 10:00
 end: 2020/12/10 10:10
-description: Debugging WebAssembly has gotten a lot better in the last year and allow you to develop quicker when using WebAssembly.
+description: Debugging WebAssembly has gotten a lot better in the last year, here's how…
 ---
 
 WebAssembly is a binary format that allows developers to bring their experience and applications from a variety of programming languages to the web, and to share those experiences with even more users across all platforms.
