@@ -4,7 +4,7 @@ title: The Web Ahead
 speakers:
   - paul-kinlan
   - alex-russell
-start: 2020/12/10 11:45
+start: 2020/12/10 11:40
 end: 2020/12/10 12:00
 description: Why do we care about pushing the web forward? What direction is "forward"?
 ---

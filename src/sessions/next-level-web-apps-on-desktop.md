@@ -3,8 +3,8 @@ layout: layouts/session/index.njk
 title: Next-level web apps on desktop
 speakers:
   - pj-mclachlan
-start: 2020/12/10 10:25
-end: 2020/12/10 10:35
+start: 2020/12/10 10:30
+end: 2020/12/10 10:40
 description: This session is a whirlwind tour of the exciting new capabilities that have been added to help developers build fully featured apps on the web.
 ---
 

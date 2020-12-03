@@ -3,7 +3,7 @@ layout: layouts/session/index.njk
 title: 'Extending Workbox: custom strategies and plugins'
 speakers:
   - jeff-posnick
-start: 2020/12/10 11:00
+start: 2020/12/10 11:05
 end: 2020/12/10 11:10
 description: Did you know you can customize Workbox with your own caching strategies?
 ---
